@@ -1,0 +1,9 @@
+.wrapper {
+  height: 100vh;
+}
+
+.main {
+  margin: 0 auto;
+  max-width: 120rem;
+  flex-grow: 1;
+}

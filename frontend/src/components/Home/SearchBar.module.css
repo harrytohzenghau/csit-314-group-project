@@ -1,0 +1,27 @@
+.card-style {
+  width: 40%;
+  margin: 0 auto;
+  padding: 2.6rem 3rem 1.6rem 3rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.button-style {
+  width: 30%;
+}
+
+.extra-filter-wrapper {
+  width: 100%;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.extra-filter-wrapper button {
+  margin: 0 auto;
+}

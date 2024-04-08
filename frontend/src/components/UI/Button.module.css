@@ -1,0 +1,24 @@
+.button {
+  text-align: center;
+  border: none;
+  padding: 1rem;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button.primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.button.secondary {
+  background-color: var(--grey);
+}
+
+.button.outline {
+  background-color: unset;
+  color: var(--primary-color);
+  text-decoration: underline;
+}

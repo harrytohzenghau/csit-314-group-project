@@ -1,0 +1,35 @@
+.extra-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.extra-filter-content {
+  display: flex;
+  align-items: center;
+}
+
+.extra-filter-content h5 {
+  width: 25%;
+}
+
+.extra-filter-field-wrapper {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.extra-filter-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.extra-filter-button .button-style {
+  width: 10rem;
+}
