@@ -63,9 +63,9 @@ const ProfilePage = () => {
           <td><Button className={"accordion"} style={"primary"}>Edit</Button></td>
           </tr>)}
         
-
         </tbody>
       </table>
+      <Pagination itemsPerPage={1} totalItems={userList.length} paginate={paginate}></Pagination>
       </div>
       
     </>
