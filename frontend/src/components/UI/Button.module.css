@@ -17,7 +17,7 @@
   background-color: var(--grey);
 }
 
-.button.outline {
+.button.underline {
   background-color: unset;
   color: var(--primary-color);
   text-decoration: underline;

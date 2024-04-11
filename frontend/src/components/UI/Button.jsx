@@ -9,8 +9,8 @@ const Button = ({ type, className, style, onClick, children }) => {
     case "secondary":
       buttonStyle = classes.secondary;
       break;
-    case "outline":
-      buttonStyle = classes.outline;
+    case "underline":
+      buttonStyle = classes.underline;
       break;
     default:
       break;

@@ -9,23 +9,25 @@ const Input = React.forwardRef(
           {label && <label htmlFor={label}>{label}</label>}
           <input
             ref={ref}
+            name={name}
             type={type}
             placeholder={placeholder}
             className={`${classes["input-text"]} ${className || ""}`}
+            {...props}
           />
         </div>
       );
     } else if (type === "radio") {
       return (
         <div className={`${classes["input-wrapper"]} ${classes["radio"]}`}>
-          <input ref={ref} type={type} name={name} id={htmlFor} />
+          <input ref={ref} type={type} name={name} id={htmlFor} {...props} />
           {htmlFor && <label htmlFor={htmlFor}>{label}</label>}
         </div>
       );
     } else if (type === "checkbox") {
       return (
         <div className={`${classes["input-wrapper"]} ${classes["checkbox"]}`}>
-          <input ref={ref} type={type} name={name} id={htmlFor} {...props}/>
+          <input ref={ref} type={type} name={name} id={htmlFor} {...props} />
           {htmlFor && <label htmlFor={htmlFor}>{label}</label>}
         </div>
       );
