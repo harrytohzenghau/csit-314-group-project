@@ -60,6 +60,16 @@ const MainNavigation = () => {
                 Your Agent
               </NavLink>
             </li>
+            <li className={classes["header-list-item"]}>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) => {
+                  return isActive ? classes.active : undefined;
+                }}
+              >
+                Profile
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className={classes["header-right-wrapper"]}>
