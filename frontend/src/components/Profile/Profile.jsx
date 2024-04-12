@@ -12,11 +12,17 @@ const Profile = () => {
   
     return (
       <>
-      <div className={classes.profile}>
-      <h1>Profile</h1>
-        {Object.keys(profile).map(key=><h3>{key}: {profile[key]}</h3>)}
-  
-  
+      <div >
+      <h1 className={classes["profile-header"]}>Profile</h1>
+      <h2 className={classes["profile-header"]}>Username: </h2>
+      <div className={classes["profile-details"]}>{profile.username}</div>
+
+      <h2 className={classes["profile-header"]}>First Name:</h2>
+      <div className={classes["profile-details"]}>{profile.fname}</div>
+
+      <h2 className={classes["profile-header"]}>Last Name:</h2>
+      <div className={classes["profile-details"]}>{profile.lname}</div>
+        
       </div>
       </>
     )
