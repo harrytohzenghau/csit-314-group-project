@@ -21,7 +21,7 @@ const newAgent = async (req) => {
 module.exports = {
     userRegistration: async (req, res) => {
         try {
-            const user = newUser(req);
+            const user = await newUser(req);
             await user.save();
 
             res.status(201).json({ message: "User registered successfully" });
@@ -32,7 +32,11 @@ module.exports = {
     userLogin: async (req, res) => {
         try {
             const { username, password } = req.body;
-            const user = await User.findOne({ username });
+
+            const user = await User.findOne({
+                "user_details.username": username,
+            });
+            console.log(user);
 
             if (!user) {
                 return res
@@ -55,7 +59,7 @@ module.exports = {
                         expiresIn: "1h",
                     }
                 );
-
+                console.log(token);
                 return res.status(200).json({ token });
             } else {
                 const token = jwt.sign(
