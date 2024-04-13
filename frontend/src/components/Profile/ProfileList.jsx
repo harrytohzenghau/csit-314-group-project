@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from '../UI/Button';
 
 const ProfileList = () =>{
+    const navigate = useNavigate();
 
       const userList = [
       {
@@ -27,6 +31,12 @@ const ProfileList = () =>{
     
       const paginate = pageNumber => setCurrentPage(pageNumber);
 
+      
+
+      function createUserNavigator(){
+        navigate("/create-user")
+      }
+
       return(<>
       
       <div >
@@ -50,6 +60,7 @@ const ProfileList = () =>{
       <Pagination itemsPerPage={1} totalItems={userList.length} paginate={paginate}></Pagination>
       
       </div>
+      <Button onClick={createUserNavigator}>Create A New User</Button>
       
       
       </>)
