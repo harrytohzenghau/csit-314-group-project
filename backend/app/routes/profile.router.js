@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const authController = require("../api/auth/auth.controller");
+const profileController = require("../api/profile/profile.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/verifyAdmin");
-
-const jwt = require("jsonwebtoken");
 
 // middleware that is specific to this router
 // router.use((func) => {
@@ -14,6 +12,8 @@ const jwt = require("jsonwebtoken");
 //     };
 // });
 
-router.route("/").post(catchAsync(authController.userRegistration));
+const profile = new profileController();
+
+router.route("/").get(catchAsync(profile.viewProfile));
 
 module.exports = router;

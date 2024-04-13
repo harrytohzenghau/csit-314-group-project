@@ -5,8 +5,6 @@ const authController = require("../api/auth/auth.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/verifyAdmin");
 
-const jwt = require("jsonwebtoken");
-
 // middleware that is specific to this router
 // router.use((func) => {
 //     return (req, res, next) => {
@@ -14,14 +12,9 @@ const jwt = require("jsonwebtoken");
 //     };
 // });
 
-router.route("/register").post(catchAsync(authController.userRegistration));
-router.route("/login").post(catchAsync(authController.userLogin));
-router
-    .route("/createUser")
-    .post(verifyAdmin, catchAsync(authController.createUser));
+const auth = new authController();
 
-router
-    .route("/createAgent")
-    .post(verifyAdmin, catchAsync(authController.createAgent));
+router.route("/register").post(catchAsync(auth.userRegistration));
+router.route("/login").post(catchAsync(auth.userLogin));
 
 module.exports = router;

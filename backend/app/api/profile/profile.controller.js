@@ -1,17 +1,16 @@
-const User = require("../../models/User.model");
-const Agent = require("../../models/Agent.model");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const ProfileEntity = require("./profile.entity");
 
-module.exports = {
-    userRegistration: async (req, res) => {
+class ProfileController {
+    async viewProfile(req, res) {
         try {
-            const user = newUser(req);
-            await user.save();
+            const profile = new ProfileEntity();
+            profile.getUser(req);
 
-            res.status(201).json({ message: "User registered successfully" });
+            res.status(201).json({ user: profile.user });
         } catch (error) {
-            res.status(500).json({ error: "User registration failed" });
+            res.status(500).json({ error: "Login Failed" });
         }
-    },
-};
+    }
+}
+
+module.exports = ProfileController;
