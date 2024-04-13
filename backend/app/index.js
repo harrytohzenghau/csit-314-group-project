@@ -7,10 +7,12 @@ app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.use(require("./site/router"));
-app.use("/api/user", require("./api/user/user.router"));
-app.use("/api/staff", require("./api/staff/staff.router"));
-app.use("/api/student", require("./api/student/student.router"));
+app.use("/api/auth", require("./routes/auth.router"));
+app.use("/api/profile", require("./routes/profile.router"));
+
+app.get("/", (req, res) => {
+    res.send("Hello world");
+});
 
 // Error Handling
 app.all("*", (req, res, next) => {
