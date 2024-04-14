@@ -22,8 +22,6 @@ const Login = () => {
       password: passwordRef.current.value,
     };
 
-    console.log(user);
-
     // This to be replaced with the below
     const response = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
