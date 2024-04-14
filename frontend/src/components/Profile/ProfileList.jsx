@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from '../UI/Button';
+import Pagination from '../UI/Pagination';
 
 const ProfileList = () =>{
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState()
+    const [usersPerPage, setUsersPerPage] = useState()
+    
 
       const userList = [
       {
