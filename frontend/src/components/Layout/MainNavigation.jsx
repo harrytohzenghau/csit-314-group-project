@@ -1,7 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../store/authSlice";
 
 const MainNavigation = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <header className={classes.header}>
       <nav className={classes["header-wrapper"]}>
@@ -42,41 +47,65 @@ const MainNavigation = () => {
             </li>
             <li className={classes["header-list-item"]}>
               <NavLink
-                to="/saved-listing"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
+              // to="/your-agent"
+              // className={({ isActive }) => {
+              //   return isActive ? classes.active : undefined;
+              // }}
               >
-                Saved
+                Find Agent
               </NavLink>
             </li>
-            <li className={classes["header-list-item"]}>
-              <NavLink
-                to="/your-agent"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
-              >
-                Your Agent
-              </NavLink>
-            </li>
+            {isLoggedIn && (
+              <>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/your-agent"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Your Agent
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/saved-listing"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Saved
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className={classes["header-right-wrapper"]}>
           <ul className={classes["header-list"]}>
-            {/* <li className={classes["header-list-item"]}>
-              <NavLink
-                to="/"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
-              >
-                Profile
-              </NavLink>
-            </li> */}
-            <li className={classes["header-list-item"]}>
-              <NavLink to="/login">Login</NavLink>
-            </li>
+            {isLoggedIn ? (
+              <>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/profile"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink to="/" onClick={() => dispatch(logout())}>
+                    Logout
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <li className={classes["header-list-item"]}>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

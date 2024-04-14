@@ -37,7 +37,7 @@ const SearchBar = () => {
           </Button>
         </div>
         <div className={classes["extra-filter-wrapper"]}>
-          <Button type="button" style="outline" onClick={toggleExtraFilter}>
+          <Button type="button" style="underline" onClick={toggleExtraFilter}>
             {showFilter ? "Hide filter" : "More filter"}
           </Button>
         </div>

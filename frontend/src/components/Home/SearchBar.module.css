@@ -1,8 +1,8 @@
 .card-style {
   width: 40%;
   margin: 0 auto;
-  padding: 2.6rem 3rem 1.6rem 3rem;
   position: absolute;
+  padding-bottom: 1.5rem;
   left: 50%;
   transform: translate(-50%, -50%);
 }
