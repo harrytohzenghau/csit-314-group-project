@@ -3,7 +3,7 @@ import classes from "./Input.module.css";
 
 const Input = React.forwardRef(
   ({ type, label, placeholder, name, htmlFor, className, ...props }, ref) => {
-    if (type === "text" || type === "password" || type === "email") {
+    if (type === "text" || type === "password" || type === "email" || type === "tel") {
       return (
         <div className={`${classes["input-wrapper"]} ${classes["text"]}`}>
           {label && <label htmlFor={label}>{label}</label>}
