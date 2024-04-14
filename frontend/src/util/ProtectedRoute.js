@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const user = useSelector((state) => state.auth.user);
-  const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
 
-  if (!user) {
-    navigate('/');
+  if (!token) {
+    redirect("/");
     return;
   }
 
