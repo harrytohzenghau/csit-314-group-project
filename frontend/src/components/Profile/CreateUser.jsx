@@ -14,22 +14,17 @@ const CreateUser = () =>{
     }
 
     function profileListPageNavigation(){
-        navigate("/")
+        navigate("/profile-list")
     }
 
     return(
         <form action={createUser}>
             <Card className={classes["card-style"]}>
         <h2>Create new user</h2>
-        <h5>Is this an Agent account?: </h5>
+        
         <div className={classes["register-user-type-wrapper"]}>
-          <Input type="radio" htmlFor="buyer" name="user-type" label="Buyer" />
-          <Input
-            type="radio"
-            htmlFor="seller"
-            name="user-type"
-            label="Seller"
-          />
+          <Input type="checkbox" htmlFor="buyer" name="user-type" label="Buyer" />
+          <h5>Is this an Agent account?: </h5>
         </div>
         <div className={classes["register-input-wrapper"]}>
           <div className={classes["register-input-row-wrapper"]}>
@@ -74,20 +69,12 @@ const CreateUser = () =>{
           </div>
         </div>
         <div className={classes["register-button-wrapper"]}>
-          <div className={classes["register-login-button"]}>
-            <Button
-              style="outline"
-              className={classes["login-button-style"]}
-              onClick={loginPageNavigator}
-            >
-              Login
-            </Button>
-          </div>
+
           <div className={classes["register-action-button"]}>
             <Button style="primary" type="submit">
               Register
             </Button>
-            <Button style="secondary" type="button" onClick={homePageNavigator}>
+            <Button style="secondary" type="button" onClick={profileListPageNavigation}>
               Cancel
             </Button>
           </div>
