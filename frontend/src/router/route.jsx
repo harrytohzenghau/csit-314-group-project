@@ -11,11 +11,8 @@ import YourAgentPage from "../pages/YourAgentPage";
 import ProfilePage from "../pages/ProfilePage";
 import ErrorPage from "../pages/ErrorPage";
 import ProtectedRoute from "../util/ProtectedRoute";
-<<<<<<< Updated upstream
 import CreateUserPage from "../pages/CreateUserPage";
 import ProfileListPage from "../pages/ProfileListPage";
-=======
->>>>>>> Stashed changes
 
 const router = createBrowserRouter([
   {
@@ -35,11 +32,7 @@ const router = createBrowserRouter([
         path: "/saved-listing",
         element: (
           <ProtectedRoute>
-<<<<<<< Updated upstream
             <SavedListingPage />
-=======
-            <SavedListingPage />{" "}
->>>>>>> Stashed changes
           </ProtectedRoute>
         ),
       },
@@ -59,7 +52,6 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-<<<<<<< Updated upstream
       {
         path: "/create-user",
         element: (
@@ -76,8 +68,6 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-=======
->>>>>>> Stashed changes
     ],
   },
 ]);
