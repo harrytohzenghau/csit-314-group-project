@@ -7,3 +7,8 @@
   max-width: 120rem;
   flex-grow: 1;
 }
+
+.toaster {
+  font-family: var(--font);
+  font-size: 1.6rem;
+}

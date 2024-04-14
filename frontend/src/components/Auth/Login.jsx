@@ -6,6 +6,7 @@ import classes from "./Login.module.css";
 import { useRef } from "react";
 import { json, useNavigate } from "react-router-dom";
 import { login } from "../../store/authSlice";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -32,7 +33,8 @@ const Login = () => {
     });
 
     if (!response.ok) {
-      throw json({ message: "Could not authenticate user" }, { status: 500 });
+      toast.error("Please enter a correct username and password");
+      return;
     }
 
     try {
@@ -41,6 +43,8 @@ const Login = () => {
       const token = data.token;
 
       dispatch(login({ user: userData, token }));
+
+      toast.success("Login successfully");
 
       navigate("/");
     } catch (e) {
