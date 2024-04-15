@@ -5,7 +5,7 @@ import { logout } from "../../store/authSlice";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <header className={classes.header}>
@@ -55,7 +55,7 @@ const MainNavigation = () => {
                 Find Agent
               </NavLink>
             </li>
-            {isLoggedIn && (
+            {user && !user.user_sys_admin && !user.user_agent && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -83,7 +83,7 @@ const MainNavigation = () => {
         </div>
         <div className={classes["header-right-wrapper"]}>
           <ul className={classes["header-list"]}>
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
