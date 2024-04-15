@@ -4,6 +4,7 @@
   width: 100%;
   background-color: var(--secondary-color);
   padding: 2rem 0;
+  height: 1.5vh;
 }
 
 .footer-wrapper {

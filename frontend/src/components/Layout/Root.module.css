@@ -6,6 +6,8 @@
   margin: 0 auto;
   max-width: 120rem;
   flex-grow: 1;
+  height: 90vh;
+  position: relative;
 }
 
 .toaster {
