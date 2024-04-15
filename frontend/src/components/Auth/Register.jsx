@@ -6,6 +6,7 @@ import Input from "../UI/Input";
 import classes from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const firstNameRef = useRef();
@@ -13,6 +14,7 @@ const Register = () => {
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const mobileNumberRef = useRef();
   const repeatPasswordRef = useRef();
 
   const navigate = useNavigate();
@@ -31,43 +33,72 @@ const Register = () => {
     e.preventDefault();
 
     const user = {
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
-      username: usernameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
+      user_details: {
+        first_name: firstNameRef.current.value,
+        last_name: lastNameRef.current.value,
+        username: usernameRef.current.value,
+        mobile_number: mobileNumberRef.current.value,
+        email_address: emailRef.current.value,
+        password: passwordRef.current.value,
+      },
+      user_admin: false,
+      user_agent: false,
     };
 
-    // This to be replaced with the below
-    // const response = await fetch("http://localhost:8080/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // });
+    const register_response = await fetch(
+      "http://localhost:3000/api/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
 
-    // if (!response.ok) {
-    //   throw json({ message: "Could not create user" }, { status: 500 });
-    // }
+    if (!register_response.ok) {
+      toast.error(
+        "Something went wrong while trying to create your account. Please try again."
+      );
+      return;
+    }
 
-    // try {
-    //   const data = await response.json();
-    //   const userData = data.user;
-    //   const token = data.token;
+    try {
+      const login_response = await fetch(
+        "http://localhost:3000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username: usernameRef.current.value,
+            password: passwordRef.current.value,
+          }),
+        }
+      );
 
-    //   dispatch({ user: userData, token });
+      if (!login_response.ok) {
+        toast.error("Something went wrong. Please try again");
+        return;
+      }
 
-    //   navigate("/");
-    // } catch (e) {
-    //   throw json({ message: e.message }, { status: 500 });
-    // }
+      try {
+        const data = await login_response.json();
+        const userData = data.user;
+        const token = data.token;
 
-    // Below to be replaced with the above
-    const token = "dummy_token";
-    localStorage.setItem("token", token);
-    dispatch(login({ user, token }));
-    navigate("/");
+        dispatch(login({ user: userData, token }));
+
+        toast.success("Account created successfully");
+
+        navigate("/");
+      } catch (e) {
+        throw json({ message: e.message }, { status: 500 });
+      }
+    } catch (e) {
+      throw json({ message: e.message }, { status: 500 });
+    }
   };
 
   return (
@@ -113,6 +144,17 @@ const Register = () => {
               label="Email"
               className={classes["input-style"]}
             />
+          </div>
+          <div className={classes["register-input-row-wrapper"]}>
+            <Input
+              ref={mobileNumberRef}
+              required={true}
+              name="mobile"
+              type="tel"
+              label="Mobile number"
+              className={classes["input-style"]}
+            />
+            <div></div>
           </div>
           <div className={classes["register-input-row-wrapper"]}>
             <Input

@@ -35,10 +35,14 @@
   column-gap: 2rem;
 }
 
+.register-input-row-wrapper div {
+  width: 50%;
+}
+
 .register-button-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .login-button-style {
