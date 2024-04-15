@@ -23,7 +23,6 @@ const Login = () => {
       password: passwordRef.current.value,
     };
 
-    // This to be replaced with the below
     const response = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
@@ -43,6 +42,9 @@ const Login = () => {
       const token = data.token;
 
       dispatch(login({ user: userData, token }));
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", userData);
 
       toast.success("Login successfully");
 
