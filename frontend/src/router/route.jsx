@@ -10,9 +10,10 @@ import SavedListingPage from "../pages/SavedListingPage";
 import YourAgentPage from "../pages/YourAgentPage";
 import ProfilePage from "../pages/ProfilePage";
 import ErrorPage from "../pages/ErrorPage";
-import ProtectedRoute from "../util/ProtectedRoute";
 import CreateUserPage from "../pages/CreateUserPage";
 import ProfileListPage from "../pages/ProfileListPage";
+
+import { ProtectedRoute, AdminProtectedRoute } from "../util/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -55,17 +56,17 @@ const router = createBrowserRouter([
       {
         path: "/create-user",
         element: (
-          <ProtectedRoute>
+          <AdminProtectedRoute>
             <CreateUserPage />
-          </ProtectedRoute>
+          </AdminProtectedRoute>
         ),
       },
       {
         path: "/profile-list",
         element: (
-          <ProtectedRoute>
+          <AdminProtectedRoute>
             <ProfileListPage />
-          </ProtectedRoute>
+          </AdminProtectedRoute>
         ),
       },
     ],
