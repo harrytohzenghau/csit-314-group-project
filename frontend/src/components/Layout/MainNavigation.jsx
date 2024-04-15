@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../store/authSlice";
+import toast from "react-hot-toast";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
@@ -15,46 +16,74 @@ const MainNavigation = () => {
             <NavLink to="/">RedDOT Properties</NavLink>
           </div>
           <ul className={classes["header-list"]}>
-            <li className={classes["header-list-item"]}>
-              <NavLink
-                to="/"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className={classes["header-list-item"]}>
-              <NavLink
-                to="/property-listing"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
-              >
-                Buys
-              </NavLink>
-            </li>
-            <li className={classes["header-list-item"]}>
-              <NavLink
-                to="/mortgages"
-                className={({ isActive }) => {
-                  return isActive ? classes.active : undefined;
-                }}
-              >
-                Mortgages
-              </NavLink>
-            </li>
-            <li className={classes["header-list-item"]}>
-              <NavLink
-              // to="/your-agent"
-              // className={({ isActive }) => {
-              //   return isActive ? classes.active : undefined;
-              // }}
-              >
-                Find Agent
-              </NavLink>
-            </li>
+            {(!user || !user.user_sys_admin) && (
+              <>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/property-listing"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Buys
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/mortgages"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Mortgages
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                  // to="/your-agent"
+                  // className={({ isActive }) => {
+                  //   return isActive ? classes.active : undefined;
+                  // }}
+                  >
+                    Find Agent
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {user && user.user_sys_admin && (
+              <>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/profile-list"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Users
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                  // to="/your-agent"
+                  // className={({ isActive }) => {
+                  //   return isActive ? classes.active : undefined;
+                  // }}
+                  >
+                    Agents
+                  </NavLink>
+                </li>
+              </>
+            )}
             {user && !user.user_sys_admin && !user.user_agent && (
               <>
                 <li className={classes["header-list-item"]}>
@@ -96,7 +125,14 @@ const MainNavigation = () => {
                   </NavLink>
                 </li>
                 <li className={classes["header-list-item"]}>
-                  <NavLink to="/" onClick={() => dispatch(logout())}>
+                  <NavLink
+                    to="/"
+                    onClick={() => {
+                      toast.success("Logout successfully");
+                      localStorage.clear();
+                      dispatch(logout());
+                    }}
+                  >
                     Logout
                   </NavLink>
                 </li>
