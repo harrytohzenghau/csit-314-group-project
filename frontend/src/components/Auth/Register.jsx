@@ -96,7 +96,7 @@ const Register = () => {
         dispatch(login({ user: userData, token }));
 
         localStorage.setItem("token", token);
-        localStorage.setItem("user", userData);
+        localStorage.setItem("user", JSON.stringify(userData));
 
         toast.success("Account created successfully");
 
@@ -124,7 +124,6 @@ const Register = () => {
               name="firstName"
               type="text"
               label="First Name"
-              className={classes["input-style"]}
             />
             <Input
               ref={lastNameRef}
@@ -132,7 +131,6 @@ const Register = () => {
               name="lastName"
               type="text"
               label="Last Name"
-              className={classes["input-style"]}
             />
           </div>
           <div className={classes["register-input-row-wrapper"]}>
@@ -142,7 +140,6 @@ const Register = () => {
               name="username"
               type="text"
               label="Username"
-              className={classes["input-style"]}
             />
             <Input
               ref={emailRef}
@@ -150,7 +147,6 @@ const Register = () => {
               name="email"
               type="email"
               label="Email"
-              className={classes["input-style"]}
             />
           </div>
           <div className={classes["register-input-row-wrapper"]}>
@@ -160,7 +156,6 @@ const Register = () => {
               name="mobile"
               type="tel"
               label="Mobile number"
-              className={classes["input-style"]}
             />
             <div></div>
           </div>
@@ -171,13 +166,11 @@ const Register = () => {
               name="password"
               type="password"
               label="Password"
-              className={classes["input-style"]}
             />
             <Input
               ref={repeatPasswordRef}
               type="password"
               label="Repeat Password"
-              className={classes["input-style"]}
             />
           </div>
         </div>

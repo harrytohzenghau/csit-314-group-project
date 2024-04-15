@@ -44,7 +44,7 @@ const Login = () => {
       dispatch(login({ user: userData, token }));
 
       localStorage.setItem("token", token);
-      localStorage.setItem("user", userData);
+      localStorage.setItem("user", JSON.stringify(userData));
 
       toast.success("Login successfully");
 
