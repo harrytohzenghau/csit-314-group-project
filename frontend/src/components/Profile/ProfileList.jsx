@@ -3,13 +3,14 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from '../UI/Button';
 import Pagination from '../UI/Pagination';
+import Input from '../UI/Input'
 
 const ProfileList = () =>{
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState()
     const [usersPerPage, setUsersPerPage] = useState()
-    
-
+    const [editClick, setEditClick] = useState(false)
+  
       const userList = [
       {
         username: "user1",
@@ -35,6 +36,15 @@ const ProfileList = () =>{
     
       const paginate = pageNumber => setCurrentPage(pageNumber);
 
+      function handleEditClick(index){
+        
+        setEditClick(!editClick)
+      }
+
+      function handleSaveClick(){
+        //send post request
+        setEditClick(!editClick)
+      }
       
 
       function createUserNavigator(){
@@ -53,10 +63,23 @@ const ProfileList = () =>{
           <th><h3>Mobile Number</h3></th>
         </tr>
         {userList.map((user,i) => <tr>
-          <td>{user.personal_first_name}</td>
-          <td>{user.personal_last_name}</td>
-          <td>{user.personal_mobile_number}</td>
-          <td><Button className={"accordion"} style={"primary"}>Edit</Button></td>
+          
+          <td>{editClick?(<>
+            <Input type="text" id={i.toString()} defaultValue={user.personal_first_name}></Input>
+            <Input type="text" id={i.toString()} defaultValue={user.personal_last_name}></Input>
+            <Input type="text" id={i.toString()} defaultValue={user.personal_mobile_number}></Input>
+            <Button onClick={handleSaveClick}>Save</Button>
+            <Button onClick={handleEditClick}>Cancel</Button>
+
+          </>):(<>
+            <td>{user.personal_first_name}</td>
+            <td>{user.personal_last_name}</td>
+            <td>{user.personal_mobile_number}</td>
+            <Button className={"accordion"} style={"primary"} onClick={handleEditClick}>Edit</Button>
+          </>)
+            
+            
+            }</td>
           </tr>)}
         
         </tbody>
