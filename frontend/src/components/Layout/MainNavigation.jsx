@@ -16,6 +16,50 @@ const MainNavigation = () => {
             <NavLink to="/">RedDOT Properties</NavLink>
           </div>
           <ul className={classes["header-list"]}>
+            {!user && (
+              <>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/property-listing"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Buys
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/mortgages"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Mortgages
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                  // to="/your-agent"
+                  // className={({ isActive }) => {
+                  //   return isActive ? classes.active : undefined;
+                  // }}
+                  >
+                    Find Agent
+                  </NavLink>
+                </li>
+              </>
+            )}
             {user &&
               ((!user.user_sys_admin && !user.user_agent) ||
                 user.user_agent) && (
@@ -32,7 +76,7 @@ const MainNavigation = () => {
                   </li>
                 </>
               )}
-            {user && (!user.user_sys_admin && !user.user_agent) && (
+            {user && !user.user_sys_admin && !user.user_agent && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -104,10 +148,10 @@ const MainNavigation = () => {
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    // to="/"
-                    // className={({ isActive }) => {
-                    //   return isActive ? classes.active : undefined;
-                    // }}
+                  // to="/"
+                  // className={({ isActive }) => {
+                  //   return isActive ? classes.active : undefined;
+                  // }}
                   >
                     Property List
                   </NavLink>
