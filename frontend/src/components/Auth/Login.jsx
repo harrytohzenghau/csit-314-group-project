@@ -48,7 +48,11 @@ const Login = () => {
 
       toast.success("Login successfully");
 
-      navigate("/");
+      if (userData.user_sys_admin) {
+        navigate("/profile-list");
+      } else {
+        navigate("/");
+      }
     } catch (e) {
       throw json({ message: e.message }, { status: 500 });
     }
