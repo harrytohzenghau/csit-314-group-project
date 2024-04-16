@@ -48,7 +48,7 @@ const Login = () => {
 
       toast.success("Login successfully");
 
-      if (userData.user_sys_admin) {
+      if (userData.user_admin) {
         navigate("/profile-list");
       } else {
         navigate("/");

@@ -61,7 +61,7 @@ const MainNavigation = () => {
               </>
             )}
             {user &&
-              ((!user.user_sys_admin && !user.user_agent) ||
+              ((!user.user_admin && !user.user_agent) ||
                 user.user_agent) && (
                 <>
                   <li className={classes["header-list-item"]}>
@@ -76,7 +76,7 @@ const MainNavigation = () => {
                   </li>
                 </>
               )}
-            {user && !user.user_sys_admin && !user.user_agent && (
+            {user && !user.user_admin && !user.user_agent && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -110,7 +110,7 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user && user.user_sys_admin && (
+            {user && user.user_admin && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -178,7 +178,7 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user && !user.user_sys_admin && !user.user_agent && (
+            {user && !user.user_admin && !user.user_agent && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink

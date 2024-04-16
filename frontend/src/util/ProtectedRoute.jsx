@@ -25,7 +25,7 @@ export const AdminProtectedRoute = ({ children }) => {
     }
   }
 
-  if (!user.user_sys_admin) {
+  if (!user.user_admin) {
     toast.error("You have no access to this page!");
     return <Navigate to="/" replace />;
   }
