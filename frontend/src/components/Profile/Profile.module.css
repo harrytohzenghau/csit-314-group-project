@@ -40,6 +40,10 @@
   align-items: center;
 }
 
+.profile-edit-password-button {
+  padding: 1rem 0;
+}
+
 .profile-action-button {
   display: flex;
   column-gap: 1rem;

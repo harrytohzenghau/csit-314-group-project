@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
@@ -13,10 +13,21 @@ const Profile = () => {
   const emailRef = useRef();
   const mobileNumberRef = useRef();
   const passwordRef = useRef();
+  const repeatPasswordRef = useRef();
+
+  const [showEditPassword, setShowEditPassword] = useState(false);
+
+  const toggleEditPassword = () => {
+    setShowEditPassword((prevState) => !prevState);
+  };
 
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.auth.user);
+  let user = useSelector((state) => state.auth.user);
+
+  if (!user) {
+    user = JSON.parse(localStorage.getItem("user"));
+  }
 
   const editProfileHandler = (e) => {
     e.preventDefault();
@@ -75,15 +86,36 @@ const Profile = () => {
               label="Mobile number"
               defaultValue={user.user_details.mobile_number}
             />
-            <Input
-              ref={passwordRef}
-              required={true}
-              name="password"
-              type="password"
-              label="Password"
-              defaultValue={user.user_details.password}
-            />
+            <div></div>
           </div>
+          <div>
+            <Button
+              style="underline"
+              type="button"
+              onClick={toggleEditPassword}
+              className={classes["profile-edit-password-button"]}
+            >
+              {showEditPassword ? "Cancel" : "Edit Password"}
+            </Button>
+          </div>
+          {showEditPassword && (
+            <div className={classes["profile-input-wrapper"]}>
+              <Input
+                ref={passwordRef}
+                required={true}
+                name="password"
+                type="password"
+                label="Password"
+              />
+              <Input
+                ref={repeatPasswordRef}
+                required={true}
+                name="repeatPassword"
+                type="password"
+                label="Repeat Password"
+              />
+            </div>
+          )}
         </div>
         <div className={classes["profile-button-wrapper"]}>
           <div className={classes["profile-action-button"]}>
