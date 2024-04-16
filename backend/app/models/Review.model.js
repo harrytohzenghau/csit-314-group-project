@@ -43,29 +43,32 @@ const ratingSchema = new Schema(
     { _id: False }
 );
 
-const reviewSchema = new Schema({
-    review_rating: ratingSchema,
-    review_agent_reply: {
-        type: String,
-        required: true,
-        default: "This is a Reply",
+const reviewSchema = new Schema(
+    {
+        review_rating: ratingSchema,
+        review_agent_reply: {
+            type: String,
+            required: true,
+            default: "This is a Reply",
+        },
+        review_deleted: {
+            type: Boolean,
+            required: true,
+            default: False,
+        },
+        review_created: {
+            type: Date,
+            required: true,
+            default: new Date(),
+        },
+        review_edited: {
+            type: Date,
+            required: true,
+            default: new Date(),
+        },
     },
-    review_deleted: {
-        type: Boolean,
-        required: true,
-        default: False,
-    },
-    review_created: {
-        type: Date,
-        required: true,
-        default: new Date(),
-    },
-    review_edited: {
-        type: Date,
-        required: true,
-        default: new Date(),
-    },
-});
+    { minimize: false }
+);
 
 const Review = mongoose.model("Review", reviewSchema);
 module.exports = Review;

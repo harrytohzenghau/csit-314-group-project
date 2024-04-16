@@ -1,73 +1,79 @@
 const User = require("../../models/User.model");
 const Agent = require("../../models/Agent.model");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 class AuthEntity {
-    constructor(body) {
-        this.user_details = body.user_details;
-        this.user_sys_admin = body.user_sys_admin;
-        this.user_agent = body.user_agent;
+    token;
+    tokenSecret;
+
+    async createUser(user) {
+        const { password } = user.user_details;
+        user.user_details.password = await bcrypt.hash(password, 10);
+
+        const newUser = new User(user);
+        await newUser.save();
+        return newUser;
     }
 
-    #user;
-    #agent;
-    #token;
-
-    async saveAsUser() {
-        this.user_details.password = await this.hashPassword();
-
-        this.user = new User({
-            user_details: this.user_details,
-            user_sys_admin: this.user_sys_admin,
-            user_agent: this.user_agent,
-        });
-        await this.user.save();
-        return this.user;
+    async createAgent(user) {
+        const newUser = await this.createUser(user);
+        const newAgent = new Agent({ agent_userSchema: newUser });
+        await newAgent.save();
+        return newAgent;
     }
 
-    async saveAsAgent() {
-        await this.saveAsUser();
-        this.agent = new Agent({ agent_userSchema: this.user });
-        await this.agent.save();
-        return this.agent;
+    async createAdmin(user) {
+        const newUser = await this.createUser(user);
+        return newUser;
     }
 
-    async findUser(req, res) {
-        const { username, password } = req.body;
-
-        this.user = await User.findOne({
+    async authenticateUser(username, password) {
+        const user = await User.findOne({
             "user_details.username": username,
         });
-        if (!this.user) {
-            return res.status(401).json({ error: "User does not exist!" });
-        }
+        if (!user) throw "User does not exist!";
 
-        const passwordMatch = await this.comparePassword(password);
-        if (!passwordMatch) {
-            return res.status(401).json({ error: "Authentication Failed" });
-        }
-
-        return this.user;
+        const passwordMatch = await bcrypt.compare(
+            password,
+            user.user_details.password
+        );
+        if (!passwordMatch) throw "Authentication Failed";
+        return user;
     }
 
-    async setToken(secret) {
+    async tokenSecretCondition(user) {
+        if (user.user_admin) {
+            this.tokenSecret = process.env.ADMIN_TOKEN_SECRET;
+        } else if (user.user_agent) {
+            this.tokenSecret = process.env.AGENT_TOKEN_SECRET;
+        } else {
+            this.tokenSecret = process.env.USER_TOKEN_SECRET;
+        }
+    }
+
+    async setToken(user) {
+        this.tokenSecretCondition(user);
+
         this.token = jwt.sign(
-            { username: this.user.user_details.username },
-            secret,
+            { username: user.user_details.username },
+            this.tokenSecret,
             {
-                expiresIn: "1h",
+                expiresIn: "365d",
             }
         );
 
         return;
     }
 
-    async hashPassword() {
-        return await bcrypt.hash(this.user_details.password, 10);
+    async verifyToken(user, token) {
+        this.tokenSecretCondition(user);
+        return jwt.verify(token, this.tokenSecret);
     }
-    async comparePassword(password) {
-        return await bcrypt.compare(password, this.user.user_details.password);
+
+    get token() {
+        return this.token;
     }
 }
 

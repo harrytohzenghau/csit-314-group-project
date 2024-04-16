@@ -17,6 +17,7 @@ const propertySchema = new Schema(
         property_new_project: {
             type: Boolean,
             required: true,
+            default: false,
         },
         property_price: {
             type: Number,
@@ -24,29 +25,29 @@ const propertySchema = new Schema(
             default: 0,
         },
         property_bedroom: {
-            type: String,
-            enum: ["Studio", "1", "2", "3", "4", "5"],
+            type: Number,
+            enum: [1, 2, 3, 4, 5],
             required: true,
-            default: "Studio",
+            default: 5,
         },
         property_floor_size: {
             type: Number,
             required: true,
-            default: "5",
+            default: 5,
         },
         property_PSF: {
             type: Number,
             required: true,
-            default: "5",
+            default: 5,
         },
         property_bathroom: {
             type: Number,
-            enum: ["1", "2", "3", "4", "5"],
+            enum: [1, 2, 3, 4, 5],
             required: true,
-            default: "1",
+            default: 1,
         },
         property_tenure: {
-            type: Enum,
+            type: String,
             values: [
                 "Freehold",
                 "99-year LeaseHold",
@@ -65,13 +66,13 @@ const propertySchema = new Schema(
             default: 2000,
         },
         property_floor_level: {
-            type: Enum,
+            type: String,
             values: ["Ground", "Low", "Mid", "High", "Penthouse"],
             required: true,
             default: "Ground",
         },
         property_furnishing: {
-            type: Enum,
+            type: String,
             values: ["Unfurnished", "Partially Furnished", "Fully Furnished"],
             required: true,
             default: "Unfurnished",
@@ -84,42 +85,50 @@ const propertySchema = new Schema(
         property_listing_live_tour: {
             type: Boolean,
             required: true,
-            default: False,
+            default: false,
         },
         property_listing_virtual_tour: {
             type: Boolean,
             required: true,
-            default: False,
+            default: false,
         },
     },
-    { _id: False }
+    { _id: false }
 );
 
-const listingSchema = new Schema({
-    listing_propertySchema: propertySchema,
-    listing_date: {
-        type: Date,
-        required: true,
-        default: new Date(),
+const listingSchema = new Schema(
+    {
+        listing_propertySchema: {
+            type: propertySchema,
+            required: true,
+            default: {},
+        },
+        listing_date: {
+            type: Date,
+            required: true,
+            default: new Date(),
+        },
+        listing_views: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        listing_images: [
+            {
+                type: String,
+                required: true,
+                default: "",
+            },
+        ],
+        listing_shortlists: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
     },
-    listing_views: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    listing_shortlists: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    // listing_questions: [
-    //     {
-    //         type: String,
-    //         required: true,
-    //         default: 0,
-    //     },
-    // ],
-});
+    { minimize: false }
+);
 
 const Listing = mongoose.model("Listing", listingSchema);
+
 module.exports = Listing;

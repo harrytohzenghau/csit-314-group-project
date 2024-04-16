@@ -20,10 +20,6 @@ const personalDetailsSchema = new Schema(
             type: String,
             required: true,
         },
-        // nationality: {
-        //     type: String,
-        //     required: true,
-        // },
         mobile_number: {
             type: Number,
             required: true,
@@ -32,59 +28,39 @@ const personalDetailsSchema = new Schema(
             type: String,
             required: true,
         },
-        active: {
-            type: Boolean,
-            required: true,
-            default: true,
-        },
         user_image: String,
     },
     { _id: false }
 );
 
-const rentingPreferencesSchema = new Schema(
+const userSchema = new Schema(
     {
-        renting_move_in_date: {
-            type: String,
+        user_admin: {
+            type: Boolean,
             required: true,
+            default: false,
         },
-        renting_lease_term: {
-            type: String,
+        user_agent: {
+            type: Boolean,
             required: true,
+            default: false,
         },
-        renting_number_occupants: {
-            type: String,
+        user_active: {
+            type: Boolean,
             required: true,
+            default: true,
         },
-        renting_budget: {
-            type: String,
+        user_details: personalDetailsSchema,
+        user_budget: Number,
+        user_created: {
+            type: Date,
             required: true,
+            default: new Date(),
         },
+        // shortlist
     },
-    { _id: false }
+    { minimize: false }
 );
-
-const userSchema = new Schema({
-    user_sys_admin: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
-    user_agent: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
-    user_details: personalDetailsSchema,
-    // user_renting_preference: rentingPreferencesSchema,
-    user_budget: Number,
-    user_created: {
-        type: Date,
-        required: true,
-        default: new Date(),
-    },
-    // shortlist
-});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

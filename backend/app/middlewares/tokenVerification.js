@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 const verifyAdmin = async (req, res, next) => {
     const token = req.header("Authorization");
     if (!token)
@@ -6,11 +8,10 @@ const verifyAdmin = async (req, res, next) => {
             .json({ error: "No Authorization value in header" });
 
     try {
-        const decoded = jwt.verify(token, process.env.ADMIN_TOKEN_SECRET);
-        req.userId = decoded.userId;
+        jwt.verify(token, process.env.ADMIN_TOKEN_SECRET);
         next();
     } catch (error) {
-        res.status(401).json({ error: "Invalid Token" });
+        res.status(401).json({ error: error, message: "Invalid Token" });
     }
 };
 
