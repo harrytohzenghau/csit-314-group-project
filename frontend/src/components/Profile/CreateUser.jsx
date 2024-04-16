@@ -63,6 +63,9 @@ const Register = () => {
       );
       return;
     }
+    
+    toast.success("Account created successfully")
+    profileListPageNavigator()
     /*
     try {
       const login_response = await fetch(
