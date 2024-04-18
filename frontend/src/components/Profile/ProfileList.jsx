@@ -1,97 +1,242 @@
-import React, { useState } from 'react';
-import { useRef } from "react";
+import DataTable from "react-data-table-component";
+import Card from "../UI/Card";
+import { useEffect, useState } from "react";
+import EditProfile from "./EditProfile";
+import Button from "../UI/Button";
+import classes from "./ProfileList.module.css";
+import { getToken } from "../../util/auth";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Button from '../UI/Button';
-import Pagination from '../UI/Pagination';
-import Input from '../UI/Input'
 
-const ProfileList = () =>{
-    const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState()
-    const [usersPerPage, setUsersPerPage] = useState()
-    const [editClick, setEditClick] = useState(false)
-  
-      const userList = [
-      {
-        username: "user1",
-        personal_first_name: "User1",
-        personal_last_name: "Smith",
-        personal_mobile_number: 123456
+const ProfileList = () => {
+  const [allUsers, setAllUsers] = useState([]);
+
+  const navigate = useNavigate();
+
+  const editUserHandler = async (id) => {
+    navigate(`/edit-user/${id}`);
+  };
+
+  const banUserHandler = async (id) => {
+    const banUser = allUsers.find((user) => user._id === id);
+
+    if (!banUser) {
+      toast.error("Couldn't find the user. Please try again.");
+      return;
+    }
+
+    const user = { _id: id, user_active: !banUser.user_active };
+
+    const response = await fetch("http://localhost:3000/api/admin", {
+      method: "POST",
+      headers: {
+        Authorization: getToken(),
+        "Content-type": "application/json",
       },
-      {
-        username: "user2",
-        personal_first_name: "User2",
-        personal_last_name: "Lovelace",
-        personal_mobile_number: 333555
+      body: JSON.stringify(user),
+    });
+
+    if (!response.ok) {
+      toast.error("Something went wrong. Please try again");
+      return;
+    }
+
+    if (banUser.user_active) {
+      toast.success("User has been banned successfully");
+    } else {
+      toast.success("User has been activated successfully");
+    }
+
+    const banUserIndex = allUsers.findIndex((user) => user._id === id);
+
+    const newBanUser = { ...banUser, user_active: !banUser.user_active };
+
+    const newAllUsers = [...allUsers];
+
+    newAllUsers[banUserIndex] = newBanUser;
+
+    setAllUsers(newAllUsers);
+  };
+
+  const deleteUserHandler = async (id) => {
+    const response = await fetch("http://localhost:3000/api/admin", {
+      method: "DELETE",
+      headers: {
+        Authorization: getToken(),
+        "Content-type": "application/json",
       },
-      {
-        username: "user3",
-        personal_first_name: "User3",
-        personal_last_name: "Obama",
-        personal_mobile_number: 909090
-      }]
-      const indexOfLastItem = currentPage + usersPerPage - 2
-      const indexOfFirstItem = indexOfLastItem - usersPerPage + 1
-      const currentUsers = userList.slice(indexOfFirstItem, indexOfLastItem)
-    
-      const paginate = pageNumber => setCurrentPage(pageNumber);
+      body: JSON.stringify({ _id: id }),
+    });
 
-      function handleEditClick(index){
-        
-        setEditClick(!editClick)
-      }
+    if (!response.ok) {
+      toast.error("Something went wrong. Please try again");
+      return;
+    }
 
-      function handleSaveClick(){
-        //send post request
-        setEditClick(!editClick)
-      }
-      
+    toast.success("User has been deleted successfully");
 
-      function createUserNavigator(){
-        navigate("/create-user")
-      }
+    const newAllUsers = [...allUsers];
 
-      return(<>
-      
-      <div >
-      <h1 style={{paddingTop: "4rem"}}>User List</h1>
-      <table style={{fontSize: "2rem"}}>
-        <tbody>
-        <tr>
-          <th><h3>First Name</h3></th>
-          <th><h3>Last Name</h3></th>
-          <th><h3>Mobile Number</h3></th>
-        </tr>
-        {userList.map((user,i) => <tr>
-          
-          <td>{editClick?(<>
-            <Input type="text" id={i.toString()} defaultValue={user.personal_first_name}></Input>
-            <Input type="text" id={i.toString()} defaultValue={user.personal_last_name}></Input>
-            <Input type="text" id={i.toString()} defaultValue={user.personal_mobile_number}></Input>
-            <Button onClick={handleSaveClick}>Save</Button>
-            <Button onClick={handleEditClick}>Cancel</Button>
+    const filteredAllUsers = newAllUsers.filter((user) => user._id !== id);
 
-          </>):(<>
-            <td>{user.personal_first_name}</td>
-            <td>{user.personal_last_name}</td>
-            <td>{user.personal_mobile_number}</td>
-            <Button className={"accordion"} style={"primary"} onClick={handleEditClick}>Edit</Button>
-          </>)
-            
-            
-            }</td>
-          </tr>)}
-        
-        </tbody>
-      </table>
-      <Pagination itemsPerPage={1} totalItems={userList.length} paginate={paginate}></Pagination>
-      
-      </div>
-      <Button onClick={createUserNavigator}>Create A New User</Button>
-      
-      
-      </>)
+    setAllUsers(filteredAllUsers);
+  };
 
-}
+  const customStyles = {
+    table: {
+      style: {
+        fontFamily: "Inter, sans-serif",
+        fontSize: "1.2rem",
+      },
+    },
+    headCells: {
+      style: {
+        padding: "0 0.8rem",
+        fontWeight: "bold",
+      },
+    },
+    cells: {
+      style: {
+        padding: "0 0.8rem",
+      },
+    },
+  };
 
-export default ProfileList
+  const columns = [
+    {
+      name: "S/N",
+      selector: (row, index) => index + 1,
+      width: "7rem",
+    },
+    {
+      name: "Username",
+      selector: (row) => row.user_details.username,
+      sortable: true,
+      width: "15rem",
+    },
+    {
+      name: "First Name",
+      selector: (row) => row.user_details.first_name,
+      sortable: true,
+      width: "10rem",
+    },
+    {
+      name: "Last Name",
+      selector: (row) => row.user_details.last_name,
+      sortable: true,
+      width: "10rem",
+    },
+    {
+      name: "Email",
+      selector: (row) => row.user_details.email_address,
+      sortable: true,
+      width: "20rem",
+    },
+    {
+      name: "Account Type",
+      selector: (row) => {
+        if (row.user_admin) {
+          return "Admin";
+        } else if (row.user_agent) {
+          return "Agent";
+        } else {
+          return "User";
+        }
+      },
+      sortable: true,
+    },
+    {
+      name: "Status",
+      selector: (row) => {
+        if (row.user_active) {
+          return "Active";
+        } else {
+          return "Inactive";
+        }
+      },
+      sortable: true,
+    },
+    {
+      name: "Created At",
+      selector: (row) => {
+        const date = new Date(row.user_created);
+
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        return `${day}/${month}/${year}`;
+      },
+      sortable: true,
+    },
+    {
+      name: "Action",
+      selector: (row) => {
+        return (
+          <div className={classes["profile-list-action-button"]}>
+            <Button
+              type="button"
+              style="underline"
+              onClick={() => editUserHandler(row._id)}
+            >
+              Edit
+            </Button>
+            <Button
+              type="button"
+              style="secondary"
+              onClick={() => banUserHandler(row._id)}
+            >
+              {row.user_active ? "Ban" : "Activate"}
+            </Button>
+            <Button
+              type="button"
+              style="primary"
+              onClick={() => deleteUserHandler(row._id)}
+            >
+              Delete
+            </Button>
+          </div>
+        );
+      },
+      width: "20rem",
+    },
+  ];
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    async function getAllUser() {
+      const response = await fetch("http://localhost:3000/api/admin", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const data = await response.json();
+      setAllUsers(data.allUsers);
+    }
+
+    getAllUser();
+  }, [token]);
+
+  return (
+    <Card className={classes["profile-list-wrapper"]}>
+      <Button
+        style="primary"
+        onClick={() => {
+          navigate("/create-user");
+        }}
+      >
+        Create User
+      </Button>
+      <DataTable
+        columns={columns}
+        data={allUsers}
+        customStyles={customStyles}
+      ></DataTable>
+    </Card>
+  );
+};
+
+export default ProfileList;
