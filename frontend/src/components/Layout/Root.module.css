@@ -9,7 +9,7 @@
   margin: 0 auto;
   max-width: 120rem;
   flex-grow: 1;
-  height: 90vh;
+  width: 100%;
   position: relative;
 }
 
