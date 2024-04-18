@@ -1,0 +1,57 @@
+.create-user-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+  width: 70%;
+  max-width: 60rem;
+}
+
+.card-style {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.create-user-type-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.create-user-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.create-user-input-row-wrapper {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.create-user-input-row-wrapper div {
+  width: 50%;
+}
+
+.create-user-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-button-style {
+  padding: 0;
+}
+
+.create-user-action-button {
+  display: flex;
+  column-gap: 1rem;
+  margin-left: auto;
+}
