@@ -14,6 +14,7 @@ import CreateUserPage from "../pages/CreateUserPage";
 import ProfileListPage from "../pages/ProfileListPage";
 
 import { ProtectedRoute, AdminProtectedRoute } from "../util/ProtectedRoute";
+import EditProfile from "../components/Profile/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -21,16 +22,16 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <HomePage /> },
+      { index: true, element: <HomePage /> },
       {
-        path: "/login",
+        path: "login",
         element: <LoginPage />,
       },
-      { path: "/register", element: <RegisterPage /> },
-      { path: "/property-listing", element: <PropertyListingPage /> },
-      { path: "/mortgages", element: <MortgagesPage /> },
+      { path: "register", element: <RegisterPage /> },
+      { path: "property-listing", element: <PropertyListingPage /> },
+      { path: "mortgages", element: <MortgagesPage /> },
       {
-        path: "/saved-listing",
+        path: "saved-listing",
         element: (
           <ProtectedRoute>
             <SavedListingPage />
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/your-agent",
+        path: "your-agent",
         element: (
           <ProtectedRoute>
             <YourAgentPage />
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/profile",
+        path: "profile",
         element: (
           <ProtectedRoute>
             <ProfilePage />
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/create-user",
+        path: "create-user",
         element: (
           <AdminProtectedRoute>
             <CreateUserPage />
@@ -62,12 +63,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/profile-list",
+        path: "profile-list",
         element: (
           <AdminProtectedRoute>
             <ProfileListPage />
           </AdminProtectedRoute>
         ),
+      },
+      {
+        path: "edit-user/:id",
+        element: <EditProfile />,
       },
     ],
   },
