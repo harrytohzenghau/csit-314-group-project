@@ -3,8 +3,8 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import classes from "./Profile.module.css";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const firstNameRef = useRef();
@@ -23,14 +23,60 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  let user = useSelector((state) => state.auth.user);
+  let user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
 
-  if (!user) {
-    user = JSON.parse(localStorage.getItem("user"));
-  }
-
-  const editProfileHandler = (e) => {
+  const editProfileHandler = async (e) => {
     e.preventDefault();
+
+    const userData = {
+      _id: user._id,
+      user_details: {
+        first_name: firstNameRef.current.value || user.user_details.first_name,
+        last_name: lastNameRef.current.value || user.user_details.last_name,
+        username: user.user_details.username,
+        mobile_number:
+          mobileNumberRef.current.value || user.user_details.mobile_number,
+        email_address:
+          emailRef.current.value || user.user_details.email_address,
+      },
+      user_admin: user.user_admin,
+      user_agent: user.user_agent,
+    };
+
+    if (showEditPassword) {
+      if (passwordRef.current.value !== repeatPasswordRef.current.value) {
+        toast.error("Password does not matched. Please try again");
+        return;
+      }
+
+      userData.user_details.password = passwordRef.current.value;
+    }
+
+    const response = await fetch("http://localhost:3000/api/admin", {
+      method: "PATCH",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      toast.error("Something went wrong while updating the profile.");
+      return;
+    }
+
+    localStorage.removeItem("user");
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    toast.success("Profile updated successfully");
+
+    if (userData.user_admin) {
+      navigate("/profile-list");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
@@ -66,6 +112,7 @@ const Profile = () => {
               name="username"
               type="text"
               label="Username"
+              disabled={true}
               defaultValue={user.user_details.username}
             />
             <Input
