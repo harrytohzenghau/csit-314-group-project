@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate, json } from "react-router-dom";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
@@ -32,6 +32,16 @@ const Register = () => {
   const registerSubmitHandler = async (e) => {
     e.preventDefault();
 
+    if (!/^\d*\.?\d*$/.test(mobileNumberRef.current.value)) {
+      toast.error("Invalid value detected in mobile number field.");
+      return;
+    }
+
+    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
+      toast.error("Password does not matched. Please try again");
+      return;
+    }
+
     const user = {
       user_details: {
         first_name: firstNameRef.current.value,
@@ -44,11 +54,6 @@ const Register = () => {
       user_admin: false,
       user_agent: false,
     };
-
-    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-      toast.error("Password does not matched. Please try again");
-      return;
-    }
 
     const register_response = await fetch(
       "http://localhost:3000/api/auth/register/user",
