@@ -1,7 +1,6 @@
 .header {
   background-color: var(--primary-color);
   padding: 2.4rem 0;
-  height: 3.5vh;
 }
 
 .header-wrapper {
