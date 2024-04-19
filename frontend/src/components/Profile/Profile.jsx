@@ -73,7 +73,7 @@ const Profile = () => {
     toast.success("Profile updated successfully");
 
     if (userData.user_admin) {
-      navigate("/profile-list");
+      navigate("/user/user-list");
     } else {
       navigate("/");
     }

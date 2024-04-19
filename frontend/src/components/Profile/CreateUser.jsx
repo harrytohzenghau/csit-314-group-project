@@ -6,7 +6,7 @@ import Input from "../UI/Input";
 import classes from "../Profile/CreateUser.module.css";
 import { toast } from "react-hot-toast";
 
-const Register = () => {
+const CreateUser = () => {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
@@ -20,10 +20,10 @@ const Register = () => {
   const navigate = useNavigate();
 
   const profileListPageNavigator = () => {
-    navigate("/profile-list");
+    navigate("/user/user-list");
   };
 
-  const registerSubmitHandler = async (e) => {
+  const createUserSubmitHandler = async (e) => {
     e.preventDefault();
 
     if (!/^\d*\.?\d*$/.test(mobileNumberRef.current.value)) {
@@ -78,13 +78,13 @@ const Register = () => {
     }
 
     toast.success("Account created successfully");
-    navigate("/profile-list");
+    navigate("/user/user-list");
   };
 
   return (
     <form
       className={classes["create-user-card-wrapper"]}
-      onSubmit={registerSubmitHandler}
+      onSubmit={createUserSubmitHandler}
     >
       <Card className={classes["card-style"]}>
         <h2>Create User</h2>
@@ -196,4 +196,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CreateUser;

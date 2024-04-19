@@ -49,7 +49,7 @@ const Login = () => {
       toast.success("Login successfully");
 
       if (userData.user_admin) {
-        navigate("/profile-list");
+        navigate("/user/user-list");
       } else {
         navigate("/");
       }

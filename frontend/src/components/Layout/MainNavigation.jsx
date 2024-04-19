@@ -6,14 +6,19 @@ import toast from "react-hot-toast";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  let user = useSelector((state) => state.auth.user);
 
+  if (!user) {
+    user = JSON.parse(localStorage.getItem("user"));
+  }
   return (
     <header className={classes.header}>
       <nav className={classes["header-wrapper"]}>
         <div className={classes["header-left-wrapper"]}>
           <div className={classes["header-logo"]}>
-            <NavLink to="/">RedDOT Properties</NavLink>
+            <NavLink to={!user || !user.user_admin ? "/" : "user/user-list"}>
+              RedDOT Properties
+            </NavLink>
           </div>
           <ul className={classes["header-list"]}>
             {!user && (
@@ -30,7 +35,7 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="/property-listing"
+                    to="/property"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -50,10 +55,10 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="/find-agent"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Find Agent
                   </NavLink>
@@ -61,8 +66,7 @@ const MainNavigation = () => {
               </>
             )}
             {user &&
-              ((!user.user_admin && !user.user_agent) ||
-                user.user_agent) && (
+              ((!user.user_admin && !user.user_agent) || user.user_agent) && (
                 <>
                   <li className={classes["header-list-item"]}>
                     <NavLink
@@ -80,7 +84,7 @@ const MainNavigation = () => {
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="/property-listing"
+                    to="/property"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -100,10 +104,10 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="/find-agent"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Find Agent
                   </NavLink>
@@ -114,7 +118,7 @@ const MainNavigation = () => {
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="/profile-list"
+                    to="user/user-list"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -124,22 +128,32 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="user/agent-list"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Agents
                   </NavLink>
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="user/admin-list"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Admin
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
+                    to="/property/list"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Property
                   </NavLink>
                 </li>
               </>
@@ -148,30 +162,30 @@ const MainNavigation = () => {
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="/agent/property-list"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Property List
                   </NavLink>
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="/agent/create-property"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Add Property
                   </NavLink>
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                  // to="/your-agent"
-                  // className={({ isActive }) => {
-                  //   return isActive ? classes.active : undefined;
-                  // }}
+                    to="/agent/manage-rating"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
                   >
                     Manage Rating
                   </NavLink>

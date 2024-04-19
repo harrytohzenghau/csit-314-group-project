@@ -1,20 +1,19 @@
 import DataTable from "react-data-table-component";
-import Card from "../UI/Card";
+import Card from "../../UI/Card";
 import { useEffect, useState } from "react";
-import EditProfile from "./EditProfile";
-import Button from "../UI/Button";
-import classes from "./ProfileList.module.css";
-import { getToken } from "../../util/auth";
+import Button from "../../UI/Button";
+import classes from "./UserList.module.css";
+import { getToken } from "../../../util/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const ProfileList = () => {
+const UserList = () => {
   const [allUsers, setAllUsers] = useState([]);
 
   const navigate = useNavigate();
 
   const editUserHandler = async (id) => {
-    navigate(`/edit-user/${id}`);
+    navigate(`/user/edit/${id}`);
   };
 
   const banUserHandler = async (id) => {
@@ -132,19 +131,19 @@ const ProfileList = () => {
       sortable: true,
       width: "20rem",
     },
-    {
-      name: "Account Type",
-      selector: (row) => {
-        if (row.user_admin) {
-          return "Admin";
-        } else if (row.user_agent) {
-          return "Agent";
-        } else {
-          return "User";
-        }
-      },
-      sortable: true,
-    },
+    // {
+    //   name: "Account Type",
+    //   selector: (row) => {
+    //     if (row.user_admin) {
+    //       return "Admin";
+    //     } else if (row.user_agent) {
+    //       return "Agent";
+    //     } else {
+    //       return "User";
+    //     }
+    //   },
+    //   sortable: true,
+    // },
     {
       name: "Status",
       selector: (row) => {
@@ -173,7 +172,7 @@ const ProfileList = () => {
       name: "Action",
       selector: (row) => {
         return (
-          <div className={classes["profile-list-action-button"]}>
+          <div className={classes["user-list-action-button"]}>
             <Button
               type="button"
               style="underline"
@@ -221,15 +220,18 @@ const ProfileList = () => {
   }, [token]);
 
   return (
-    <Card className={classes["profile-list-wrapper"]}>
-      <Button
-        style="primary"
-        onClick={() => {
-          navigate("/create-user");
-        }}
-      >
-        Create User
-      </Button>
+    <Card className={classes["user-list-wrapper"]}>
+      <div>
+        <Button
+          style="primary"
+          onClick={() => {
+            navigate("/user/create");
+          }}
+        >
+          Create User
+        </Button>
+      </div>
+
       <DataTable
         columns={columns}
         data={allUsers}
@@ -239,4 +241,4 @@ const ProfileList = () => {
   );
 };
 
-export default ProfileList;
+export default UserList;

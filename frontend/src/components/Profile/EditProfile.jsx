@@ -18,7 +18,7 @@ const EditProfile = () => {
   const repeatPasswordRef = useRef();
 
   useEffect(() => {
-    
+
   }, []);
 
   const [showEditPassword, setShowEditPassword] = useState(false);
@@ -79,7 +79,7 @@ const EditProfile = () => {
     // toast.success("Profile updated successfully");
 
     // if (userData.user_admin) {
-    //   navigate("/profile-list");
+    //   navigate("/user-list");
     // } else {
     //   navigate("/");
     // }

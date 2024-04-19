@@ -11,6 +11,7 @@
   flex-grow: 1;
   width: 100%;
   position: relative;
+  padding: 2rem 0;
 }
 
 .toaster {
