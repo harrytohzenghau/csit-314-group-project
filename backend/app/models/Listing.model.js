@@ -113,6 +113,11 @@ const listingSchema = new Schema(
             required: true,
             default: 0,
         },
+        listing_name: {
+            type: String,
+            required: true,
+            default: "Testing",
+        },
         listing_images: [
             {
                 type: String,

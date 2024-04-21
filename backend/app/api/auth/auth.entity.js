@@ -1,5 +1,6 @@
 const User = require("../../models/User.model");
 const Agent = require("../../models/Agent.model");
+const UserClass = require("../../class/user.class");
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -8,13 +9,10 @@ class AuthEntity {
     token;
     tokenSecret;
 
-    async createUser(user) {
-        const { password } = user.user_details;
-        user.user_details.password = await bcrypt.hash(password, 10);
-
-        const newUser = new User(user);
-        await newUser.save();
-        return newUser;
+    async createUser(data) {
+        const user = new UserClass();
+        user.newUser(data);
+        return user;
     }
 
     async createAgent(user) {

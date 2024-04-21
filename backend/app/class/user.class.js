@@ -44,6 +44,37 @@ class UserClass {
         if (!this.user) throw "User not found";
         return;
     }
+
+    async newUser(data) {
+        const { user_details, user_agent, user_admin } = data;
+
+        const { password } = user.user_details;
+        user.user_details.password = await bcrypt.hash(password, 10);
+
+        this.user_details = user_details;
+        this.user_admin = user_admin;
+        this.user_agent = user_agent;
+
+        const user = new User({
+            user_details,
+            user_agent,
+            user,
+        });
+
+        await newUser.save();
+    }
+
+    async editUserDetails(data) {
+        this.user = await User.findByIdAndUpdate(data);
+        if (!this.user) throw "User not found";
+        return;
+    }
+
+    async deleteUserDetails(data) {
+        this.user = await User.findByIdAndUpdate(data);
+        if (!this.user) throw "User not found";
+        return;
+    }
 }
 
 module.exports = UserClass;

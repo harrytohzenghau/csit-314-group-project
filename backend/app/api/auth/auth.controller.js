@@ -14,9 +14,8 @@ function intialiseUserClass(req) {
 class AuthController {
     async userRegistration(req, res) {
         try {
-            const user = intialiseUserClass(req);
             const auth = new AuthEntity();
-            await auth.createUser(user);
+            await auth.createUser(req.body);
             res.status(201).json({ message: "User registration succeeded" });
         } catch (error) {
             res.status(500).json({

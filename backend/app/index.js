@@ -8,8 +8,9 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use("/api/auth", require("./routes/auth.router"));
+app.use("/api/home", require("./routes/auth.router"));
+app.use("/api/profile", require("./routes/profile.router"));
 app.use("/api/admin", require("./routes/admin.router"));
-app.use("/api/property", require("./routes/property.router"));
 
 app.get("/", (req, res) => {
     res.send("Hello world");

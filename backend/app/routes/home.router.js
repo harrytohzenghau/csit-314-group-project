@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const propertyController = require("../api/property/property.controller");
+const homeController = require("../api/home/home.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,13 +12,8 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const property = new propertyController();
+const home = new homeController();
 
-router
-    .route("/")
-    .get(catchAsync(property.viewAllProperties))
-    .post(catchAsync(property.newProperty))
-    .patch(catchAsync(property.updateProperty))
-    .delete(catchAsync(property.deleteProperty));
+router.route("/").get(catchAsync(home.findHomes));
 
 module.exports = router;
