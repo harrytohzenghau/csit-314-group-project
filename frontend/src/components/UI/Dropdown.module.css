@@ -1,0 +1,14 @@
+.dropdown-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-wrapper h5 {
+  font-weight: normal;
+  font-family: var(--font);
+  font-size: 1.4rem;
+}
+
+.dropdown-field {
+  margin-left: 2rem;
+}
