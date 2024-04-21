@@ -1,137 +1,381 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./CreateProperty.module.css";
 import { toast } from "react-hot-toast";
+import Dropdown from "../UI/Dropdown";
+import YearPicker from "../UI/YearPicker";
+import { RiCloseCircleFill } from "react-icons/ri";
+import ImageUploader from "../UI/ImageUploader";
+import { getToken } from "../../util/auth";
 
 const CreateProperty = () => {
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const mobileNumberRef = useRef();
-  const repeatPasswordRef = useRef();
-  const adminRef = useRef();
-  const agentRef = useRef();
+  const locationRef = useRef();
+  const priceRef = useRef();
+  const floorSizeRef = useRef();
+  const PSFRef = useRef();
+  const keywordRef = useRef();
+
+  const token = getToken();
 
   const navigate = useNavigate();
+
+  const [type, setType] = useState("");
+  const [newProject, setNewProject] = useState("");
+  const [numberBedrooms, setNumberBedrooms] = useState(1);
+  const [tenure, setTenure] = useState("");
+  const [floorLevel, setFloorLevel] = useState("");
+  const [furnishing, setFurnishing] = useState("");
+  const [liveTour, setLiveTour] = useState("");
+  const [virtualTour, setVirtualTour] = useState("");
+  const [numberBathrooms, setNumberBathrooms] = useState("");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [keyword, setKeyword] = useState([]);
+  const [image, setImage] = useState([]);
+  const [agents, setAgents] = useState([]);
+
+  useEffect(() => {
+    async function getAgent() {
+      const response = await fetch("http://localhost:3000/api/admin", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const data = await response.json();
+      const agentOnly = data.allUsers.filter((user) => user.user_agent);
+
+      for (let i = 0; i < agentOnly.length; i++) {
+        const agent = agentOnly[i];
+        if (!agents.includes(agent.user_details.username)) {
+          const newAgents = [...agents, agent.user_details.username];
+          setAgents(newAgents);
+        }
+      }
+    }
+
+    getAgent();
+  });
+
+  const handleTypeOption = (value) => {
+    setType(value);
+  };
+
+  const handleProjectOption = (value) => {
+    setNewProject(value);
+  };
+
+  const handleBedroomOption = (value) => {
+    setNumberBedrooms(value);
+  };
+
+  const handleTenureOption = (value) => {
+    setTenure(value);
+  };
+
+  const handleFloorLevelOption = (value) => {
+    setFloorLevel(value);
+  };
+
+  const handleFurnishingOption = (value) => {
+    setFurnishing(value);
+  };
+
+  const handleLiveTourOption = (value) => {
+    setLiveTour(value);
+  };
+
+  const handleVirtualTourOption = (value) => {
+    setVirtualTour(value);
+  };
+
+  const handleYearOption = (value) => {
+    setSelectedYear(value);
+  };
+
+  const addKeywordHandler = () => {
+    if (!keywordRef.current.value) {
+      return toast.error("Please enter a keyword.");
+    }
+
+    if (keyword.includes(keywordRef.current.value)) {
+      return toast.error("This keyword has been added.");
+    }
+
+    const newKeywords = [...keyword, keywordRef.current.value];
+    setKeyword(newKeywords);
+    keywordRef.current.value = "";
+    toast.success("Keyword has been added successfully.");
+  };
+
+  const removeKeywordHandler = (k) => {
+    const newKeywords = keyword.filter((key) => key !== k);
+    setKeyword(newKeywords);
+    toast.success("Keyword has been removed successfully.");
+  };
+
+  const addImageHandler = (encodedImage, removeEncodedImage) => {
+    if (image.includes(encodedImage)) {
+      return toast.error("This image has been added.");
+    }
+
+    const newImages = [...image, encodedImage];
+    setImage(newImages);
+    removeEncodedImage("");
+    toast.success("Image has been uploaded successfully.");
+  };
+
+  const removeImageHandler = (encodedStr) => {
+    const newImages = image.filter((encoded) => encoded !== encodedStr);
+    setImage(newImages);
+    toast.success("Image has been removed successfully.");
+  };
 
   const profileListPageNavigator = () => {
     navigate("/property/list");
   };
 
-  const registerSubmitHandler = async (e) => {
+  const createPropertySubmitHandler = async (e) => {
     e.preventDefault();
 
-    if (!/^\d*\.?\d*$/.test(mobileNumberRef.current.value)) {
-      toast.error("Invalid value detected in mobile number field.");
-      return;
-    }
-
-    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-      toast.error("Password does not matched. Please try again");
-      return;
-    }
-
-    const user = {
-      user_details: {
-        first_name: firstNameRef.current.value,
-        last_name: lastNameRef.current.value,
-        username: usernameRef.current.value,
-        mobile_number: mobileNumberRef.current.value,
-        email_address: emailRef.current.value,
-        password: passwordRef.current.value,
+    const property = {
+      listing_propertySchema: {
+        property_location: locationRef.current.value,
+        property_type: type,
+        property_new_project: newProject === "Yes" ? true : false,
+        property_price: parseInt(priceRef.current.value),
+        property_bedroom: parseInt(numberBedrooms),
+        property_floor_size: parseInt(floorSizeRef.current.value),
+        property_PSF: parseInt(PSFRef.current.value),
+        property_bathroom: parseInt(numberBathrooms),
+        property_tenure: tenure,
+        property_build_year: parseInt(selectedYear),
+        property_floor_level: floorLevel,
+        property_furnishing: furnishing,
+        property_keyword: keyword,
+        property_listing_live_tour: liveTour === "Yes" ? true : false,
+        property_listing_virtual_tour: virtualTour === "Yes" ? true : false,
       },
-      user_admin: adminRef.current.checked,
-      user_agent: agentRef.current.checked,
+      listing_images: image,
     };
 
-    const token = localStorage.getItem("token");
+    console.log(property);
 
-    let endpoint = "http://localhost:3000/api/auth/register/";
+    try {
+      const response = await fetch("http://localhost:3000/api/property", {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(property),
+      });
 
-    if (user.user_admin) {
-      endpoint += "admin";
-    } else if (user.user_agent) {
-      endpoint += "agent";
-    } else {
-      endpoint += "user";
+      const data = await response.json();
+      console.log(data);
+    } catch (e) {
+      console.log(e);
     }
-
-    const register_response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        Authorization: token,
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-
-    if (!register_response.ok) {
-      toast.error(
-        "Something went wrong while trying to create a property. Please try again."
-      );
-      return;
-    }
-
-    toast.success("Property created successfully");
-    navigate("/property/list");
   };
 
   return (
     <form
       className={classes["create-property-card-wrapper"]}
-      onSubmit={registerSubmitHandler}
+      onSubmit={createPropertySubmitHandler}
     >
       <Card className={classes["card-style"]}>
         <h2>Create Property</h2>
         <div className={classes["create-property-input-wrapper"]}>
-          <h5>Type of account</h5>
-          <div className={classes["create-property-type-wrapper"]}>
-            <Input
-              name="user-type"
-              type="radio"
-              htmlFor="user"
-              label="User"
-              defaultChecked={true}
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Type of property"
+              options={["Landed", "Condo", "HDB"]}
+              selectedHandler={handleTypeOption}
             />
-            <Input
-              ref={adminRef}
-              name="user-type"
-              type="radio"
-              htmlFor="admin"
-              label="Admin"
+            <Dropdown
+              title="New Project"
+              options={["Yes", "No"]}
+              selectedHandler={handleProjectOption}
             />
-            <Input
-              ref={agentRef}
-              name="user-type"
-              type="radio"
-              htmlFor="agent"
-              label="Agent"
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Number of Bedrooms"
+              options={[1, 2, 3, 4, 5]}
+              selectedHandler={handleBedroomOption}
+            />
+            <Dropdown
+              title="Tenure"
+              options={[
+                "Freehold",
+                "99-year LeaseHold",
+                "103-year LeaseHold",
+                "110-year LeaseHold",
+                "999-year LeaseHold",
+                "9999-year LeaseHold",
+                "Unkown Tenure",
+              ]}
+              selectedHandler={handleTenureOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Floor Level"
+              options={["Ground", "Low", "Mid", "High", "Penthouse"]}
+              selectedHandler={handleFloorLevelOption}
+            />
+            <Dropdown
+              title="Furnishing"
+              options={[
+                "Unfurnished",
+                "Partially Furnished",
+                "Fully Furnished",
+              ]}
+              selectedHandler={handleFurnishingOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Live Tour"
+              options={["Yes", "No"]}
+              selectedHandler={handleLiveTourOption}
+            />
+            <Dropdown
+              title="Virtual Tour"
+              options={["Yes", "No"]}
+              selectedHandler={handleVirtualTourOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Number of Bathrooms"
+              options={[1, 2, 3, 4, 5]}
+              selectedHandler={setNumberBathrooms}
+            />
+            <YearPicker
+              selectedYear={selectedYear}
+              selectedHandler={handleYearOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Agent"
+              options={agents}
+              selectedHandler={handleTypeOption}
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
             <Input
-              ref={firstNameRef}
+              ref={locationRef}
               required={true}
-              name="firstName"
+              name="location"
               type="text"
-              label="First Name"
+              label="Location"
               className={classes["input-style"]}
             />
             <Input
-              ref={lastNameRef}
+              ref={priceRef}
               required={true}
-              name="lastName"
-              type="text"
-              label="Last Name"
+              name="price"
+              type="number"
+              label="Price"
               className={classes["input-style"]}
             />
           </div>
+
           <div className={classes["create-property-input-row-wrapper"]}>
+            <Input
+              ref={floorSizeRef}
+              required={true}
+              name="floorSize"
+              type="number"
+              label="Floor Size"
+              min={1}
+              className={classes["input-style"]}
+            />
+            <Input
+              ref={PSFRef}
+              required={true}
+              name="PSF"
+              type="number"
+              label="PSF"
+              min={1}
+              className={classes["input-style"]}
+            />
+          </div>
+
+          <div>
+            <ImageUploader imageUploadHandler={addImageHandler} />
+            {image.length > 0 && (
+              <div
+                className={
+                  classes["create-property-uploaded-image-preview-wrapper"]
+                }
+              >
+                <h5>Uploaded image</h5>
+                <div
+                  className={classes["create-property-uploaded-image-preview"]}
+                >
+                  {image.map((img) => (
+                    <div
+                      key={img}
+                      className={
+                        classes["create-property-uploaded-image-preview-button"]
+                      }
+                    >
+                      <Button
+                        type="button"
+                        onClick={() => removeImageHandler(img)}
+                        className={classes["create-property-keyword-button"]}
+                      >
+                        <RiCloseCircleFill
+                          className={classes["create-property-close-button"]}
+                        />
+                        <img src={img} />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          <div>
+            <div className={classes["create-property-keyword-input-wrapper"]}>
+              <Input
+                ref={keywordRef}
+                name="keyword"
+                type="text"
+                label="Keyword"
+                className={classes["input-style"]}
+              />
+              <Button
+                type="button"
+                style="primary"
+                onClick={addKeywordHandler}
+                className={classes["create-property-keyword-input-button"]}
+              >
+                Add
+              </Button>
+            </div>
+          </div>
+          <div className={classes["create-property-keyword-wrapper"]}>
+            {keyword &&
+              keyword.map((k) => (
+                <Button
+                  type="button"
+                  key={k}
+                  onClick={() => removeKeywordHandler(k)}
+                  className={classes["create-property-keyword-button"]}
+                >
+                  <RiCloseCircleFill /> {k}
+                </Button>
+              ))}
+          </div>
+
+          {/* <div className={classes["create-property-input-row-wrapper"]}>
             <Input
               ref={usernameRef}
               required={true}
@@ -175,7 +419,7 @@ const CreateProperty = () => {
               label="Repeat Password"
               className={classes["input-style"]}
             />
-          </div>
+          </div>*/}
         </div>
         <div className={classes["create-property-button-wrapper"]}>
           <div className={classes["create-property-action-button"]}>
