@@ -213,7 +213,8 @@ const AdminList = () => {
       });
 
       const data = await response.json();
-      setAllUsers(data.allUsers);
+      const adminOnly = data.allUsers.filter((user) => user.user_admin);
+      setAllUsers(adminOnly);
     }
 
     getAllUser();

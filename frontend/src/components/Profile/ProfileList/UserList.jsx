@@ -213,7 +213,10 @@ const UserList = () => {
       });
 
       const data = await response.json();
-      setAllUsers(data.allUsers);
+      const userOnly = data.allUsers.filter(
+        (user) => !user.user_admin && !user.user_agent
+      );
+      setAllUsers(userOnly);
     }
 
     getAllUser();

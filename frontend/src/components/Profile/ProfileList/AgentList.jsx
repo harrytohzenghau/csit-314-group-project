@@ -213,7 +213,8 @@ const AgentList = () => {
       });
 
       const data = await response.json();
-      setAllUsers(data.allUsers);
+      const agentOnly = data.allUsers.filter((user) => user.user_agent);
+      setAllUsers(agentOnly);
     }
 
     getAllUser();
