@@ -1,11 +1,11 @@
-const HomeEntity = require("./home.entity");
+const BuyEntity = require("./buy.entity");
 
-class HomeController {
+class BuyController {
     async findHomes(req, res) {
         try {
-            const home = new HomeEntity();
+            const buy = new BuyEntity();
             const { params } = req;
-            const allListings = await home.findListings(params);
+            const allListings = await buy.findListings(params);
 
             res.status(201).json({
                 success: true,
@@ -21,4 +21,4 @@ class HomeController {
     }
 }
 
-module.exports = HomeController;
+module.exports = BuyController;

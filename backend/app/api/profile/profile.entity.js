@@ -1,9 +1,6 @@
 const User = require("../../models/User.model");
-const Agent = require("../../models/Agent.model");
-const Listing = require("../../models/Listing.model");
 
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 class ProfileEntity {
     async getUser(id) {

@@ -1,6 +1,6 @@
 const ListingClass = require("../../class/listing.class");
 
-class HomeEntity {
+class BuyEntity {
     async findListings(params) {
         const listing = new ListingClass();
         await listing.getAllListings(params);
@@ -9,4 +9,4 @@ class HomeEntity {
     }
 }
 
-module.exports = HomeEntity;
+module.exports = BuyEntity;
