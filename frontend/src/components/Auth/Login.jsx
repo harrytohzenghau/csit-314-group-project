@@ -41,6 +41,12 @@ const Login = () => {
       const userData = data.user;
       const token = data.token;
 
+      if (!userData.user_active) {
+        return toast.error(
+          "Your account has been banned. Please contact the admin."
+        );
+      }
+
       dispatch(login({ user: userData, token }));
 
       localStorage.setItem("token", token);
