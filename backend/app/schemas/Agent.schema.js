@@ -20,6 +20,13 @@ const agentSchema = new Schema(
                 ref: "Review",
             },
         ],
+        agent_properties: [
+            {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "Listing",
+            },
+        ],
     },
     { minimize: false }
 );

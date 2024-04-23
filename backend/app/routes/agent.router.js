@@ -15,6 +15,11 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const admin = new AgentController();
 
-router.route("/").get(verifyAdmin, catchAsync(admin.viewAllUsers));
+router
+    .route("/")
+    .get(catchAsync(admin.getProperties))
+    .post(catchAsync(admin.postProperty))
+    .patch(catchAsync(admin.updateProperty))
+    .delete(catchAsync(admin.deleteProperty));
 
 module.exports = router;

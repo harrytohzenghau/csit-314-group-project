@@ -12,6 +12,17 @@ class AgentEntity extends UserEntity {
         return;
     }
 
+    async fetchAgentByUserId(id) {
+        this.agent = await Agent.findOne({ agent_userSchema: id });
+        return;
+    }
+
+    async addProperty(listing) {
+        this.agent.agent_properties.push(listing._id);
+        this.agent.save();
+        return;
+    }
+
     async removeAgentById(id) {
         await Agent.findOneAndDelete({ agent_userSchema: id });
         await User.findByIdAndDelete(id);
