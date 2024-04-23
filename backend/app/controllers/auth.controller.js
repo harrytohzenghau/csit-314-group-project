@@ -22,7 +22,7 @@ class AuthController {
 
             const auth = new AuthEntity();
             const user = new UserEntity();
-            user.fetchUserByUsername(username);
+            await user.fetchUserByUsername(username);
 
             await auth.authenticateUser(password, user.password);
             await auth.setToken(user.user);
@@ -42,8 +42,8 @@ class AuthController {
     async postLogout(req, res) {
         try {
             const { username, id } = req.body;
-            const user = new UserClass();
-            await user.getUserById(id);
+            const user = new UserEntity();
+            await user.fetchUserById(id);
 
             const auth = new AuthEntity();
             const decoded = await auth.verifyToken(
@@ -57,6 +57,7 @@ class AuthController {
                     message: "Logout Successful",
                 });
         } catch (error) {
+            console.log(error);
             res.status(500).json({ error, message: "Logout Failed" });
         }
     }

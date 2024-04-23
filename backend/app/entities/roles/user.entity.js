@@ -20,6 +20,11 @@ class UserEntity {
     get username() {
         return this.user.user_details.username;
     }
+
+    get password() {
+        return this.user.user_details.password;
+    }
+
     get id() {
         return this.user._id;
     }
@@ -59,7 +64,7 @@ class UserEntity {
             "user_details.username": username,
         });
 
-        if (!user) throw "User does not exist!";
+        if (!this.user) throw "User does not exist!";
         return this.user;
     }
 
