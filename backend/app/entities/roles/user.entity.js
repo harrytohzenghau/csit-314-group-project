@@ -71,8 +71,8 @@ class UserEntity {
     async createUser(data) {
         const { user_details, user_agent, user_admin } = data;
 
-        const { password } = user.user_details;
-        user.user_details.password = await bcrypt.hash(password, 10);
+        const { password } = user_details;
+        user_details.password = await bcrypt.hash(password, 10);
 
         this.user_details = user_details;
         this.user_admin = user_admin;
@@ -81,7 +81,7 @@ class UserEntity {
         this.user = new User({
             user_details,
             user_agent,
-            user,
+            user_admin,
         });
 
         await this.user.save();
@@ -95,6 +95,11 @@ class UserEntity {
             data.user_details.password = await bcrypt.hash(password, 10);
 
         await User.findByIdAndUpdate(id, data);
+    }
+
+    async removeUserById(id) {
+        await User.findByIdAndDelete(id);
+        return;
     }
 }
 

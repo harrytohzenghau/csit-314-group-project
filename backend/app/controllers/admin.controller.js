@@ -21,7 +21,14 @@ class AdminController {
     async postUser(req, res) {
         try {
             const admin = new AdminEntity();
-            await admin.createUser(req.body);
+            const { user_admin, user_agent } = req.body;
+
+            if (user_admin) await admin.createUser(req.body);
+            if (user_agent) {
+                await admin.createAgent(req.body);
+            } else {
+                await admin.createUser(req.body);
+            }
 
             res.status(201).json({
                 success: true,
@@ -37,7 +44,9 @@ class AdminController {
     async patchUser(req, res) {
         try {
             const admin = new AdminEntity();
-            await admin.updateUser(req.body);
+            const id = req.headers.cookie;
+            //auth token
+            await admin.updateUserById(id, req.body);
 
             res.status(201).json({
                 success: true,
@@ -50,43 +59,17 @@ class AdminController {
             });
         }
     }
-    async postAgent(req, res) {
-        try {
-            const admin = new AdminEntity();
-            await admin.createAgent(req.body);
-
-            res.status(201).json({
-                success: true,
-                message: "User banned",
-            });
-        } catch (error) {
-            res.status(500).json({
-                error,
-                message: "Failed to ban user",
-            });
-        }
-    }
-    async postAdmin(req, res) {
-        try {
-            const admin = new AdminEntity();
-            await admin.createAdmin(req.body);
-
-            res.status(201).json({
-                success: true,
-                message: "User banned",
-            });
-        } catch (error) {
-            res.status(500).json({
-                error,
-                message: "Failed to ban user",
-            });
-        }
-    }
-
     async deleteUser(req, res) {
         try {
             const admin = new AdminEntity();
-            await admin.removeUser(req.body);
+            const id = req.headers.cookie;
+            const { user_agent } = req.body;
+
+            if (user_agent) {
+                await admin.removeAgentById(id);
+            } else {
+                await admin.removeUserById(id);
+            }
 
             res.status(201).json({
                 success: true,

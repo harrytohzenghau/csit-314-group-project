@@ -15,10 +15,9 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const admin = new AdminController();
 
-router.route("/").get(verifyAdmin, catchAsync(admin.getUsers));
-
 router
-    .route("/user")
+    .route("/")
+    .get(verifyAdmin, catchAsync(admin.getUsers))
     .post(verifyAdmin, catchAsync(admin.postUser))
     .patch(verifyAdmin, catchAsync(admin.patchUser))
     .delete(verifyAdmin, catchAsync(admin.deleteUser));
