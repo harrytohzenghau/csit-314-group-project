@@ -5,6 +5,7 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "../Profile/CreateUser.module.css";
 import { toast } from "react-hot-toast";
+import { getToken } from "../../util/auth";
 
 const CreateUser = () => {
   const firstNameRef = useRef();
@@ -49,7 +50,7 @@ const CreateUser = () => {
       user_agent: agentRef.current.checked,
     };
 
-    const token = localStorage.getItem("token");
+    const token = getToken();
 
     let endpoint = "http://localhost:3000/api/auth/register/";
 

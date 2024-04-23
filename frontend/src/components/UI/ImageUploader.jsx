@@ -16,6 +16,8 @@ function ImageToBase64Converter({ imageUploadHandler }) {
       setBase64Image(reader.result);
     };
 
+    console.log(base64Image);
+
     reader.readAsDataURL(file);
   };
 

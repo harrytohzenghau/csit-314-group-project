@@ -3,13 +3,14 @@ import route from "./router/route";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { login } from "./store/authSlice";
+import { getToken, getUser } from "./util/auth";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));
+    const token = getToken();
+    const user = getUser();
 
     dispatch(login({ user, token }));
   }, [dispatch]);

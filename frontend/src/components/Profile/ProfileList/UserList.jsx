@@ -201,7 +201,7 @@ const UserList = () => {
     },
   ];
 
-  const token = localStorage.getItem("token");
+  const token = getToken();
 
   useEffect(() => {
     async function getAllUser() {

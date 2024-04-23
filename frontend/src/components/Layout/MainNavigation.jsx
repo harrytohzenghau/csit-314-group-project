@@ -3,14 +3,35 @@ import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../store/authSlice";
 import toast from "react-hot-toast";
+import { getUser } from "../../util/auth";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
   let user = useSelector((state) => state.auth.user);
 
   if (!user) {
-    user = JSON.parse(localStorage.getItem("user"));
+    user = getUser();
   }
+
+  const logoutHandler = async () => {
+    // const response = await fetch("http://localhost:3000/api/auth/logout", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: {
+    //     _id: user._id,
+    //     username: user.user_details.username,
+    //   },
+    // });
+
+    
+    // const data = await response.json();
+    // console.log(data)
+    toast.success("Logout successfully");
+    localStorage.clear();
+    dispatch(logout());
+  };
   return (
     <header className={classes.header}>
       <nav className={classes["header-wrapper"]}>
@@ -233,14 +254,7 @@ const MainNavigation = () => {
                   </NavLink>
                 </li>
                 <li className={classes["header-list-item"]}>
-                  <NavLink
-                    to="/"
-                    onClick={() => {
-                      toast.success("Logout successfully");
-                      localStorage.clear();
-                      dispatch(logout());
-                    }}
-                  >
+                  <NavLink to="/" onClick={logoutHandler}>
                     Logout
                   </NavLink>
                 </li>

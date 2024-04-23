@@ -1,0 +1,18 @@
+.project-wrapper {
+  margin: 2rem 0 5rem;
+}
+
+.project-wrapper.hot-location {
+  /* background-color: var(--grey); */
+}
+
+.project-card-wrapper {
+  display: flex;
+  column-gap: 2rem;
+  margin: 2rem 0;
+}
+
+.project-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,39 @@
+.best-agent-card-wrapper {
+  margin: 2rem 0;
+  display: flex;
+  column-gap: 2rem;
+}
+
+.card-style {
+  width: 33%;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-style:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  scale: 1.02;
+}
+
+.card-style img {
+  height: 20rem;
+}
+
+.best-agent-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.best-agent-details {
+  width: 70%;
+}
+
+.best-agent-name-and-rating-wrapper {
+  display: flex;
+}
+
+.best-agent-rating-wrapper {
+  display: flex;
+  align-items: center;
+}

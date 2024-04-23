@@ -27,6 +27,7 @@ import {
   AdminExcludedRoute,
   AgentProtectedRoute,
 } from "../util/ProtectedRoute";
+import PropertyDetailPage from "../pages/Property/PropertyDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +163,10 @@ const router = createBrowserRouter([
                 <CreatePropertyPage />
               </AdminProtectedRoute>
             ),
+          },
+          {
+            path: ":id",
+            element: <PropertyDetailPage />,
           },
           {
             path: "edit",

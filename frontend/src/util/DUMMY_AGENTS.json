@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "1",
+    "agent-rating": 5,
+    "agent-reviews": ["This guy is handsome"],
+    "user-details": {
+      "username": "1",
+      "first_name": "Daniel",
+      "last_name": "Lim"
+    }
+  },
+  {
+    "_id": "2",
+    "agent-rating": 5,
+    "agent-reviews": ["This guy is handsome"],
+    "user-details": {
+      "first_name": "Daniel",
+      "last_name": "Lim"
+    }
+  },
+  {
+    "_id": "3",
+    "agent-rating": 5,
+    "agent-reviews": ["This guy is handsome"],
+    "user-details": {
+      "first_name": "Daniel",
+      "last_name": "Lim"
+    }
+  }
+]

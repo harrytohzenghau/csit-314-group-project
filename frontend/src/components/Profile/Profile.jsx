@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { getToken, getUser } from "../../util/auth";
 
 const Profile = () => {
   const firstNameRef = useRef();
@@ -23,8 +24,8 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  let user = JSON.parse(localStorage.getItem("user"));
-  const token = localStorage.getItem("token");
+  const user = getUser();
+  const token = getToken();
 
   const editProfileHandler = async (e) => {
     e.preventDefault();

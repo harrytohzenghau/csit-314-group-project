@@ -9,7 +9,7 @@ import Dropdown from "../UI/Dropdown";
 import YearPicker from "../UI/YearPicker";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ImageUploader from "../UI/ImageUploader";
-import { getToken } from "../../util/auth";
+import { getToken, getUser } from "../../util/auth";
 
 const CreateProperty = () => {
   const locationRef = useRef();
@@ -21,6 +21,7 @@ const CreateProperty = () => {
   const token = getToken();
 
   const navigate = useNavigate();
+  const user = getUser();
 
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");
@@ -34,6 +35,8 @@ const CreateProperty = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
   const [image, setImage] = useState([]);
+  const [agent, setAgent] = useState([]);
+
   const [agents, setAgents] = useState([]);
 
   useEffect(() => {
@@ -94,6 +97,10 @@ const CreateProperty = () => {
 
   const handleYearOption = (value) => {
     setSelectedYear(value);
+  };
+
+  const handleAgentOption = (value) => {
+    setAgent(value);
   };
 
   const addKeywordHandler = () => {
@@ -261,11 +268,13 @@ const CreateProperty = () => {
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
-            <Dropdown
-              title="Agent"
-              options={agents}
-              selectedHandler={handleTypeOption}
-            />
+            {user.user_admin && (
+              <Dropdown
+                title="Agent"
+                options={agents}
+                selectedHandler={handleAgentOption}
+              />
+            )}
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
             <Input
