@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const adminController = require("../api/admin/admin.controller");
+
+const AgentController = require("../controllers/agent.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,13 +13,8 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const admin = new adminController();
+const admin = new AgentController();
 
-router
-    .route("/")
-    .get(verifyAdmin, catchAsync(admin.viewAllUsers))
-    .patch(verifyAdmin, catchAsync(admin.updateUser))
-    .post(verifyAdmin, catchAsync(admin.banUser))
-    .delete(verifyAdmin, catchAsync(admin.deleteUser));
+router.route("/").get(verifyAdmin, catchAsync(admin.viewAllUsers));
 
 module.exports = router;

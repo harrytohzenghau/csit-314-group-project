@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const profileController = require("../api/profile/profile.controller");
+
+const SavedController = require("../controllers/saved.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,11 +13,8 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const profile = new profileController();
+const profile = new SavedController();
 
-router
-    .route("/")
-    .get(catchAsync(profile.viewProfile))
-    .patch(catchAsync(profile.updateProfile));
+router.route("/").get(catchAsync(profile.viewProfile));
 
 module.exports = router;

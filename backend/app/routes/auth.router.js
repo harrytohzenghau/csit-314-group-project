@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const authController = require("../api/auth/auth.controller");
+
+const AuthController = require("../controllers/auth.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,18 +13,10 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const auth = new authController();
+const auth = new AuthController();
 
-router.route("/register/user").post(catchAsync(auth.userRegistration));
-router
-    .route("/register/agent")
-    .post(verifyAdmin, catchAsync(auth.agentRegistration));
-
-router
-    .route("/register/admin")
-    .post(verifyAdmin, catchAsync(auth.adminRegistration));
-
-router.route("/login").post(catchAsync(auth.userLogin));
-router.route("/logout").post(catchAsync(auth.userLogout));
+router.route("/register").post(catchAsync(auth.postUser));
+router.route("/login").post(catchAsync(auth.postLogin));
+router.route("/logout").post(catchAsync(auth.postLogout));
 
 module.exports = router;

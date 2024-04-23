@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const homeController = require("../api/home/home.controller");
+const HomeController = require("../controllers/home.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,7 +12,7 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const home = new homeController();
+const home = new HomeController();
 
 router.route("/").get(catchAsync(home.findHomes));
 

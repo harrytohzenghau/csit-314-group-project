@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../errors/catchAsync");
-const homeController = require("../api/home/home.controller");
+const BuyController = require("../controllers/buy.controller");
 
 const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
@@ -12,8 +12,8 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const home = new homeController();
+const buy = new BuyController();
 
-router.route("/").get(catchAsync(home.findHomes));
+router.route("/").get(catchAsync(buy.findHomes));
 
 module.exports = router;
