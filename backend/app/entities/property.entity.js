@@ -1,44 +1,48 @@
-const Listing = require("../schemas/Listing.schema");
+const Property = require("../schemas/Property.schema");
 
-const AgentEntity = require("../entities/roles/agent.entity");
+class PropertyEntity {
+    allProperty = [];
+    property = {};
 
-class ListingClass {
-    allListings = [];
-
-    get allListings() {
-        return this.allListings;
+    get propertyId() {
+        return this.property._id;
     }
 
-    async getAllListings(params) {
-        const { property_type, property_bedroom, listing_name } = params;
-
-        this.allListings = await Listing.find({
-            listing_name,
-            "listing_propertySchema.property_type": property_type,
-            "listing_propertySchema.property_bedroom": property_bedroom,
-        });
+    get allProperty() {
+        return this.allProperty;
     }
 
-    async createListing(id, data) {
-        const listing = new Listing(data);
-        await listing.save();
+    // async fetchPropertyByAgentId(id) {
+    //     this.allProperty = await Property.find({ property_agentSchema: id });
+    //     return;
+    // }
 
-        const agent = new AgentEntity();
-        await agent.fetchAgentByUserId(id);
-        await agent.addProperty(listing);
-
+    async fetchPropertyById(id) {
+        this.property = await Property.findById(id);
         return;
     }
 
-    async findByIdAndUpdate(data) {
-        const { _id } = data;
-        await Listing.findByIdAndUpdate(_id, data);
+    async fetchAllProperty() {
+        this.allProperty = await Property.find();
+        return;
+    }
+    async fetchProperty() {
+        const { property_type, property_bedroom, property_name } = params;
+
+        this.allProperty = await Property.find({
+            property_name,
+            "property_propertySchema.property_type": property_type || "",
+            "property_propertySchema.property_bedroom": property_bedroom || "",
+        });
     }
 
-    async findByIdAndDelete(data) {
-        const { _id } = data;
-        await Listing.findByIdAndDelete(_id);
+    async createProperty(id, data) {
+        this.property = new Property(data);
+        this.property.property_agentSchema = id;
+        await this.property.save();
+
+        return;
     }
 }
 
-module.exports = ListingClass;
+module.exports = PropertyEntity;

@@ -2,18 +2,19 @@ const AgentEntity = require("../entities/roles/agent.entity");
 const PropertyEntity = require("../entities/property.entity");
 
 class AgentController {
-    async getProperties(req, res) {
+    async getAgentProperty(req, res) {
         try {
+            const { id } = req.params;
             const property = new PropertyEntity();
-            await property.getAllListings();
+            const agent = new AgentEntity();
+            await agent.fetchAgentByUserId(id);
 
             res.status(201).json({
                 success: true,
                 message: "All users fetched",
-                allProperties: property.allListings,
+                allProperty: agent.agentProperty,
             });
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to fetch users",
@@ -23,16 +24,21 @@ class AgentController {
 
     async postProperty(req, res) {
         try {
-            const id = req.headers.cookie;
+            const { id } = req.params;
+            const agent = new AgentEntity();
+            await agent.fetchAgentByUserId(id);
 
             const property = new PropertyEntity();
-            property.createListing(id, req.body);
+            await property.createProperty(agent.agent._id, req.body);
+
+            await agent.addToAgentProperty(property);
 
             res.status(201).json({
                 success: true,
                 message: "New property",
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to create property",

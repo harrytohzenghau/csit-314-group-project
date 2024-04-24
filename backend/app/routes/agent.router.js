@@ -13,13 +13,13 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 //     };
 // });
 
-const admin = new AgentController();
+const agent = new AgentController();
 
 router
-    .route("/")
-    .get(catchAsync(admin.getProperties))
-    .post(catchAsync(admin.postProperty))
-    .patch(catchAsync(admin.updateProperty))
-    .delete(catchAsync(admin.deleteProperty));
+    .route("/:id")
+    .get(catchAsync(agent.getAgentProperty))
+    .post(catchAsync(agent.postProperty))
+    .patch(catchAsync(agent.updateProperty))
+    .delete(catchAsync(agent.deleteProperty));
 
 module.exports = router;

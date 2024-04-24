@@ -1,10 +1,6 @@
 class HomeController {
     async findHomes(req, res) {
         try {
-            const home = new HomeEntity();
-            const { params } = req;
-            const allListings = await home.findListings(params);
-
             res.status(201).json({
                 success: true,
                 message: "Listings Found",

@@ -24,7 +24,7 @@ const agentSchema = new Schema(
             {
                 type: Schema.Types.ObjectId,
                 required: true,
-                ref: "Listing",
+                ref: "Property",
             },
         ],
     },

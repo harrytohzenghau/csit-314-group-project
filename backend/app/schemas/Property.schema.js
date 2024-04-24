@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const propertySchema = new Schema(
+const listingSchema = new Schema(
     {
         property_location: {
             type: String,
@@ -82,50 +82,45 @@ const propertySchema = new Schema(
                 type: String,
             },
         ],
-        property_listing_live_tour: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
-        property_listing_virtual_tour: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
     },
     { _id: false }
 );
 
-const listingSchema = new Schema(
+const propertySchema = new Schema(
     {
-        listing_propertySchema: {
-            type: propertySchema,
+        property_agentSchema: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: "Agent",
+        },
+        property_propertySchema: {
+            type: listingSchema,
             required: true,
             default: {},
         },
-        listing_date: {
+        property_date: {
             type: Date,
             required: true,
             default: new Date(),
         },
-        listing_views: {
+        property_views: {
             type: Number,
             required: true,
             default: 0,
         },
-        listing_name: {
+        property_name: {
             type: String,
             required: true,
             default: "Testing",
         },
-        listing_images: [
+        property_images: [
             {
                 type: String,
                 required: true,
                 default: "",
             },
         ],
-        listing_shortlists: {
+        property_shortlists: {
             type: Number,
             required: true,
             default: 0,
@@ -134,6 +129,6 @@ const listingSchema = new Schema(
     { minimize: false }
 );
 
-const Listing = mongoose.model("Listing", listingSchema);
+const Property = mongoose.model("Property", propertySchema);
 
-module.exports = Listing;
+module.exports = Property;
