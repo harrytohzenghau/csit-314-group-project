@@ -1,5 +1,5 @@
 class BuyController {
-    async findHomes(req, res) {
+    async getAllHomes(req, res) {
         try {
             res.status(201).json({
                 success: true,

@@ -14,6 +14,6 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const buy = new BuyController();
 
-router.route("/").get(catchAsync(buy.findHomes));
+router.route("/").get(catchAsync(buy.getAllHomes));
 
 module.exports = router;

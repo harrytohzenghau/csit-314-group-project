@@ -65,6 +65,7 @@ class UserEntity {
         });
 
         if (!this.user) throw "User does not exist!";
+        if (!this.user.user_active) throw "User is Banned!";
         return this.user;
     }
 
@@ -88,13 +89,16 @@ class UserEntity {
         return this.user;
     }
 
-    async updateUserById(id, data) {
-        const { password } = data.user_details;
+    async updateUserByUsername(data) {
+        const { username, password } = data.user_details;
 
         if (password)
             data.user_details.password = await bcrypt.hash(password, 10);
 
-        await User.findByIdAndUpdate(id, data);
+        await User.findOneAndUpdate(
+            { "user_details.username": username },
+            data
+        );
     }
 
     async removeUserById(id) {

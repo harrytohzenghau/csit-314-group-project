@@ -13,6 +13,7 @@ class AgentController {
                 allProperties: property.allListings,
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to fetch users",

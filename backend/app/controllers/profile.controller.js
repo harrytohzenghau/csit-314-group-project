@@ -4,7 +4,7 @@ class ProfileController {
     async getProfile(req, res) {
         try {
             const profile = new UserEntity();
-            const id = req.headers.cookie;
+            const { id } = req.params;
             await profile.fetchUserById(id);
 
             res.status(201).json({
@@ -23,8 +23,7 @@ class ProfileController {
     async patchProfile(req, res) {
         try {
             const profile = new UserEntity();
-            const id = req.headers.cookie;
-            await profile.updateUserById(id, req.bodg);
+            await profile.updateUserByUsername(req.body);
 
             res.status(201).json({
                 success: true,

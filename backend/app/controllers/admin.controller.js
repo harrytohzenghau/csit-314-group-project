@@ -44,9 +44,8 @@ class AdminController {
     async patchUser(req, res) {
         try {
             const admin = new AdminEntity();
-            const id = req.headers.cookie;
             //auth token
-            await admin.updateUserById(id, req.body);
+            await admin.updateUserByUsername(req.body);
 
             res.status(201).json({
                 success: true,
@@ -62,7 +61,6 @@ class AdminController {
     async deleteUser(req, res) {
         try {
             const admin = new AdminEntity();
-            const id = req.headers.cookie;
             const { user_agent } = req.body;
 
             if (user_agent) {
