@@ -5,7 +5,6 @@ class AgentController {
     async getAgentProperty(req, res) {
         try {
             const { id } = req.params;
-            const property = new PropertyEntity();
             const agent = new AgentEntity();
             await agent.fetchAgentByUserId(id);
 
@@ -38,7 +37,6 @@ class AgentController {
                 message: "New property",
             });
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to create property",
@@ -46,8 +44,13 @@ class AgentController {
         }
     }
 
-    async updateProperty(req, res) {
+    async patchProperty(req, res) {
         try {
+            const { property_id } = req.params;
+
+            const property = new PropertyEntity();
+            property.updateProperty(property_id, req.body);
+
             res.status(201).json({
                 success: true,
                 message: "All users fetched",

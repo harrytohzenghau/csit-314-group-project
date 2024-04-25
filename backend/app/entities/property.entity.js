@@ -43,6 +43,13 @@ class PropertyEntity {
 
         return;
     }
+
+    async updateProperty(id, data) {
+        console.log(id);
+        console.log(data);
+
+        return;
+    }
 }
 
 module.exports = PropertyEntity;

@@ -18,8 +18,8 @@ const agent = new AgentController();
 router
     .route("/:id")
     .get(catchAsync(agent.getAgentProperty))
-    .post(catchAsync(agent.postProperty))
-    .patch(catchAsync(agent.updateProperty))
-    .delete(catchAsync(agent.deleteProperty));
+    .post(catchAsync(agent.postProperty));
+
+router.route("/:property_id").patch(catchAsync(agent.patchProperty));
 
 module.exports = router;

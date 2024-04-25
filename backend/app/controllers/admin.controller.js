@@ -23,8 +23,9 @@ class AdminController {
             const admin = new AdminEntity();
             const { user_admin, user_agent } = req.body;
 
-            if (user_admin) await admin.createUser(req.body);
-            if (user_agent) {
+            if (user_admin) {
+                await admin.createUser(req.body);
+            } else if (user_agent) {
                 await admin.createAgent(req.body);
             } else {
                 await admin.createUser(req.body);
@@ -32,12 +33,12 @@ class AdminController {
 
             res.status(201).json({
                 success: true,
-                message: "User banned",
+                message: "User created",
             });
         } catch (error) {
             res.status(500).json({
                 error,
-                message: "Failed to ban user",
+                message: "Failed to create user",
             });
         }
     }
