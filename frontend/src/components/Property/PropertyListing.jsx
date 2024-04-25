@@ -3,9 +3,9 @@ import Card from "../UI/Card";
 import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import classes from "./PropertyListing.module.css";
-import { getToken } from "../../util/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const PropertyList = () => {
   const [allProperties, setAllProperties] = useState([]);
@@ -16,11 +16,14 @@ const PropertyList = () => {
     navigate(`/property/edit/${id}`);
   };
 
+  const [cookie] = useCookies();
+  const token = cookie.token;
+
   const deletePropertyHandler = async (id) => {
-    const response = await fetch("http://localhost:3000/api/property", {
+    const response = await fetch("http://localhost:3000/api/buy", {
       method: "DELETE",
       headers: {
-        Authorization: getToken(),
+        Authorization: token,
         "Content-type": "application/json",
       },
       body: JSON.stringify({ _id: id }),
@@ -175,11 +178,9 @@ const PropertyList = () => {
     },
   ];
 
-  const token = getToken();
-
   useEffect(() => {
-    async function getAllUser() {
-      const response = await fetch("http://localhost:3000/api/property", {
+    async function getAllProperties() {
+      const response = await fetch("http://localhost:3000/api/buy", {
         method: "GET",
         headers: {
           Authorization: token,
@@ -191,7 +192,7 @@ const PropertyList = () => {
       setAllProperties(data.allProperties);
     }
 
-    getAllUser();
+    getAllProperties();
   }, [token]);
 
   return (

@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { getToken, getUser } from "../../util/auth";
+import { useCookies } from "react-cookie";
 
 const Profile = () => {
   const firstNameRef = useRef();
@@ -16,6 +16,32 @@ const Profile = () => {
   const passwordRef = useRef();
   const repeatPasswordRef = useRef();
 
+  const [cookie, setCookie] = useCookies();
+  const userId = cookie.id;
+  const token = cookie.token;
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/profile/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      setUser(data.profile.user_details);
+    };
+
+    getUser();
+  }, [userId]);
+
   const [showEditPassword, setShowEditPassword] = useState(false);
 
   const toggleEditPassword = () => {
@@ -24,22 +50,16 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  const user = getUser();
-  const token = getToken();
-
   const editProfileHandler = async (e) => {
     e.preventDefault();
 
     const userData = {
-      _id: user._id,
       user_details: {
-        first_name: firstNameRef.current.value || user.user_details.first_name,
-        last_name: lastNameRef.current.value || user.user_details.last_name,
-        username: user.user_details.username,
-        mobile_number:
-          mobileNumberRef.current.value || user.user_details.mobile_number,
-        email_address:
-          emailRef.current.value || user.user_details.email_address,
+        first_name: firstNameRef.current.value || user.first_name,
+        last_name: lastNameRef.current.value || user.last_name,
+        username: user.username,
+        mobile_number: mobileNumberRef.current.value || user.mobile_number,
+        email_address: emailRef.current.value || user.email_address,
       },
       user_admin: user.user_admin,
       user_agent: user.user_agent,
@@ -54,7 +74,7 @@ const Profile = () => {
       userData.user_details.password = passwordRef.current.value;
     }
 
-    const response = await fetch("http://localhost:3000/api/admin", {
+    const response = await fetch(`http://localhost:3000/api/profile`, {
       method: "PATCH",
       headers: {
         Authorization: token,
@@ -67,9 +87,6 @@ const Profile = () => {
       toast.error("Something went wrong while updating the profile.");
       return;
     }
-
-    localStorage.removeItem("user");
-    localStorage.setItem("user", JSON.stringify(userData));
 
     toast.success("Profile updated successfully");
 
@@ -95,7 +112,7 @@ const Profile = () => {
               name="firstName"
               type="text"
               label="First Name"
-              defaultValue={user.user_details.first_name}
+              defaultValue={user.first_name}
             />
             <Input
               ref={lastNameRef}
@@ -103,7 +120,7 @@ const Profile = () => {
               name="lastName"
               type="text"
               label="Last Name"
-              defaultValue={user.user_details.last_name}
+              defaultValue={user.last_name}
             />
           </div>
           <div className={classes["profile-input-wrapper"]}>
@@ -114,7 +131,7 @@ const Profile = () => {
               type="text"
               label="Username"
               disabled={true}
-              defaultValue={user.user_details.username}
+              defaultValue={user.username}
             />
             <Input
               ref={emailRef}
@@ -122,7 +139,7 @@ const Profile = () => {
               name="email"
               type="email"
               label="Email"
-              defaultValue={user.user_details.email_address}
+              defaultValue={user.email_address}
             />
           </div>
           <div className={classes["profile-input-wrapper"]}>
@@ -132,7 +149,7 @@ const Profile = () => {
               name="mobile"
               type="tel"
               label="Mobile number"
-              defaultValue={user.user_details.mobile_number}
+              defaultValue={user.mobile_number}
             />
             <div></div>
           </div>

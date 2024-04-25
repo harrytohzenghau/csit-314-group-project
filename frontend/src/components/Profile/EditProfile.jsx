@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import toast from "react-hot-toast";
 import classes from "./Profile.module.css";
+import { useCookies } from "react-cookie";
 
 const EditProfile = () => {
   const { id } = useParams();
@@ -17,9 +18,26 @@ const EditProfile = () => {
   const passwordRef = useRef();
   const repeatPasswordRef = useRef();
 
-  useEffect(() => {
+  const [cookie] = useCookies();
+  const token = cookie.token;
+  const [user, setUser] = useState(null);
 
-  }, []);
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await fetch(`http://localhost:3000/api/profile/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      setUser(data.profile);
+    };
+
+    getUser();
+  }, [id]);
 
   const [showEditPassword, setShowEditPassword] = useState(false);
 
@@ -32,57 +50,45 @@ const EditProfile = () => {
   const editProfileHandler = async (e) => {
     e.preventDefault();
 
-    // const userData = {
-    //   _id: user._id,
-    //   user_details: {
-    //     first_name: firstNameRef.current.value || user.user_details.first_name,
-    //     last_name: lastNameRef.current.value || user.user_details.last_name,
-    //     username: user.user_details.username,
-    //     mobile_number:
-    //       mobileNumberRef.current.value || user.user_details.mobile_number,
-    //     email_address:
-    //       emailRef.current.value || user.user_details.email_address,
-    //   },
-    //   user_admin: user.user_admin,
-    //   user_agent: user.user_agent,
-    // };
+    const userData = {
+      user_active: user.user_active,
+      user_agent: user.user_agent,
+      user_admin: user.user_admin,
+      user_details: {
+        first_name: firstNameRef.current.value || user.user_details.first_name,
+        last_name: lastNameRef.current.value || user.user_details.last_name,
+        username: user.user_details.username,
+        mobile_number: mobileNumberRef.current.value || user.user_details.mobile_number,
+        email_address: emailRef.current.value || user.user_details.email_address,
+      },
+    };
 
-    // if (showEditPassword) {
-    //   if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-    //     toast.error("Password does not matched. Please try again");
-    //     return;
-    //   }
+    if (showEditPassword) {
+      if (passwordRef.current.value !== repeatPasswordRef.current.value) {
+        toast.error("Password does not matched. Please try again");
+        return;
+      }
 
-    //   userData.user_details.password = passwordRef.current.value;
-    // }
+      userData.user_details.password = passwordRef.current.value;
+    }
 
-    // const response = await fetch("http://localhost:3000/api/admin", {
-    //   method: "PATCH",
-    //   headers: {
-    //     Authorization: token,
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(userData),
-    // });
+    const response = await fetch(`http://localhost:3000/api/admin`, {
+      method: "PATCH",
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
 
-    // if (!response.ok) {
-    //   toast.error("Something went wrong while updating the profile.");
-    //   const data = await response.json();
+    if (!response.ok) {
+      toast.error("Something went wrong while updating the profile.");
+      return;
+    }
 
-    //   console.log(data);
-    //   return;
-    // }
+    toast.success("Profile updated successfully");
 
-    // localStorage.removeItem("user");
-    // localStorage.setItem("user", JSON.stringify(userData));
-
-    // toast.success("Profile updated successfully");
-
-    // if (userData.user_admin) {
-    //   navigate("/user-list");
-    // } else {
-    //   navigate("/");
-    // }
+    navigate(-1);
   };
 
   return (
@@ -100,7 +106,7 @@ const EditProfile = () => {
               name="firstName"
               type="text"
               label="First Name"
-              // defaultValue={user.user_details.first_name}
+              defaultValue={user && user.user_details.first_name}
             />
             <Input
               ref={lastNameRef}
@@ -108,7 +114,7 @@ const EditProfile = () => {
               name="lastName"
               type="text"
               label="Last Name"
-              //defaultValue={user.user_details.last_name}
+              defaultValue={user && user.user_details.last_name}
             />
           </div>
           <div className={classes["profile-input-wrapper"]}>
@@ -119,7 +125,7 @@ const EditProfile = () => {
               type="text"
               label="Username"
               disabled={true}
-              //  defaultValue={user.user_details.username}
+              defaultValue={user && user.user_details.username}
             />
             <Input
               ref={emailRef}
@@ -127,7 +133,7 @@ const EditProfile = () => {
               name="email"
               type="email"
               label="Email"
-              //  defaultValue={user.user_details.email_address}
+              defaultValue={user && user.user_details.email_address}
             />
           </div>
           <div className={classes["profile-input-wrapper"]}>
@@ -137,7 +143,7 @@ const EditProfile = () => {
               name="mobile"
               type="tel"
               label="Mobile number"
-              // defaultValue={user.user_details.mobile_number}
+              defaultValue={user && user.user_details.mobile_number}
             />
             <div></div>
           </div>

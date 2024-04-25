@@ -9,7 +9,7 @@ import Dropdown from "../UI/Dropdown";
 import YearPicker from "../UI/YearPicker";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ImageUploader from "../UI/ImageUploader";
-import { getToken, getUser } from "../../util/auth";
+import { useCookies } from "react-cookie";
 
 const CreateProperty = () => {
   const locationRef = useRef();
@@ -18,10 +18,12 @@ const CreateProperty = () => {
   const PSFRef = useRef();
   const keywordRef = useRef();
 
-  const token = getToken();
+  const [cookie] = useCookies();
+
+  const token = cookie.token;
 
   const navigate = useNavigate();
-  const user = getUser();
+  const user_type = cookie.user_type;
 
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");
@@ -268,7 +270,7 @@ const CreateProperty = () => {
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
-            {user.user_admin && (
+            {user_type === "admin" && (
               <Dropdown
                 title="Agent"
                 options={agents}

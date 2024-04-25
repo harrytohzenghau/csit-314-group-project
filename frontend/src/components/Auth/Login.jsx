@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { json, useNavigate } from "react-router-dom";
 import { login } from "../../store/authSlice";
 import { toast } from "react-hot-toast";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const usernameRef = useRef();
@@ -14,6 +15,8 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [, setCookie] = useCookies(["id", "token", "user_type"]);
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
@@ -32,35 +35,49 @@ const Login = () => {
     });
 
     if (!response.ok) {
-      toast.error("Please enter a correct username and password");
+      const data = await response.json();
+      toast.error(data.error);
       return;
     }
 
-    try {
-      const data = await response.json();
-      const userData = data.user;
-      const token = data.token;
+    const data = await response.json();
+    const userId = data.id;
+    const token = data.token;
 
-      if (!userData.user_active) {
-        return toast.error(
-          "Your account has been banned. Please contact the admin."
-        );
+    setCookie("id", userId);
+    setCookie("token", token);
+
+    const userData_response = await fetch(
+      `http://localhost:3000/api/profile/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
       }
+    );
 
-      dispatch(login({ user: userData, token }));
+    const userData = await userData_response.json();
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(userData));
+    let user_type;
+    if (userData.profile.user_admin) {
+      user_type = "admin";
+    } else if (userData.profile.user_agent) {
+      user_type = "agent";
+    } else {
+      user_type = "user";
+    }
 
-      toast.success("Login successfully");
+    setCookie("user_type", user_type);
 
-      if (userData.user_admin) {
-        navigate("/user/user-list");
-      } else {
-        navigate("/");
-      }
-    } catch (e) {
-      throw json({ message: e.message }, { status: 500 });
+    dispatch(login({ user: userData, token }));
+
+    toast.success("Login successfully");
+
+    if (userData.user_admin) {
+      navigate("/user/user-list");
+    } else {
+      navigate("/");
     }
   };
 

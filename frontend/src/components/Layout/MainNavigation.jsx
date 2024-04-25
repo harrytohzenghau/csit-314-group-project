@@ -3,15 +3,17 @@ import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../store/authSlice";
 import toast from "react-hot-toast";
-import { getUser } from "../../util/auth";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  let user = useSelector((state) => state.auth.user);
+  const [cookie, , removeCookie] = useCookies();
+  const [userType, setUserType] = useState(cookie.user_type);
 
-  if (!user) {
-    user = getUser();
-  }
+  useEffect(() => {
+    setUserType(cookie.user_type);
+  }, [cookie]);
 
   const logoutHandler = async () => {
     // const response = await fetch("http://localhost:3000/api/auth/logout", {
@@ -25,11 +27,13 @@ const MainNavigation = () => {
     //   },
     // });
 
-    
     // const data = await response.json();
     // console.log(data)
     toast.success("Logout successfully");
-    localStorage.clear();
+    removeCookie("id");
+    removeCookie("token");
+    removeCookie("user_type");
+    setUserType("");
     dispatch(logout());
   };
   return (
@@ -37,12 +41,14 @@ const MainNavigation = () => {
       <nav className={classes["header-wrapper"]}>
         <div className={classes["header-left-wrapper"]}>
           <div className={classes["header-logo"]}>
-            <NavLink to={!user || !user.user_admin ? "/" : "user/user-list"}>
+            <NavLink
+              to={!userType || userType !== "admin" ? "/" : "user/user-list"}
+            >
               RedDOT Properties
             </NavLink>
           </div>
           <ul className={classes["header-list"]}>
-            {!user && (
+            {!userType && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -86,8 +92,9 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user &&
-              ((!user.user_admin && !user.user_agent) || user.user_agent) && (
+            {userType &&
+              ((userType !== "admin" && userType !== "agent") ||
+                userType === "agent") && (
                 <>
                   <li className={classes["header-list-item"]}>
                     <NavLink
@@ -101,7 +108,7 @@ const MainNavigation = () => {
                   </li>
                 </>
               )}
-            {user && !user.user_admin && !user.user_agent && (
+            {userType && userType !== "admin" && userType !== "agent" && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -135,7 +142,7 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user && user.user_admin && (
+            {userType && userType === "admin" && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -179,7 +186,7 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user && user.user_agent && (
+            {userType && userType === "agent" && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -213,7 +220,7 @@ const MainNavigation = () => {
                 </li>
               </>
             )}
-            {user && !user.user_admin && !user.user_agent && (
+            {userType && userType !== "admin" && userType !== "agent" && (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
@@ -241,7 +248,7 @@ const MainNavigation = () => {
         </div>
         <div className={classes["header-right-wrapper"]}>
           <ul className={classes["header-list"]}>
-            {user ? (
+            {userType ? (
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink

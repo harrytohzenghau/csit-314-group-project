@@ -5,7 +5,7 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "../Profile/CreateUser.module.css";
 import { toast } from "react-hot-toast";
-import { getToken } from "../../util/auth";
+import { useCookies } from "react-cookie";
 
 const CreateUser = () => {
   const firstNameRef = useRef();
@@ -17,6 +17,8 @@ const CreateUser = () => {
   const repeatPasswordRef = useRef();
   const adminRef = useRef();
   const agentRef = useRef();
+
+  const [cookie] = useCookies();
 
   const navigate = useNavigate();
 
@@ -50,19 +52,9 @@ const CreateUser = () => {
       user_agent: agentRef.current.checked,
     };
 
-    const token = getToken();
+    const token = cookie.token;
 
-    let endpoint = "http://localhost:3000/api/auth/register/";
-
-    if (user.user_admin) {
-      endpoint += "admin";
-    } else if (user.user_agent) {
-      endpoint += "agent";
-    } else {
-      endpoint += "user";
-    }
-
-    const register_response = await fetch(endpoint, {
+    const register_response = await fetch("http://localhost:3000/api/admin", {
       method: "POST",
       headers: {
         Authorization: token,
@@ -70,6 +62,8 @@ const CreateUser = () => {
       },
       body: JSON.stringify(user),
     });
+
+    console.log(register_response);
 
     if (!register_response.ok) {
       toast.error(
@@ -79,7 +73,7 @@ const CreateUser = () => {
     }
 
     toast.success("Account created successfully");
-    navigate("/user/user-list");
+    navigate(-1);
   };
 
   return (

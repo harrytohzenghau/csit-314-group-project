@@ -3,17 +3,16 @@ import route from "./router/route";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { login } from "./store/authSlice";
-import { getToken, getUser } from "./util/auth";
 
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const token = getToken();
-    const user = getUser();
+  // useEffect(() => {
+  //   const token = getToken();
+  //   const user = getUserType;
 
-    dispatch(login({ user, token }));
-  }, [dispatch]);
+  //   dispatch(login({ user, token }));
+  // }, [dispatch]);
 
   return <RouterProvider router={route} />;
 }

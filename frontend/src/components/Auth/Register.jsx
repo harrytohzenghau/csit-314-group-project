@@ -56,7 +56,7 @@ const Register = () => {
     };
 
     const register_response = await fetch(
-      "http://localhost:3000/api/auth/register/user",
+      "http://localhost:3000/api/auth/register",
       {
         method: "POST",
         headers: {

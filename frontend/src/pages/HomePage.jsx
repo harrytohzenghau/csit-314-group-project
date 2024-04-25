@@ -4,7 +4,7 @@ import HotLocation from "../components/Home/HotLocation";
 import NewProject from "../components/Home/NewProject";
 import Divider from "../components/UI/Divider";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <Banner />
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

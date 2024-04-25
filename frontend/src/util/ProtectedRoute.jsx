@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { getUser } from "./auth";
+import { useCookies } from "react-cookie";
 
 export const ProtectedRoute = ({ children }) => {
-  const user = getUser();
-  if (!user) {
+  const [cookie] = useCookies();
+  const user_type = cookie.user_type;
+  if (!user_type) {
     return <Navigate to="/login" replace />;
   }
 
@@ -11,9 +12,9 @@ export const ProtectedRoute = ({ children }) => {
 };
 
 export const AdminExcludedRoute = ({ children }) => {
-  const user = getUser();
-
-  if (user && user.user_admin) {
+  const [cookie] = useCookies();
+  const user_type = cookie.user_type;
+  if (user_type && user_type === "admin") {
     return <Navigate to="/user/user-list" replace />;
   }
 
@@ -21,13 +22,13 @@ export const AdminExcludedRoute = ({ children }) => {
 };
 
 export const AdminProtectedRoute = ({ children }) => {
-  const user = getUser();
-
-  if (!user) {
+  const [cookie] = useCookies();
+  const user_type = cookie.user_type;
+  if (!user_type) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!user.user_admin) {
+  if (user_type !== "admin") {
     return <Navigate to="/" replace />;
   }
 
@@ -35,12 +36,13 @@ export const AdminProtectedRoute = ({ children }) => {
 };
 
 export const AgentProtectedRoute = ({ children }) => {
-  const user = getUser();
-  if (!user) {
+  const [cookie] = useCookies();
+  const user_type = cookie.user_type;
+  if (!user_type) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!user.user_agent) {
+  if (user_type !== "agent") {
     return <Navigate to="/" replace />;
   }
 

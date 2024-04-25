@@ -3,12 +3,14 @@ import Card from "../../UI/Card";
 import { useEffect, useState } from "react";
 import Button from "../../UI/Button";
 import classes from "./UserList.module.css";
-import { getToken } from "../../../util/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const UserList = () => {
   const [allUsers, setAllUsers] = useState([]);
+  const [cookie] = useCookies();
+  const token = cookie.token;
 
   const navigate = useNavigate();
 
@@ -24,15 +26,20 @@ const UserList = () => {
       return;
     }
 
-    const user = { _id: id, user_active: !banUser.user_active };
-
-    const response = await fetch("http://localhost:3000/api/admin", {
-      method: "POST",
+    const response = await fetch(`http://localhost:3000/api/admin`, {
+      method: "PATCH",
       headers: {
-        Authorization: getToken(),
+        Authorization: token,
         "Content-type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({
+        user_details: {
+          username: banUser.user_details.username,
+        },
+        user_active: !banUser.user_active,
+        user_admin: banUser.user_admin,
+        user_agent: banUser.user_agent,
+      }),
     });
 
     if (!response.ok) {
@@ -58,13 +65,28 @@ const UserList = () => {
   };
 
   const deleteUserHandler = async (id) => {
-    const response = await fetch("http://localhost:3000/api/admin", {
+    const userData_response = await fetch(
+      `http://localhost:3000/api/profile/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+
+    const userData = await userData_response.json();
+
+    const response = await fetch(`http://localhost:3000/api/admin`, {
       method: "DELETE",
       headers: {
-        Authorization: getToken(),
+        Authorization: token,
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ _id: id }),
+      body: JSON.stringify({
+        id: userData.profile._id,
+        "user-agent": userData.user_agent,
+      }),
     });
 
     if (!response.ok) {
@@ -201,8 +223,6 @@ const UserList = () => {
     },
   ];
 
-  const token = getToken();
-
   useEffect(() => {
     async function getAllUser() {
       const response = await fetch("http://localhost:3000/api/admin", {
@@ -213,6 +233,7 @@ const UserList = () => {
       });
 
       const data = await response.json();
+
       const userOnly = data.allUsers.filter(
         (user) => !user.user_admin && !user.user_agent
       );
