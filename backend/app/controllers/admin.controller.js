@@ -61,7 +61,7 @@ class AdminController {
     async deleteUser(req, res) {
         try {
             const admin = new AdminEntity();
-            const { user_agent } = req.body;
+            const { id, user_agent } = req.body;
 
             if (user_agent) {
                 await admin.removeAgentById(id);
