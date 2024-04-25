@@ -45,7 +45,7 @@ class AdminController {
         try {
             const admin = new AdminEntity();
             //auth token
-            await admin.updateUserByUsername(req.body);
+            await admin.updateUser(req.body);
 
             res.status(201).json({
                 success: true,

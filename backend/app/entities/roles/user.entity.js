@@ -92,13 +92,31 @@ class UserEntity {
     async updateUserByUsername(data) {
         const { username, password } = data.user_details;
 
-        if (password)
+        if (password) {
             data.user_details.password = await bcrypt.hash(password, 10);
+        }
 
-        await User.findOneAndUpdate(
-            { "user_details.username": username },
-            data
-        );
+        const user = await User.findOne({ "user_details.username": username });
+
+        user.user_details.first_name =
+            data.user_details.first_name || user.user_details.first_name;
+
+        user.user_details.last_name =
+            data.user_details.last_name || user.user_details.last_name;
+
+        user.user_details.username =
+            data.user_details.username || user.user_details.username;
+
+        user.user_details.email_address =
+            data.user_details.email_address || user.user_details.email_address;
+
+        user.user_details.mobile_number =
+            data.user_details.mobile_number || user.user_details.mobile_number;
+
+        user.user_details.password =
+            data.user_details.password || user.user_details.password;
+
+        await user.save();
     }
 
     async removeUserById(id) {
