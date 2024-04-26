@@ -41,19 +41,38 @@ class PropertyEntity {
         });
     }
 
-    async createProperty(id, data) {
+    async createProperty(agent_id, data) {
         this.property = new Property(data);
-        this.property.property_agentSchema = id;
+        this.property.property_agentSchema = agent_id;
         await this.property.save();
 
         return;
     }
 
-    async updateProperty(id, data) {
-        console.log(id);
+    async updateProperty(property_id, data) {
+        await this.fetchPropertyById(property_id);
+        this.property.property_propertySchema = data.property_propertySchema;
+        this.property.property_name = data.name;
+        await this.property.save();
+        return;
+    }
 
-        console.log(data);
+    async deleteProperty(property_id) {
+        this.property = await Property.findById(property_id).populate(
+            "property_agentSchema"
+        );
+        const allAgentProperties =
+            this.property.property_agentSchema.agent_properties;
 
+        const remainingAgentProperties = allAgentProperties.filter(
+            (e) => e != property_id
+        );
+
+        this.property.property_agentSchema.agent_properties =
+            remainingAgentProperties;
+
+        await this.property.property_agentSchema.save();
+        await Property.findByIdAndDelete(property_id);
         return;
     }
 }

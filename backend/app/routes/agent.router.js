@@ -20,6 +20,9 @@ router
     .get(catchAsync(agent.getAgentProperty))
     .post(catchAsync(agent.postProperty));
 
-router.route("/:property_id").patch(catchAsync(agent.patchProperty));
+router
+    .route("/:property_id")
+    .patch(catchAsync(agent.patchProperty))
+    .delete(catchAsync(agent.deleteProperty));
 
 module.exports = router;

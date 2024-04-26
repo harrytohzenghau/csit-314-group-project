@@ -65,16 +65,19 @@ class AgentController {
     }
 
     async deleteProperty(req, res) {
+        const { property_id } = req.params;
+        const property = new PropertyEntity();
+        property.deleteProperty(property_id);
+
         try {
             res.status(201).json({
                 success: true,
-                message: "All users fetched",
-                allUsers,
+                message: "Property Deleted",
             });
         } catch (error) {
             res.status(500).json({
                 error,
-                message: "Failed to fetch users",
+                message: "Failed to delete property",
             });
         }
     }
