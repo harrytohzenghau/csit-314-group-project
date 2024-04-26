@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Dropdown.module.css";
 
 function YearPicker({ selectedYear, selectedHandler }) {
   const [years, setYears] = useState(generateYears());
+
+  // useEffect(() => {
+  //   if (defaultValue) {
+  //     setYears(defaultValue);
+  //   }
+  // }, [defaultValue]);
 
   function generateYears() {
     const currentYear = new Date().getFullYear();

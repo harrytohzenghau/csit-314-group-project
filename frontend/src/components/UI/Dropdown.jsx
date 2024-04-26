@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import classes from "./Dropdown.module.css";
 
-function Dropdown({ title, options, selectedHandler }) {
+function Dropdown({ title, options, selectedHandler, defaultValue }) {
   const [selectedOption, setSelectedOption] = useState(options[0] || "");
+
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedOption(defaultValue);
+    }
+  }, [defaultValue]);
 
   useEffect(() => {
     selectedHandler(selectedOption);
@@ -18,7 +24,7 @@ function Dropdown({ title, options, selectedHandler }) {
       <h5>{title}:</h5>
       <select
         className={classes["dropdown-field"]}
-        value={selectedOption}
+        value={defaultValue || selectedOption}
         onChange={handleSelectChange}
       >
         {options.map((option) => (

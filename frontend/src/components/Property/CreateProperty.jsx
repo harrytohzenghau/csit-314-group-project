@@ -12,6 +12,7 @@ import ImageUploader from "../UI/ImageUploader";
 import { useCookies } from "react-cookie";
 
 const CreateProperty = () => {
+  const nameRef = useRef();
   const locationRef = useRef();
   const priceRef = useRef();
   const floorSizeRef = useRef();
@@ -21,6 +22,7 @@ const CreateProperty = () => {
   const [cookie] = useCookies();
 
   const token = cookie.token;
+  const userId = cookie.id;
 
   const navigate = useNavigate();
   const user_type = cookie.user_type;
@@ -31,8 +33,8 @@ const CreateProperty = () => {
   const [tenure, setTenure] = useState("");
   const [floorLevel, setFloorLevel] = useState("");
   const [furnishing, setFurnishing] = useState("");
-  const [liveTour, setLiveTour] = useState("");
-  const [virtualTour, setVirtualTour] = useState("");
+  // const [liveTour, setLiveTour] = useState("");
+  // const [virtualTour, setVirtualTour] = useState("");
   const [numberBathrooms, setNumberBathrooms] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
@@ -62,7 +64,9 @@ const CreateProperty = () => {
       }
     }
 
-    getAgent();
+    if (user_type === "admin") {
+      getAgent();
+    }
   });
 
   const handleTypeOption = (value) => {
@@ -89,13 +93,13 @@ const CreateProperty = () => {
     setFurnishing(value);
   };
 
-  const handleLiveTourOption = (value) => {
-    setLiveTour(value);
-  };
+  // const handleLiveTourOption = (value) => {
+  //   setLiveTour(value);
+  // };
 
-  const handleVirtualTourOption = (value) => {
-    setVirtualTour(value);
-  };
+  // const handleVirtualTourOption = (value) => {
+  //   setVirtualTour(value);
+  // };
 
   const handleYearOption = (value) => {
     setSelectedYear(value);
@@ -143,15 +147,19 @@ const CreateProperty = () => {
     toast.success("Image has been removed successfully.");
   };
 
-  const profileListPageNavigator = () => {
-    navigate("/property/list");
+  const propertyListPageNavigator = () => {
+    if (user_type === "admin") {
+      navigate("/property/list");
+    } else {
+      navigate("/agent/property-list");
+    }
   };
 
   const createPropertySubmitHandler = async (e) => {
     e.preventDefault();
 
     const property = {
-      listing_propertySchema: {
+      property_propertySchema: {
         property_location: locationRef.current.value,
         property_type: type,
         property_new_project: newProject === "Yes" ? true : false,
@@ -165,26 +173,37 @@ const CreateProperty = () => {
         property_floor_level: floorLevel,
         property_furnishing: furnishing,
         property_keyword: keyword,
-        property_listing_live_tour: liveTour === "Yes" ? true : false,
-        property_listing_virtual_tour: virtualTour === "Yes" ? true : false,
+        // property_listing_live_tour: liveTour === "Yes" ? true : false,
+        // property_listing_virtual_tour: virtualTour === "Yes" ? true : false,
       },
-      listing_images: image,
+      property_name: nameRef.current.value,
+      property_images: image,
     };
 
     console.log(property);
-
     try {
-      const response = await fetch("http://localhost:3000/api/property", {
-        method: "POST",
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(property),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/agent/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: token,
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(property),
+        }
+      );
 
-      const data = await response.json();
-      console.log(data);
+      if (!response.ok) {
+        return toast.error("Something went wrong while creating property");
+      }
+
+      toast.success("Property created successfully.");
+      if (user_type === "admin") {
+        navigate("/property/list");
+      } else {
+        navigate("/agent/property-list");
+      }
     } catch (e) {
       console.log(e);
     }
@@ -246,7 +265,7 @@ const CreateProperty = () => {
               selectedHandler={handleFurnishingOption}
             />
           </div>
-          <div className={classes["create-property-input-row-wrapper"]}>
+          {/* <div className={classes["create-property-input-row-wrapper"]}>
             <Dropdown
               title="Live Tour"
               options={["Yes", "No"]}
@@ -257,7 +276,7 @@ const CreateProperty = () => {
               options={["Yes", "No"]}
               selectedHandler={handleVirtualTourOption}
             />
-          </div>
+          </div> */}
           <div className={classes["create-property-input-row-wrapper"]}>
             <Dropdown
               title="Number of Bathrooms"
@@ -280,6 +299,14 @@ const CreateProperty = () => {
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
             <Input
+              ref={nameRef}
+              required={true}
+              name="name"
+              type="text"
+              label="Property name"
+              className={classes["input-style"]}
+            />
+            <Input
               ref={locationRef}
               required={true}
               name="location"
@@ -287,6 +314,8 @@ const CreateProperty = () => {
               label="Location"
               className={classes["input-style"]}
             />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
             <Input
               ref={priceRef}
               required={true}
@@ -295,9 +324,6 @@ const CreateProperty = () => {
               label="Price"
               className={classes["input-style"]}
             />
-          </div>
-
-          <div className={classes["create-property-input-row-wrapper"]}>
             <Input
               ref={floorSizeRef}
               required={true}
@@ -307,6 +333,8 @@ const CreateProperty = () => {
               min={1}
               className={classes["input-style"]}
             />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
             <Input
               ref={PSFRef}
               required={true}
@@ -316,8 +344,9 @@ const CreateProperty = () => {
               min={1}
               className={classes["input-style"]}
             />
-          </div>
 
+            <div></div>
+          </div>
           <div>
             <ImageUploader imageUploadHandler={addImageHandler} />
             {image.length > 0 && (
@@ -440,7 +469,7 @@ const CreateProperty = () => {
             <Button
               style="secondary"
               type="button"
-              onClick={profileListPageNavigator}
+              onClick={propertyListPageNavigator}
             >
               Cancel
             </Button>

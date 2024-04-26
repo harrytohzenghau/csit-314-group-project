@@ -136,6 +136,14 @@ const router = createBrowserRouter([
             ),
           },
           {
+            path: "edit-property/:id",
+            element: (
+              <AgentProtectedRoute>
+                <EditPropertyPage />
+              </AgentProtectedRoute>
+            ),
+          },
+          {
             path: "manage-rating",
             element: (
               <AgentProtectedRoute>
