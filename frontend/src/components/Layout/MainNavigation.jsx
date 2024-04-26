@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const [cookie, , removeCookie] = useCookies();
+  const [cookie, setCookie, removeCookie] = useCookies();
   const [userType, setUserType] = useState(cookie.user_type);
 
   useEffect(() => {

@@ -3,12 +3,19 @@
 
 .property-all-detail-wrapper {
   display: flex;
-  flex-direction: column;
+  column-gap: 10rem;
+}
+
+.proprety-all-detail-outer-wrapper:nth-child(1) {
+  width: 50%;
+}
+
+.proprety-all-detail-outer-wrapper:nth-child(2) {
+  width: 50%;
 }
 
 .property-detail-content-wrapper {
   display: flex;
-  width: 50%;
   flex-direction: column;
   margin-right: auto;
   row-gap: 2rem;
@@ -72,4 +79,10 @@
 
 .property-more-detail-individual-wrapper p {
   font-size: 1.2rem;
+}
+
+.inner-card-style {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

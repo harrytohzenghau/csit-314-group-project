@@ -43,7 +43,7 @@ const EditProperty = () => {
       });
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       setProperty(data.property);
       setKeyword(data.property.property_propertySchema.property_keyword);
     }
@@ -214,10 +214,17 @@ const EditProperty = () => {
         }
       );
 
-      console.log(response);
+      if (!response.ok) {
+        return toast.error("Something went wrong when updating property");
+      }
 
-      const data = await response.json();
-      console.log(data);
+      toast.success("Property has been updated successfully!");
+
+      if (user_type === "admin") {
+        navigate("/property/list");
+      } else {
+        navigate("/agent/property-list");
+      }
     } catch (e) {
       console.log(e);
     }
