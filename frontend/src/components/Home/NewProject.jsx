@@ -1,20 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import classes from "./NewProject.module.css";
 import HighlightedProject from "./HighlightedProject";
 import data from "../../util/DUMMY_PROPERTIES.json";
 
 const NewProject = () => {
+  const [properties, setProperties] = useState([]);
+
   useEffect(() => {
     const getNewProject = async () => {
-      //   const response = await fetch("http://localhost:3000/api/property", {
-      //     method: "GET",
-      //     headers: {
-      //       "Content-type": "application/json",
-      //     },
-      //   });
-      //   const data = await response.json();
-      //   console.log(data);
+      const response = await fetch("http://localhost:3000/api/buy", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setProperties(data.properties.slice(0, 4));
     };
 
     getNewProject();
@@ -29,9 +31,15 @@ const NewProject = () => {
         </Button>
       </div>
       <div className={classes["project-card-wrapper"]}>
-        {data.map((d) => (
-          <HighlightedProject key={d._id} property={d} />
-        ))}
+        {properties &&
+          properties.map((p) => (
+            <HighlightedProject
+              key={p._id}
+              id={p._id}
+              name={p.property_name}
+              property={p.property_propertySchema}
+            />
+          ))}
       </div>
     </div>
   );

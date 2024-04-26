@@ -76,10 +76,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "user",
+        path: "admin",
         children: [
           {
-            path: "create",
+            path: "create-user",
             element: (
               <AdminProtectedRoute>
                 <CreateUserPage />
@@ -111,7 +111,53 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: "edit/:id",
+            path: "property-list",
+            element: (
+              <AdminProtectedRoute>
+                <PropertyListingPage />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "property",
+            children: [
+              {
+                path: "create",
+                element: (
+                  <AdminProtectedRoute>
+                    <CreatePropertyPage />
+                  </AdminProtectedRoute>
+                ),
+              },
+              {
+                path: ":id",
+                element: <PropertyDetailPage />,
+              },
+              {
+                path: "edit",
+                children: [
+                  {
+                    path: ":id",
+                    element: (
+                      <AdminProtectedRoute>
+                        <EditPropertyPage />
+                      </AdminProtectedRoute>
+                    ),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            path: "property-list",
+            element: (
+              <AdminProtectedRoute>
+                <PropertyListingPage />
+              </AdminProtectedRoute>
+            ),
+          },
+          {
+            path: "edit-user/:id",
             element: <EditProfile />,
           },
         ],
@@ -157,37 +203,8 @@ const router = createBrowserRouter([
         path: "property",
         children: [
           {
-            path: "list",
-            element: (
-              <AdminProtectedRoute>
-                <PropertyListingPage />
-              </AdminProtectedRoute>
-            ),
-          },
-          {
-            path: "create",
-            element: (
-              <AdminProtectedRoute>
-                <CreatePropertyPage />
-              </AdminProtectedRoute>
-            ),
-          },
-          {
             path: ":id",
             element: <PropertyDetailPage />,
-          },
-          {
-            path: "edit",
-            children: [
-              {
-                path: ":id",
-                element: (
-                  <AdminProtectedRoute>
-                    <EditPropertyPage />
-                  </AdminProtectedRoute>
-                ),
-              },
-            ],
           },
         ],
       },

@@ -1,9 +1,7 @@
-import React from 'react'
+import PropertyDetail from "../../components/Property/PropertyDetail";
 
 const PropertyDetailPage = () => {
-  return (
-    <div>PropertyDetailPage</div>
-  )
-}
+  return <PropertyDetail />;
+};
 
-export default PropertyDetailPage
+export default PropertyDetailPage;

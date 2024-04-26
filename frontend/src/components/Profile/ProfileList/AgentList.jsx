@@ -15,7 +15,7 @@ const AgentList = () => {
   const navigate = useNavigate();
 
   const editUserHandler = async (id) => {
-    navigate(`/user/edit/${id}`);
+    navigate(`/admin/edit-user/${id}`);
   };
 
   const banUserHandler = async (id) => {
@@ -246,7 +246,7 @@ const AgentList = () => {
         <Button
           style="primary"
           onClick={() => {
-            navigate("/user/create");
+            navigate("/admin/create-user");
           }}
         >
           Create User

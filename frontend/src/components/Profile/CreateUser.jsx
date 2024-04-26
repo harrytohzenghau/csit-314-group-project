@@ -23,7 +23,7 @@ const CreateUser = () => {
   const navigate = useNavigate();
 
   const profileListPageNavigator = () => {
-    navigate("/user/user-list");
+    navigate("/admin/user-list");
   };
 
   const createUserSubmitHandler = async (e) => {

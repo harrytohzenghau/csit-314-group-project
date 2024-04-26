@@ -15,7 +15,7 @@ export const AdminExcludedRoute = ({ children }) => {
   const [cookie] = useCookies();
   const user_type = cookie.user_type;
   if (user_type && user_type === "admin") {
-    return <Navigate to="/user/user-list" replace />;
+    return <Navigate to="/admin/user-list" replace />;
   }
 
   return children;

@@ -42,7 +42,7 @@ const MainNavigation = () => {
         <div className={classes["header-left-wrapper"]}>
           <div className={classes["header-logo"]}>
             <NavLink
-              to={!userType || userType !== "admin" ? "/" : "user/user-list"}
+              to={!userType || userType !== "admin" ? "/" : "admin/user-list"}
             >
               RedDOT Properties
             </NavLink>
@@ -146,7 +146,7 @@ const MainNavigation = () => {
               <>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="user/user-list"
+                    to="admin/user-list"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -156,7 +156,7 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="user/agent-list"
+                    to="admin/agent-list"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -166,7 +166,7 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="user/admin-list"
+                    to="admin/admin-list"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}
@@ -176,7 +176,7 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
-                    to="/property/list"
+                    to="/admin/property-list"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;
                     }}

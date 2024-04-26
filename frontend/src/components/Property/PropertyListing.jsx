@@ -209,7 +209,7 @@ const PropertyList = () => {
           style="primary"
           onClick={() => {
             if (user_type === "admin") {
-              navigate("/property/create");
+              navigate("/admin/property/create");
             } else {
               navigate("/agent/create-property");
             }
