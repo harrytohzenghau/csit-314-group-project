@@ -54,7 +54,6 @@ class AgentController {
             res.status(201).json({
                 success: true,
                 message: "Property updated",
-                allUsers,
             });
         } catch (error) {
             res.status(500).json({
