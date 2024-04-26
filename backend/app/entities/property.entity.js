@@ -18,7 +18,12 @@ class PropertyEntity {
     // }
 
     async fetchPropertyById(id) {
-        this.property = await Property.findById(id);
+        this.property = await Property.findById(id).populate({
+            path: "property_agentSchema",
+            populate: {
+                path: "agent_userSchema",
+            },
+        });
         return;
     }
 
@@ -46,6 +51,7 @@ class PropertyEntity {
 
     async updateProperty(id, data) {
         console.log(id);
+
         console.log(data);
 
         return;
