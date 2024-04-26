@@ -7,6 +7,7 @@ import classes from "./Register.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
 import { toast } from "react-hot-toast";
+import { useCookies } from "react-cookie";
 
 const Register = () => {
   const firstNameRef = useRef();
@@ -18,6 +19,8 @@ const Register = () => {
   const repeatPasswordRef = useRef();
 
   const navigate = useNavigate();
+
+  const [cookie, setCookie] = useCookies();
 
   const dispatch = useDispatch();
 
@@ -95,13 +98,36 @@ const Register = () => {
 
       try {
         const data = await login_response.json();
-        const userData = data.user;
+        const userId = data.id;
         const token = data.token;
 
-        dispatch(login({ user: userData, token }));
+        setCookie("id", userId);
+        setCookie("token", token);
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(userData));
+        const userData_response = await fetch(
+          `http://localhost:3000/api/profile/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+
+        const userData = await userData_response.json();
+
+        let user_type;
+        if (userData.profile.user_admin) {
+          user_type = "admin";
+        } else if (userData.profile.user_agent) {
+          user_type = "agent";
+        } else {
+          user_type = "user";
+        }
+
+        setCookie("user_type", user_type);
+
+        dispatch(login({ user: userData, token }));
 
         toast.success("Account created successfully");
 
