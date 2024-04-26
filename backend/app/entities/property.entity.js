@@ -52,7 +52,7 @@ class PropertyEntity {
     async updateProperty(property_id, data) {
         await this.fetchPropertyById(property_id);
         this.property.property_propertySchema = data.property_propertySchema;
-        this.property.property_name = data.name;
+        this.property.property_name = data.property_name;
         await this.property.save();
         return;
     }
