@@ -1,0 +1,12 @@
+.search-bar-style {
+  position: relative;
+  transform: none;
+  left: 0;
+}
+
+.property-card-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+}

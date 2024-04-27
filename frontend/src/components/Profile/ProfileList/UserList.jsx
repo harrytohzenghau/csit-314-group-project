@@ -219,7 +219,7 @@ const UserList = () => {
           </div>
         );
       },
-      width: "20rem",
+      width: "25rem",
     },
   ];
 

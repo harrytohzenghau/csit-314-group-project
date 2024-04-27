@@ -4,7 +4,7 @@ import classes from "./NewProject.module.css";
 import HighlightedProject from "./HighlightedProject";
 import data from "../../util/DUMMY_PROPERTIES.json";
 
-const NewProject = () => {
+const MostViewed = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const NewProject = () => {
   return (
     <div className={classes["project-wrapper"]}>
       <div className={classes["project-button-wrapper"]}>
-        <h2>Latest Project</h2>
+        <h2>Most Viewed</h2>
         <Button style="underline" type="button">
           View more
         </Button>
@@ -45,4 +45,4 @@ const NewProject = () => {
   );
 };
 
-export default NewProject;
+export default MostViewed;

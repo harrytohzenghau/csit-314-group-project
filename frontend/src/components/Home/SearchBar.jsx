@@ -5,7 +5,7 @@ import Input from "../UI/Input";
 import classes from "./SearchBar.module.css";
 import ExtraFilter from "./ExtraFilter";
 
-const SearchBar = () => {
+const SearchBar = ({ className }) => {
   const searchRef = useRef();
   const [showFilter, setShowFilter] = useState();
 
@@ -19,7 +19,7 @@ const SearchBar = () => {
   };
 
   return (
-    <Card className={classes["card-style"]}>
+    <Card className={`${classes["card-style"]} ${className}`}>
       <form onSubmit={submitHandler}>
         <div className={classes["search-wrapper"]}>
           <Input

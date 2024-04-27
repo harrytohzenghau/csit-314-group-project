@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Property from "../components/Property/Property";
 
 const PropertyPage = () => {
-  return (
-    <div>PropertyPage</div>
-  )
-}
+  return <Property />;
+};
 
-export default PropertyPage
+export default PropertyPage;

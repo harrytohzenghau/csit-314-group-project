@@ -1,7 +1,7 @@
+import SavedListing from "../components/Property/SavedListing";
+
 const SavedListingPage = () => {
-  return (
-    <div>SavedListing</div>
-  )
-}
+  return <SavedListing />;
+};
 
 export default SavedListingPage;

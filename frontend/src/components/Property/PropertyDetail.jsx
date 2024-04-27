@@ -44,10 +44,10 @@ const PropertyDetail = () => {
         <div className={classes["proprety-all-detail-outer-wrapper"]}>
           <div className={classes["property-detail-content-wrapper"]}>
             <div className={classes["property-detail-wrapper"]}>
-              <h4>{property && property.property_name}</h4>
-              <h5>
+              <h2>{property && property.property_name}</h2>
+              <h3>
                 {property && property.property_propertySchema.property_location}
-              </h5>
+              </h3>
               <hr />
             </div>
           </div>

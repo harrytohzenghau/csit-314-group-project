@@ -4,7 +4,7 @@ import classes from "./NewProject.module.css";
 import HighlightedProject from "./HighlightedProject";
 import data from "../../util/DUMMY_PROPERTIES.json";
 
-const HotLocation = () => {
+const MostSaved = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const HotLocation = () => {
   return (
     <div className={`${classes["project-wrapper"]} ${classes["hot-location"]}`}>
       <div className={classes["project-button-wrapper"]}>
-        <h2>Hot Location</h2>
+        <h2>Most Saved</h2>
         <Button style="underline" type="button">
           View more
         </Button>
@@ -45,4 +45,4 @@ const HotLocation = () => {
   );
 };
 
-export default HotLocation;
+export default MostSaved;

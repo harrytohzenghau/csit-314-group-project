@@ -1,0 +1,52 @@
+.card-style {
+  width: 43%;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+}
+
+.card-style div:nth-child(1) {
+  width: 70%;
+}
+
+.card-style div:nth-child(2) {
+  width: 30%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-style:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  scale: 1.02;
+}
+
+.card-style img {
+  height: 20rem;
+}
+
+.property-card-inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: flex-start;
+}
+
+.property-more-detail {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.view-more-button {
+  padding: 1rem 0;
+}
+
+.favourite-button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.favourite-button svg {
+  width: 2rem;
+  height: 2rem;
+}

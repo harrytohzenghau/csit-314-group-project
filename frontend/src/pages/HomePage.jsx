@@ -1,7 +1,7 @@
 import Banner from "../components/Home/Banner";
 import BestAgent from "../components/Home/BestAgent";
-import HotLocation from "../components/Home/HotLocation";
-import NewProject from "../components/Home/NewProject";
+import MostSaved from "../components/Home/MostSaved";
+import MostViewed from "../components/Home/MostViewed";
 import Divider from "../components/UI/Divider";
 
 const HomePage = () => {
@@ -9,8 +9,8 @@ const HomePage = () => {
     <>
       <Banner />
       <Divider size="small" />
-      <NewProject />
-      <HotLocation />
+      <MostViewed />
+      <MostSaved />
       <BestAgent />
     </>
   );

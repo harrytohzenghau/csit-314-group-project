@@ -219,7 +219,7 @@ const AgentList = () => {
           </div>
         );
       },
-      width: "20rem",
+      width: "25rem",
     },
   ];
 
