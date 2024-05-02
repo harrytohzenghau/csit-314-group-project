@@ -5,7 +5,7 @@ class BuyController {
     async getAllProperties(req, res) {
         try {
             const property = new PropertyEntity();
-            await property.fetchAllProperty();
+            await property.fetchAllProperty(req.query);
 
             res.status(201).json({
                 success: true,
@@ -25,6 +25,7 @@ class BuyController {
             const { id } = req.params;
             const property = new PropertyEntity();
             await property.fetchPropertyById(id);
+            await property.increaseViewCount();
 
             res.status(201).json({
                 success: true,
@@ -43,6 +44,23 @@ class BuyController {
         try {
             const user = new UserEntity();
             await user.favouriteProperty(req.body);
+
+            res.status(201).json({
+                success: true,
+                message: "Property favourited",
+            });
+        } catch (error) {
+            res.status(500).json({
+                error,
+                message: "No property Found",
+            });
+        }
+    }
+
+    async postLike(req, res) {
+        try {
+            const user = new UserEntity();
+            await user.likeProperty(req.body);
 
             res.status(201).json({
                 success: true,

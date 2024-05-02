@@ -136,11 +136,38 @@ class UserEntity {
         } else {
             const favourites = this.user.user_favourites;
             this.user.user_favourites = favourites.filter(
-                (e) => e.toString() !== property_id
+                (fav) => fav.toString() !== property_id
             );
         }
 
         await this.user.save();
+
+        return;
+    }
+
+    async likeProperty(data) {
+        const { property_id, user_id, like } = data;
+
+        this.user = await User.findById(user_id);
+        const property = await Property.findById(property_id);
+
+        if (like) {
+            this.user.user_likes.push(property._id);
+            property.property_userLikes.push(this.user._id);
+        } else {
+            const likes = this.user.user_likes;
+            this.user.user_likes = likes.filter(
+                (like) => like.toString() !== property_id
+            );
+
+            const propLikes = property.property_userLikes;
+            property.property_likes = propLikes.filter(
+                (prop) => prop.toString() !== user_id
+            );
+        }
+
+        await this.user.save();
+        await property.save();
 
         return;
     }

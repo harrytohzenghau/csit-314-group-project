@@ -57,6 +57,13 @@ const userSchema = new Schema(
                 ref: "Property",
             },
         ],
+        user_likes: [
+            {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "Property",
+            },
+        ],
         user_details: personalDetailsSchema,
         user_budget: Number,
         user_created: {

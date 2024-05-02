@@ -25,10 +25,10 @@ const listingSchema = new Schema(
             default: 0,
         },
         property_bedroom: {
-            type: Number,
-            enum: [1, 2, 3, 4, 5],
+            type: String,
+            enum: ["1", "2", "3", "4", "5"],
             required: true,
-            default: 5,
+            default: "5",
         },
         property_floor_size: {
             type: Number,
@@ -86,6 +86,17 @@ const listingSchema = new Schema(
     { _id: false }
 );
 
+const relevantSchema = new Schema(
+    {
+        // favourites: {
+        //     type: Number,
+        //     required: true,
+        //     default: 0,
+        // },
+    },
+    { _id: false }
+);
+
 const propertySchema = new Schema(
     {
         property_agentSchema: {
@@ -98,15 +109,22 @@ const propertySchema = new Schema(
             required: true,
             default: {},
         },
-        property_date: {
-            type: Date,
-            required: true,
-            default: new Date(),
-        },
         property_views: {
             type: Number,
             required: true,
             default: 0,
+        },
+        property_userLikes: [
+            {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "User",
+            },
+        ],
+        property_date: {
+            type: Date,
+            required: true,
+            default: new Date(),
         },
         property_name: {
             type: String,
@@ -120,10 +138,10 @@ const propertySchema = new Schema(
                 default: "",
             },
         ],
-        property_shortlists: {
+        property_price: {
             type: Number,
             required: true,
-            default: 0,
+            default: 123,
         },
     },
     { minimize: false }

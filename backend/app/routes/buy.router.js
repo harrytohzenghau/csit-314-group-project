@@ -19,5 +19,6 @@ router.route("/").get(catchAsync(buy.getAllProperties));
 router.route("/:id").get(catchAsync(buy.getProperty));
 
 router.route("/favourite").post(catchAsync(buy.postFavourite));
+router.route("/like").post(catchAsync(buy.postLike));
 
 module.exports = router;

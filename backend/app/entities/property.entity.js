@@ -27,18 +27,37 @@ class PropertyEntity {
         return;
     }
 
-    async fetchAllProperty() {
-        this.allProperty = await Property.find();
-        return;
+    async increaseViewCount() {
+        this.property.property_views += 1;
+        await this.property.save();
     }
-    async fetchProperty() {
-        const { property_type, property_bedroom, property_name } = params;
+
+    async fetchAllProperty(data) {
+        const {
+            property_name,
+            property_type,
+            property_bedroom,
+            price_max,
+            price_min,
+        } = data;
 
         this.allProperty = await Property.find({
-            property_name,
-            "property_propertySchema.property_type": property_type || "",
-            "property_propertySchema.property_bedroom": property_bedroom || "",
+            property_name: { $regex: property_name || "", $options: "i" },
+            property_price: {
+                $gte: price_min || 0,
+                $lte: price_max || 999999999,
+            },
+            "property_propertySchema.property_type": {
+                $regex: property_type || "",
+                $options: "i",
+            },
+            "property_propertySchema.property_bedroom": {
+                $regex: property_bedroom || "",
+                $options: "i",
+            },
         });
+
+        return;
     }
 
     async createProperty(agent_id, data) {
