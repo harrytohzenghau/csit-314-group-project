@@ -42,8 +42,8 @@ class BuyController {
 
     async postFavourite(req, res) {
         try {
-            const user = new UserEntity();
-            await user.favouriteProperty(req.body);
+            const property = new PropertyEntity();
+            await property.favouriteProperty(req.body);
 
             res.status(201).json({
                 success: true,
@@ -59,8 +59,8 @@ class BuyController {
 
     async postLike(req, res) {
         try {
-            const user = new UserEntity();
-            await user.likeProperty(req.body);
+            const property = new PropertyEntity();
+            await property.likeProperty(req.body);
 
             res.status(201).json({
                 success: true,

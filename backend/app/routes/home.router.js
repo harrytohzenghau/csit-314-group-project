@@ -14,6 +14,6 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const home = new HomeController();
 
-router.route("/").get(catchAsync(home.findHomes));
+router.route("/").get(catchAsync(home.getHomes));
 
 module.exports = router;
