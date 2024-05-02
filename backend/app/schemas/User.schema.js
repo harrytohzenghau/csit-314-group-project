@@ -50,6 +50,13 @@ const userSchema = new Schema(
             required: true,
             default: true,
         },
+        user_favourites: [
+            {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "Property",
+            },
+        ],
         user_details: personalDetailsSchema,
         user_budget: Number,
         user_created: {

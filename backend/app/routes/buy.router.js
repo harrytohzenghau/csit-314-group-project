@@ -18,4 +18,6 @@ router.route("/").get(catchAsync(buy.getAllProperties));
 
 router.route("/:id").get(catchAsync(buy.getProperty));
 
+router.route("/favourite").post(catchAsync(buy.postFavourite));
+
 module.exports = router;
