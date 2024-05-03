@@ -99,8 +99,8 @@ const PropertyList = () => {
       sortable: true,
     },
     {
-      name: "Shortlist Count",
-      selector: (row) => row.property_shortlists,
+      name: "Total Liked",
+      selector: (row) => row.property_userLikes.length,
       sortable: true,
     },
     {
