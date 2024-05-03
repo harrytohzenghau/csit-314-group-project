@@ -174,16 +174,6 @@ const MainNavigation = () => {
                     Admin
                   </NavLink>
                 </li>
-                <li className={classes["header-list-item"]}>
-                  <NavLink
-                    to="/admin/property-list"
-                    className={({ isActive }) => {
-                      return isActive ? classes.active : undefined;
-                    }}
-                  >
-                    Property
-                  </NavLink>
-                </li>
               </>
             )}
             {userType && userType === "agent" && (

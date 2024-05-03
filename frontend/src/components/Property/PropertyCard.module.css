@@ -2,6 +2,7 @@
   width: 43%;
   transition: all 0.2s ease-in-out;
   display: flex;
+  justify-content: space-between;
 }
 
 .card-style div:nth-child(1) {
@@ -9,9 +10,10 @@
 }
 
 .card-style div:nth-child(2) {
-  width: 30%;
+  width: 20%;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .card-style:hover {

@@ -4,10 +4,13 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./SearchBar.module.css";
 import ExtraFilter from "./ExtraFilter";
+import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ className }) => {
+const SearchBar = ({ className, defaultText }) => {
   const searchRef = useRef();
   const [showFilter, setShowFilter] = useState();
+
+  const navigate = useNavigate();
 
   const toggleExtraFilter = () => {
     setShowFilter((prevState) => !prevState);
@@ -16,6 +19,19 @@ const SearchBar = ({ className }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(searchRef.current.value);
+
+    navigate(`/property?property_name=${searchRef.current.value}`);
+  };
+
+  const searchWithFilterHandler = (
+    property_type,
+    price_min,
+    price_max,
+    property_bedroom
+  ) => {
+    navigate(
+      `/property?property_name=${searchRef.current.value}&property_type=${property_type}&property_bedroom=${property_bedroom}&price_min=${price_min}&price_max=${price_max}`
+    );
   };
 
   return (
@@ -26,6 +42,7 @@ const SearchBar = ({ className }) => {
             ref={searchRef}
             type="text"
             className={classes["input-style"]}
+            defaultValue={defaultText || ""}
             placeholder="Search for your desired home"
           />
           <Button
@@ -41,7 +58,9 @@ const SearchBar = ({ className }) => {
             {showFilter ? "Hide filter" : "More filter"}
           </Button>
         </div>
-        {showFilter && <ExtraFilter />}
+        {showFilter && (
+          <ExtraFilter searchWithFilterHandler={searchWithFilterHandler} />
+        )}
       </form>
     </Card>
   );

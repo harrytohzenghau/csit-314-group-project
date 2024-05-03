@@ -2,20 +2,30 @@ import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "./PropertyCard.module.css";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import Button from "../UI/Button";
 
-const PropertyCard = ({ property, isSaved, savedHandler }) => {
+const PropertyCard = ({
+  property,
+  isLiked,
+  isSaved,
+  likeHandler,
+  savedHandler,
+}) => {
   const navigate = useNavigate();
 
   const propertyDetailHandler = (id) => {
     navigate(`/property/${id}`);
   };
 
-  const savedPropertyHandler = (id) => {
-    savedHandler(id);
+  const savedPropertyHandler = async (property_id) => {
+    savedHandler(property_id);
   };
 
-  //   console.log(property);
+  const likePropertyHandler = async (property_id) => {
+    likeHandler(property_id);
+  };
+
   return (
     <Card className={classes["card-style"]}>
       <div className={classes["property-card-inner-wrapper"]}>
@@ -41,13 +51,20 @@ const PropertyCard = ({ property, isSaved, savedHandler }) => {
           View details
         </Button>
       </div>
-      <div>
+      <div className={classes["property-card-action-button"]}>
+        <Button
+          className={classes["favourite-button"]}
+          type="button˝"
+          onClick={() => likePropertyHandler(property._id)}
+        >
+          {isLiked ? <MdFavorite /> : <MdFavoriteBorder />}
+        </Button>
         <Button
           className={classes["favourite-button"]}
           type="button˝"
           onClick={() => savedPropertyHandler(property._id)}
         >
-          {isSaved ? <MdFavorite /> : <MdFavoriteBorder />}
+          {isSaved ? <GoBookmarkFill /> : <GoBookmark />}
         </Button>
       </div>
     </Card>

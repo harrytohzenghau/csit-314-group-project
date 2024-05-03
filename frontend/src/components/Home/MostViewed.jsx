@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import classes from "./NewProject.module.css";
 import HighlightedProject from "./HighlightedProject";
-import data from "../../util/DUMMY_PROPERTIES.json";
 
 const MostViewed = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    const getNewProject = async () => {
-      const response = await fetch("http://localhost:3000/api/buy", {
+    const getMostViewedProject = async () => {
+      const response = await fetch("http://localhost:3000/api/home", {
         method: "GET",
         headers: {
           "Content-type": "application/json",
         },
       });
       const data = await response.json();
-      setProperties(data.properties.slice(0, 4));
+      setProperties(data.mostViews);
     };
 
-    getNewProject();
+    getMostViewedProject();
   }, []);
 
   return (
