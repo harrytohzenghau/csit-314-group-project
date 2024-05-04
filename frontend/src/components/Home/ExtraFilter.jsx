@@ -39,6 +39,7 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
     customPriceRef.current.checked = false;
     minPriceRef.current.value = "";
     maxPriceRef.current.value = "";
+    allBedroomRef.current.checked = true;
     studioRef.current.checked = false;
     oneBedroomRef.current.checked = false;
     twoBedroomRef.current.checked = false;

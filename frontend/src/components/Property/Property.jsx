@@ -13,21 +13,27 @@ const Property = () => {
   const [liked, setLiked] = useState([]);
 
   const [searchParams] = useSearchParams();
-  const propertyName = searchParams.get("property_name");
-  const propertyType = searchParams.get("property_type");
-  const propertyBedroom = searchParams.get("property_bedroom");
-  const minPropertyPrice = searchParams.get("price_min");
-  const maxPropertyPrice = searchParams.get("price_max");
-  console.log(propertyBedroom);
+  const propertyName = searchParams.get("property_name") || "";
+  const propertyType = searchParams.get("property_type") || "";
+  const propertyBedroom = searchParams.get("property_bedroom") || "";
+  const minPropertyPrice = searchParams.get("price_min") || "";
+  const maxPropertyPrice = searchParams.get("price_max") || "";
 
-  const [propertyNameState, setPropertyNameState] = useState(propertyName);
-  const [propertyTypeState, setPropertyTypeState] = useState(propertyType);
-  const [propertyBedroomState, setPropertyBedroomState] =
-    useState(propertyBedroom);
-  const [minPropertyPriceState, seMinPropertyPriceState] =
-    useState(minPropertyPrice);
-  const [maxPropertyPriceState, setMaxPropertyPrice] =
-    useState(maxPropertyPrice);
+  const [propertyNameState, setPropertyNameState] = useState(
+    propertyName || ""
+  );
+  const [propertyTypeState, setPropertyTypeState] = useState(
+    propertyType || ""
+  );
+  const [propertyBedroomState, setPropertyBedroomState] = useState(
+    propertyBedroom || ""
+  );
+  const [minPropertyPriceState, seMinPropertyPriceState] = useState(
+    minPropertyPrice || ""
+  );
+  const [maxPropertyPriceState, setMaxPropertyPrice] = useState(
+    maxPropertyPrice || ""
+  );
 
   useEffect(() => {
     setPropertyNameState(propertyName);
