@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./SearchBar.module.css";
 import ExtraFilter from "./ExtraFilter";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useMatch, useLocation } from "react-router-dom";
 
 const SearchBar = ({ className, defaultText }) => {
   const searchRef = useRef();

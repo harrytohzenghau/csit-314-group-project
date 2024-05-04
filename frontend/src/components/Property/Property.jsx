@@ -18,6 +18,30 @@ const Property = () => {
   const propertyBedroom = searchParams.get("property_bedroom");
   const minPropertyPrice = searchParams.get("price_min");
   const maxPropertyPrice = searchParams.get("price_max");
+  console.log(propertyBedroom);
+
+  const [propertyNameState, setPropertyNameState] = useState(propertyName);
+  const [propertyTypeState, setPropertyTypeState] = useState(propertyType);
+  const [propertyBedroomState, setPropertyBedroomState] =
+    useState(propertyBedroom);
+  const [minPropertyPriceState, seMinPropertyPriceState] =
+    useState(minPropertyPrice);
+  const [maxPropertyPriceState, setMaxPropertyPrice] =
+    useState(maxPropertyPrice);
+
+  useEffect(() => {
+    setPropertyNameState(propertyName);
+    setPropertyTypeState(propertyType);
+    setPropertyBedroomState(propertyBedroom);
+    seMinPropertyPriceState(minPropertyPrice);
+    setMaxPropertyPrice(maxPropertyPrice);
+  }, [
+    propertyName,
+    propertyType,
+    propertyBedroom,
+    minPropertyPrice,
+    maxPropertyPrice,
+  ]);
 
   const [cookie] = useCookies();
   const id = cookie.id;
@@ -136,11 +160,11 @@ const Property = () => {
   useEffect(() => {
     const getAllProject = async () => {
       if (
-        propertyName == "" &&
-        propertyType == "" &&
-        propertyBedroom == "" &&
-        minPropertyPrice == "" &&
-        maxPropertyPrice == ""
+        propertyNameState == "" &&
+        propertyTypeState == "" &&
+        propertyBedroomState == "" &&
+        minPropertyPriceState == "" &&
+        maxPropertyPriceState == ""
       ) {
         const response = await fetch("http://localhost:3000/api/buy", {
           method: "GET",
@@ -152,14 +176,14 @@ const Property = () => {
         console.log(data);
         setProperties(data.properties);
       } else if (
-        propertyName ||
-        propertyType ||
-        propertyBedroom ||
-        minPropertyPrice ||
-        maxPropertyPrice
+        propertyNameState ||
+        propertyTypeState ||
+        propertyBedroomState ||
+        minPropertyPriceState ||
+        maxPropertyPriceState
       ) {
         const response = await fetch(
-          `http://localhost:3000/api/buy?property_name=${propertyName}&property_type=${propertyType}&property_bedroom=${propertyBedroom}&price_min=${minPropertyPrice}&price_max=${maxPropertyPrice}`,
+          `http://localhost:3000/api/buy?property_name=${propertyNameState}&property_type=${propertyTypeState}&property_bedroom=${propertyBedroomState}&price_min=${minPropertyPriceState}&price_max=${maxPropertyPriceState}`,
           {
             method: "GET",
             headers: {
@@ -183,7 +207,13 @@ const Property = () => {
     };
 
     getAllProject();
-  }, []);
+  }, [
+    propertyNameState,
+    propertyTypeState,
+    propertyBedroomState,
+    minPropertyPriceState,
+    maxPropertyPriceState,
+  ]);
 
   return (
     <>

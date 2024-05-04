@@ -100,6 +100,7 @@ const SavedListing = () => {
     const propertiesId = data.profile.user_favourites;
 
     console.log(propertiesId);
+    let updatedSavedProperties = [];
     for (let i = 0; i < propertiesId.length; i++) {
       const response = await fetch(
         `http://localhost:3000/api/buy/${propertiesId[i]}`,
@@ -114,11 +115,10 @@ const SavedListing = () => {
       if (
         savedProperties.findIndex((p) => p._id === data.property._id) === -1
       ) {
-        console.log(data.property);
-        const updatedSavedProperties = [...savedProperties, data.property];
-        setSavedProperties(updatedSavedProperties);
+        updatedSavedProperties.push(data.property);
       }
     }
+    setSavedProperties(updatedSavedProperties);
   }, [id]);
 
   useEffect(() => {
