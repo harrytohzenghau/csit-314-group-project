@@ -9,7 +9,7 @@ class AuthEntity {
 
     async authenticateUser(pw, userPw) {
         const passwordMatch = await bcrypt.compare(pw, userPw);
-        if (!passwordMatch) throw "Authentication Failed";
+        if (!passwordMatch) throw "Authentication Failed"; 
     }
 
     async tokenSecretCondition(user) {
