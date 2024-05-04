@@ -6,6 +6,7 @@ import Divider from "../UI/Divider";
 import toast from "react-hot-toast";
 import { useCookies } from "react-cookie";
 import { useSearchParams } from "react-router-dom";
+import Card from "../UI/Card";
 
 const Property = () => {
   const [properties, setProperties] = useState([]);
@@ -229,6 +230,11 @@ const Property = () => {
       />
       <Divider size="small" />
       <div className={classes["property-card-wrapper"]}>
+        {properties.length === 0 && (
+          <Card className={classes["card-style"]}>
+            <h1>No properties found</h1>
+          </Card>
+        )}
         {properties.map((p) => {
           let isSaved = saved.includes(p._id);
           let isLiked = liked.includes(p._id);
