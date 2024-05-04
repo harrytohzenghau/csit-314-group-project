@@ -44,7 +44,7 @@ class PropertyEntity {
 
         this.allProperty = await Property.find({
             property_name: { $regex: property_name || "", $options: "i" },
-            property_price: {
+            "property_propertySchema.property_price": {
                 $gte: price_min || 0,
                 $lte: price_max || 999999999,
             },

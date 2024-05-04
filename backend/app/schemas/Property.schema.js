@@ -138,11 +138,6 @@ const propertySchema = new Schema(
                 default: "",
             },
         ],
-        property_price: {
-            type: Number,
-            required: true,
-            default: 123,
-        },
     },
     { minimize: false }
 );
