@@ -3,6 +3,7 @@ import classes from "./Property.module.css";
 import PropertyCard from "./PropertyCard";
 import toast from "react-hot-toast";
 import { useCookies } from "react-cookie";
+import Card from "../UI/Card";
 
 const SavedListing = () => {
   const [liked, setLiked] = useState([]);
@@ -128,6 +129,11 @@ const SavedListing = () => {
   return (
     <>
       <div className={classes["property-card-wrapper"]}>
+        {savedProperties.length === 0 && (
+          <Card className={classes["card-style"]}>
+            <h1>No properties saved</h1>
+          </Card>
+        )}
         {savedProperties.map((p) => {
           const isLiked = liked.includes(p._id);
           return (

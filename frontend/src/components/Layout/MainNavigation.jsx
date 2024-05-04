@@ -224,6 +224,16 @@ const MainNavigation = () => {
                 </li>
                 <li className={classes["header-list-item"]}>
                   <NavLink
+                    to="/your-listing"
+                    className={({ isActive }) => {
+                      return isActive ? classes.active : undefined;
+                    }}
+                  >
+                    Your Listing
+                  </NavLink>
+                </li>
+                <li className={classes["header-list-item"]}>
+                  <NavLink
                     to="/saved-listing"
                     className={({ isActive }) => {
                       return isActive ? classes.active : undefined;

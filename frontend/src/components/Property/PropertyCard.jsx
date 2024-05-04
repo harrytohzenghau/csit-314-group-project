@@ -54,14 +54,14 @@ const PropertyCard = ({
       <div className={classes["property-card-action-button"]}>
         <Button
           className={classes["favourite-button"]}
-          type="button˝"
+          type="button"
           onClick={() => likePropertyHandler(property._id)}
         >
           {isLiked ? <MdFavorite /> : <MdFavoriteBorder />}
         </Button>
         <Button
           className={classes["favourite-button"]}
-          type="button˝"
+          type="button"
           onClick={() => savedPropertyHandler(property._id)}
         >
           {isSaved ? <GoBookmarkFill /> : <GoBookmark />}

@@ -39,6 +39,9 @@ const CreateProperty = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
   const [image, setImage] = useState([]);
+  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
+
   const [agent, setAgent] = useState([]);
 
   const [agents, setAgents] = useState([]);
@@ -68,6 +71,30 @@ const CreateProperty = () => {
       getAgent();
     }
   });
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await fetch("http://localhost:3000/api/admin", {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const data = await response.json();
+      const usersOnly = data.allUsers.filter((user) => !user.user_agent && !user.user_admin);
+      
+      for (let i = 0; i < usersOnly.length; i++) {
+        const user = usersOnly[i];
+        if (!users.includes(users.user_details.username)) {
+          const newUsers = [...users, user.user_details];
+          setUsers(newUsers);
+        }
+      }
+    }
+
+    getUsers();
+  }, [users, token])
 
   const handleTypeOption = (value) => {
     setType(value);
@@ -265,6 +292,7 @@ const CreateProperty = () => {
               selectedHandler={handleFurnishingOption}
             />
           </div>
+
           {/* <div className={classes["create-property-input-row-wrapper"]}>
             <Dropdown
               title="Live Tour"
@@ -286,6 +314,13 @@ const CreateProperty = () => {
             <YearPicker
               selectedYear={selectedYear}
               selectedHandler={handleYearOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <Dropdown
+              title="Customer"
+              options={["Ground", "Low", "Mid", "High", "Penthouse"]}
+              selectedHandler={handleFloorLevelOption}
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>

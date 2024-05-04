@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "./PropertyDetail.module.css";
 import { MdBed } from "react-icons/md";
@@ -7,11 +7,121 @@ import { PiToiletFill } from "react-icons/pi";
 import { RxSize } from "react-icons/rx";
 import { MdStar } from "react-icons/md";
 import Button from "../UI/Button";
+import { useCookies } from "react-cookie";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { GoBookmark, GoBookmarkFill } from "react-icons/go";
+import toast from "react-hot-toast";
 
 const PropertyDetail = () => {
   const { id } = useParams();
+  const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [property, setProperty] = useState(null);
   const [agent, setAgent] = useState(null);
+
+  const navigate = useNavigate();
+
+  const [cookie] = useCookies();
+  const token = cookie.token;
+  const user_id = cookie.id;
+
+  const likedHandler = async (id) => {
+    if (!token) {
+      return toast.error("Please login to perform this action.");
+    }
+
+    let likedProperty = {
+      user_id: user_id,
+      property_id: id,
+      like: !isLiked,
+    };
+
+    const response = await fetch("http://localhost:3000/api/buy/like", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(likedProperty),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      return toast.error("Something went wrong when liking property");
+    }
+
+    if (isLiked) {
+      setIsLiked((prevState) => !prevState);
+      return toast.success("You unliked this property");
+    } else {
+      setIsLiked((prevState) => !prevState);
+      return toast.success("You liked this property");
+    }
+  };
+
+  const savedHandler = async (id) => {
+    if (!token) {
+      return toast.error("Please login to perform this action.");
+    }
+
+    let favouriteProperty = {
+      user_id: user_id,
+      property_id: id,
+      favourite: !isSaved,
+    };
+
+    const response = await fetch("http://localhost:3000/api/buy/favourite", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(favouriteProperty),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      return toast.error(
+        "Something went wrong when adding property to saved listing"
+      );
+    }
+
+    if (isSaved) {
+      setIsSaved((prevState) => !prevState);
+      return toast.success("Property has been removed from favourite list");
+    } else {
+      setIsSaved((prevState) => !prevState);
+      return toast.success("Property has been added to favourite list");
+    }
+  };
+
+  useEffect(() => {
+    const checkCurrentPropertyLikedSaved = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/profile/${user_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        return toast.error("Something went wrong!");
+      }
+
+      const data = await response.json();
+      setIsSaved(data.profile.user_favourites.includes(id));
+      setIsLiked(data.profile.user_likes.includes(id));
+    };
+
+    if (user_id) {
+      checkCurrentPropertyLikedSaved();
+    }
+  });
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -44,7 +154,29 @@ const PropertyDetail = () => {
         <div className={classes["proprety-all-detail-outer-wrapper"]}>
           <div className={classes["property-detail-content-wrapper"]}>
             <div className={classes["property-detail-wrapper"]}>
-              <h2>{property && property.property_name}</h2>
+              <div
+                className={classes["property-detail-name-and-button-wrapper"]}
+              >
+                <h2>{property && property.property_name}</h2>
+                <div
+                  className={classes["property-detail-inner-button-wrapper"]}
+                >
+                  <Button
+                    className={classes["favourite-button"]}
+                    type="button"
+                    onClick={() => likedHandler(property._id)}
+                  >
+                    {isLiked ? <MdFavorite /> : <MdFavoriteBorder />}
+                  </Button>
+                  <Button
+                    className={classes["favourite-button"]}
+                    type="button"
+                    onClick={() => savedHandler(property._id)}
+                  >
+                    {isSaved ? <GoBookmarkFill /> : <GoBookmark />}
+                  </Button>
+                </div>
+              </div>
               <h3>
                 {property && property.property_propertySchema.property_location}
               </h3>
@@ -203,6 +335,9 @@ const PropertyDetail = () => {
               </a>
             </Button>
           </Card>
+          <Button type="button" onClick={() => navigate(-1)}>
+            Back
+          </Button>
         </div>
       </div>
     </Card>

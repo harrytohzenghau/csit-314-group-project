@@ -28,6 +28,7 @@ import {
   AgentProtectedRoute,
 } from "../util/ProtectedRoute";
 import PropertyDetailPage from "../pages/Property/PropertyDetailPage";
+import YourPropertyListingPage from "../pages/Property/YourPropertyListingPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SavedListingPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "your-listing",
+        element: (
+          <ProtectedRoute>
+            <YourPropertyListingPage />
           </ProtectedRoute>
         ),
       },
