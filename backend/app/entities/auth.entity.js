@@ -1,5 +1,3 @@
-const User = require("../schemas/User.schema");
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -9,7 +7,7 @@ class AuthEntity {
 
     async authenticateUser(pw, userPw) {
         const passwordMatch = await bcrypt.compare(pw, userPw);
-        if (!passwordMatch) throw "Authentication Failed"; 
+        if (!passwordMatch) throw "Authentication Failed";
     }
 
     async tokenSecretCondition(user) {
