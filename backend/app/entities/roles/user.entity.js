@@ -70,12 +70,13 @@ class UserEntity {
     }
 
     async createUser(data) {
-        const { user_details, user_agent, user_admin } = data;
+        const { user_details, user_agent, user_admin, user_finance } = data;
 
         const { password } = user_details;
         user_details.password = await bcrypt.hash(password, 10);
 
         this.user_details = user_details;
+        this.user_finance = user_finance;
         this.user_admin = user_admin;
         this.user_agent = user_agent;
 
@@ -83,6 +84,7 @@ class UserEntity {
             user_details,
             user_agent,
             user_admin,
+            user_finance,
         });
 
         await this.user.save();
@@ -121,6 +123,28 @@ class UserEntity {
 
     async removeUserById(id) {
         await User.findByIdAndDelete(id);
+        return;
+    }
+
+    async calcMortgage(id, data) {
+        await this.fetchUserById(id);
+        const { downpayment, interest_rate, loan_period, property_price } =
+            data;
+
+        const loan_amt = property_price - downpayment;
+        const x = loan_amt * (interest_rate / 100);
+        const y = 1 - (1 + interest_rate / 100) ** -loan_period;
+        const yearly = x / y;
+        const monthly = yearly / 12;
+
+        this.user.user_finance.downpayment = downpayment;
+        this.user.user_finance.interest_rate = interest_rate;
+        this.user.user_finance.loan_period = loan_period;
+        this.user.user_finance.property_price = property_price;
+        this.user.user_finance.loan_amt = loan_amt;
+        this.user.user_finance.monthly = monthly;
+        await this.user.save();
+
         return;
     }
 }

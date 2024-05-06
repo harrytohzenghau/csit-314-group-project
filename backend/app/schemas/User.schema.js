@@ -33,6 +33,42 @@ const personalDetailsSchema = new Schema(
     { _id: false }
 );
 
+const financeSchema = new Schema(
+    {
+        downpayment: {
+            type: Number,
+            required: true,
+            default: 40000,
+        },
+        interest_rate: {
+            type: Number,
+            required: true,
+            default: 5,
+        },
+        loan_period: {
+            type: Number,
+            required: true,
+            default: 20,
+        },
+        property_price: {
+            type: Number,
+            required: true,
+            default: 400000,
+        },
+        loan_amt: {
+            type: Number,
+            required: true,
+            default: 360000,
+        },
+        monthly: {
+            type: Number,
+            required: true,
+            default: 69,
+        },
+    },
+    { _id: false, minimize: false }
+);
+
 const userSchema = new Schema(
     {
         user_admin: {
@@ -65,13 +101,13 @@ const userSchema = new Schema(
             },
         ],
         user_details: personalDetailsSchema,
+        user_finance: financeSchema,
         user_budget: Number,
         user_created: {
             type: Date,
             required: true,
             default: new Date(),
         },
-        // shortlist
     },
     { minimize: false }
 );

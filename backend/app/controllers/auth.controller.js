@@ -57,7 +57,6 @@ class AuthController {
                     message: "Logout Successful",
                 });
         } catch (error) {
-            console.log(error);
             res.status(500).json({ error, message: "Logout Failed" });
         }
     }

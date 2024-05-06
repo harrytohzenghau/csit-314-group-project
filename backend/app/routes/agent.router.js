@@ -15,6 +15,8 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const agent = new AgentController();
 
+router.route("/").get(catchAsync(agent.getAllAgents));
+
 router
     .route("/:id")
     .get(catchAsync(agent.getAgentProperty))

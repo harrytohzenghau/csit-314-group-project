@@ -20,6 +20,25 @@ class ProfileController {
         }
     }
 
+    async postMortgage(req, res) {
+        try {
+            const profile = new UserEntity();
+            const { id } = req.params;
+            await profile.calcMortgage(id, req.body);
+
+            res.status(201).json({
+                success: true,
+                message: "User updated",
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                error,
+                message: "Failed to update user",
+            });
+        }
+    }
+
     async patchProfile(req, res) {
         try {
             const profile = new UserEntity();

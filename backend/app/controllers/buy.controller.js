@@ -1,5 +1,4 @@
 const PropertyEntity = require("../entities/property.entity");
-const UserEntity = require("../entities/roles/user.entity");
 
 class BuyController {
     async getAllProperties(req, res) {
@@ -75,6 +74,4 @@ class BuyController {
     }
 }
 
-module.exports = BuyController; 
-
- 
+module.exports = BuyController;

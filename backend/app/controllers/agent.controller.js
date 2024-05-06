@@ -2,6 +2,24 @@ const AgentEntity = require("../entities/roles/agent.entity");
 const PropertyEntity = require("../entities/property.entity");
 
 class AgentController {
+    async getAllAgents(req, res) {
+        try {
+            const agent = new AgentEntity();
+            await agent.fetchAllAgents();
+
+            res.status(201).json({
+                success: true,
+                message: "All Agents fetched",
+                allAgents: agent.allAgents,
+            });
+        } catch (error) {
+            res.status(500).json({
+                error,
+                message: "Failed to fetch agents",
+            });
+        }
+    }
+
     async getAgentProperty(req, res) {
         try {
             const { id } = req.params;
@@ -10,13 +28,13 @@ class AgentController {
 
             res.status(201).json({
                 success: true,
-                message: "All users fetched",
+                message: "Agent fetched",
                 allProperty: agent.agentProperty,
             });
         } catch (error) {
             res.status(500).json({
                 error,
-                message: "Failed to fetch users",
+                message: "Failed to fetch agent",
             });
         }
     }

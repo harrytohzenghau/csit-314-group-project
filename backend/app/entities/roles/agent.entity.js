@@ -4,6 +4,7 @@ const User = require("../../schemas/User.schema");
 
 class AgentEntity extends UserEntity {
     agent = {};
+    allAgents = [];
 
     get agentProperty() {
         return this.agent.agent_properties;
@@ -13,6 +14,11 @@ class AgentEntity extends UserEntity {
         const user = await this.createUser(data);
         this.agent = new Agent({ agent_userSchema: user._id });
         await this.agent.save();
+        return;
+    }
+
+    async fetchAllAgents() {
+        this.allAgents = await Agent.find().populate("agent_properties");
         return;
     }
 

@@ -15,7 +15,10 @@ const { verifyAdmin, verifyUser } = require("../middlewares/tokenVerification");
 
 const profile = new ProfileController();
 
-router.route("/").patch(catchAsync(profile.patchProfile));
-router.route("/:id").get(catchAsync(profile.getProfile));
+router
+    .route("/:id")
+    .get(catchAsync(profile.getProfile))
+    .post(catchAsync(profile.postMortgage))
+    .patch(catchAsync(profile.patchProfile));
 
 module.exports = router;
