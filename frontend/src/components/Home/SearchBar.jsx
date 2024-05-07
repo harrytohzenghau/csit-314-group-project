@@ -18,8 +18,6 @@ const SearchBar = ({ className, defaultText }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(searchRef.current.value);
-
     navigate(`/property?property_name=${searchRef.current.value}`);
   };
 

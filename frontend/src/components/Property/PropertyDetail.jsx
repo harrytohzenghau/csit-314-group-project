@@ -45,7 +45,7 @@ const PropertyDetail = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -80,7 +80,7 @@ const PropertyDetail = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error(
@@ -137,7 +137,7 @@ const PropertyDetail = () => {
         }
         const data = await response.json();
         setProperty(data.property);
-        console.log(data.property.property_agentSchema);
+        (data.property.property_agentSchema);
         setAgent(data.property.property_agentSchema);
       } catch (error) {
         console.error("Error fetching property data:", error);

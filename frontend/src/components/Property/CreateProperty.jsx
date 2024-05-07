@@ -206,8 +206,6 @@ const CreateProperty = () => {
       property_name: nameRef.current.value,
       property_images: image,
     };
-
-    console.log(property);
     try {
       const response = await fetch(
         `http://localhost:3000/api/agent/${userId}`,

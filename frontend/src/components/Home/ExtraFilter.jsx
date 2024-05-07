@@ -79,9 +79,6 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
     } else if (fiveBedroomRef.current.checked) {
       property_bedroom = "5";
     }
-
-    console.log(price_min);
-
     searchWithFilterHandler(
       property_type,
       price_min,

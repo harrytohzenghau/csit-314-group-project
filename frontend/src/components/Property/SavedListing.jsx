@@ -38,7 +38,7 @@ const SavedListing = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -75,7 +75,7 @@ const SavedListing = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error(
@@ -100,7 +100,6 @@ const SavedListing = () => {
     setLiked(data.profile.user_likes);
     const propertiesId = data.profile.user_favourites;
 
-    console.log(propertiesId);
     let updatedSavedProperties = [];
     for (let i = 0; i < propertiesId.length; i++) {
       const response = await fetch(

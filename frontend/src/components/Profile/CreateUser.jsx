@@ -63,8 +63,6 @@ const CreateUser = () => {
       body: JSON.stringify(user),
     });
 
-    console.log(register_response);
-
     if (!register_response.ok) {
       toast.error(
         "Something went wrong while trying to create your account. Please try again."

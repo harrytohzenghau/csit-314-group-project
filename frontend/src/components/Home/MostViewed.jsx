@@ -15,7 +15,6 @@ const MostViewed = () => {
         },
       });
       const data = await response.json();
-      console.log(data.mostViews)
       setProperties(data.mostViews);
     };
 

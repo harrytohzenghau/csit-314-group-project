@@ -103,7 +103,7 @@ const Property = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -145,7 +145,7 @@ const Property = () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    
 
     if (!response.ok) {
       return toast.error(
@@ -180,7 +180,7 @@ const Property = () => {
           },
         });
         const data = await response.json();
-        console.log(data);
+        
         setProperties(data.properties);
       } else if (
         propertyNameState ||
@@ -208,7 +208,7 @@ const Property = () => {
           },
         });
         const data = await response.json();
-        console.log(data);
+        
         setProperties(data.properties);
       }
     };

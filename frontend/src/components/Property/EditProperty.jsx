@@ -43,7 +43,6 @@ const EditProperty = () => {
       });
 
       const data = await response.json();
-      console.log(data);
       setProperty(data.property);
       setKeyword(data.property.property_propertySchema.property_keyword);
     }
