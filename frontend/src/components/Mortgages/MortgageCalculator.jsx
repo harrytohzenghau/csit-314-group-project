@@ -28,6 +28,7 @@ const MortgageCalculator = () => {
     interesetRateRef.current.value = "";
     loanPeriodRef.current.value = "";
     propertySizeRef.current.value = "";
+    loanAmountRef.current.value = "";
     monthlyRepaymentRef.current.value = "";
   };
 
