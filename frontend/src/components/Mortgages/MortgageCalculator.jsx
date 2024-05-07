@@ -127,7 +127,7 @@ const MortgageCalculator = () => {
           <Input
             ref={downPaymentRef}
             type="number"
-            label="Down Payment"
+            label="Down Payment (S$)"
             required
           />
           <Input
@@ -141,7 +141,7 @@ const MortgageCalculator = () => {
           <Input
             ref={loanPeriodRef}
             type="number"
-            label="Loan Period"
+            label="Loan Period (Year)"
             required
           />
           <Input
