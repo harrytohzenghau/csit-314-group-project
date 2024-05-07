@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import classes from "./Login.module.css";
 import { useRef } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../store/authSlice";
 import { toast } from "react-hot-toast";
 import { useCookies } from "react-cookie";
@@ -16,7 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [, setCookie] = useCookies(["id", "token", "user_type"]);
+  const [, setCookie] = useCookies(["id", "token", "user_type", "username"]);
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
@@ -69,6 +69,7 @@ const Login = () => {
     }
 
     setCookie("user_type", user_type);
+    setCookie("username", userData.profile.user_details.username);
 
     dispatch(login({ user: userData, token }));
 

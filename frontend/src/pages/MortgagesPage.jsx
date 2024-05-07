@@ -1,7 +1,7 @@
-const Mortgages = () => {
-  return (
-    <div>Mortgages</div>
-  )
-}
+import MortgageCalculator from "../components/Mortgages/MortgageCalculator";
 
-export default Mortgages
+const Mortgages = () => {
+  return <MortgageCalculator />;
+};
+
+export default Mortgages;

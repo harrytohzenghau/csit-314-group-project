@@ -35,7 +35,7 @@ const SearchBar = ({ className, defaultText }) => {
   };
 
   return (
-    <Card className={`${classes["card-style"]} ${className}`}>
+    <Card className={`${classes["card-style"]} ${classes[className]}`}>
       <form onSubmit={submitHandler}>
         <div className={classes["search-wrapper"]}>
           <Input

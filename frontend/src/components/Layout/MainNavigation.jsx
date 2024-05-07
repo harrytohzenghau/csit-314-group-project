@@ -8,27 +8,36 @@ import { useCookies } from "react-cookie";
 
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const [cookie, setCookie, removeCookie] = useCookies();
+  const [cookie, _, removeCookie] = useCookies();
   const [userType, setUserType] = useState(cookie.user_type);
 
   useEffect(() => {
     setUserType(cookie.user_type);
   }, [cookie]);
 
-  const logoutHandler = async () => {
-    // const response = await fetch("http://localhost:3000/api/auth/logout", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: {
-    //     _id: user._id,
-    //     username: user.user_details.username,
-    //   },
-    // });
+  const id = cookie.id;
+  const token = cookie.token;
+  const username = cookie.username;
 
-    // const data = await response.json();
-    // console.log(data)
+  const logoutHandler = async () => {
+    const user = {
+      id: id,
+      username: username,
+    };
+
+    const response = await fetch("http://localhost:3000/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (!response.ok) {
+      return toast.error("Logout failed");
+    }
+
     toast.success("Logout successfully");
     removeCookie("id");
     removeCookie("token");

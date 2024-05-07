@@ -1,8 +1,13 @@
 .card-style {
   width: 40%;
   margin: 0 auto;
-  position: absolute;
   padding-bottom: 1.5rem;
+}
+
+.card-style.home {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

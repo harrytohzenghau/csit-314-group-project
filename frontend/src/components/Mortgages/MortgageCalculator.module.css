@@ -1,0 +1,25 @@
+.card-style {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  row-gap: 2rem;
+}
+
+.mortgage-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  column-gap: 2rem;
+}
+
+.mortgage-input-wrapper div {
+  width: 50%;
+}
+
+.mortgage-button-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  column-gap: 2rem;
+}
