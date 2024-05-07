@@ -11,7 +11,7 @@ const MortgageCalculator = () => {
   const downPaymentRef = useRef();
   const interesetRateRef = useRef();
   const loanPeriodRef = useRef();
-  const propertySizeRef = useRef();
+  const propertyPriceRef = useRef();
   const loanAmountRef = useRef();
   const monthlyRepaymentRef = useRef();
 
@@ -27,7 +27,7 @@ const MortgageCalculator = () => {
     downPaymentRef.current.value = "";
     interesetRateRef.current.value = "";
     loanPeriodRef.current.value = "";
-    propertySizeRef.current.value = "";
+    propertyPriceRef.current.value = "";
     loanAmountRef.current.value = "";
     monthlyRepaymentRef.current.value = "";
   };
@@ -39,11 +39,20 @@ const MortgageCalculator = () => {
       return toast.error("Please login to access this feature");
     }
 
+    if (
+      downPaymentRef.current.value === "" ||
+      interesetRateRef.current.value === "" ||
+      loanPeriodRef.current.value === "" ||
+      propertyPriceRef.current.value === ""
+    ) {
+      return toast.error("Please fill in the fields below.");
+    }
+
     const input = {
       downpayment: downPaymentRef.current.value,
       interest_rate: interesetRateRef.current.value,
       loan_period: loanPeriodRef.current.value,
-      property_price: propertySizeRef.current.value,
+      property_price: propertyPriceRef.current.value,
     };
 
     const response = await fetch(`http://localhost:3000/api/profile/${id}`, {
@@ -145,7 +154,7 @@ const MortgageCalculator = () => {
             required
           />
           <Input
-            ref={propertySizeRef}
+            ref={propertyPriceRef}
             type="number"
             label="Property Price (S$)"
             required
