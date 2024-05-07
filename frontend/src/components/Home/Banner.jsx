@@ -1,4 +1,3 @@
-import bannerImg from "../../assets/banner.jpg";
 import classes from "./Banner.module.css";
 import SearchBar from "./SearchBar";
 
