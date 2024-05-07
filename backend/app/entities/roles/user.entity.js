@@ -70,7 +70,8 @@ class UserEntity {
     }
 
     async createUser(data) {
-        const { user_details, user_agent, user_admin, user_finance } = data;
+        const { user_details, user_agent, user_admin } = data;
+        const user_finance = {};
 
         const { password } = user_details;
         user_details.password = await bcrypt.hash(password, 10);
