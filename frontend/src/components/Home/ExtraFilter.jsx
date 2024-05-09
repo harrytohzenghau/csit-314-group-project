@@ -94,32 +94,32 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
         <div className={classes["extra-filter-field-wrapper"]}>
           <Input
             ref={allPropertyRef}
-            type="checkbox"
+            type="radio"
             label="All"
             htmlFor="all"
-            name="all"
+            name="property"
             defaultChecked={true}
           />
           <Input
             ref={condoRef}
-            type="checkbox"
+            type="radio"
             label="Condo"
             htmlFor="condo"
-            name="condo"
+            name="property"
           />
           <Input
             ref={hdbRef}
-            type="checkbox"
+            type="radio"
             label="HDB"
             htmlFor="hdb"
-            name="hdb"
+            name="property"
           />
           <Input
             ref={landedRef}
-            type="checkbox"
+            type="radio"
             label="Landed"
             htmlFor="landed"
-            name="landed"
+            name="property"
           />
         </div>
       </div>
@@ -166,53 +166,53 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
         <div className={classes["extra-filter-field-wrapper"]}>
           <Input
             ref={allBedroomRef}
-            type="checkbox"
+            type="radio"
             label="Any"
             htmlFor="any"
-            name="any"
+            name="bedroom"
             defaultChecked={true}
           />
           <Input
             ref={studioRef}
-            type="checkbox"
+            type="radio"
             label="Studio"
             htmlFor="studio"
-            name="studio"
+            name="bedroom"
           />
           <Input
             ref={oneBedroomRef}
-            type="checkbox"
+            type="radio"
             label="1"
             htmlFor="1"
-            name="1"
+            name="1bedroom"
           />
           <Input
             ref={twoBedroomRef}
-            type="checkbox"
+            type="radio"
             label="2"
             htmlFor="2"
-            name="2"
+            name="bedroom"
           />
           <Input
             ref={threeBedroomRef}
-            type="checkbox"
+            type="radio"
             label="3"
             htmlFor="3"
-            name="3"
+            name="bedroom"
           />
           <Input
             ref={fourBedroomRef}
-            type="checkbox"
+            type="radio"
             label="4"
             htmlFor="4"
-            name="4"
+            name="bedroom"
           />
           <Input
             ref={fiveBedroomRef}
-            type="checkbox"
+            type="radio"
             label="5"
             htmlFor="5"
-            name="5"
+            name="bedroom"
           />
         </div>
       </div>
