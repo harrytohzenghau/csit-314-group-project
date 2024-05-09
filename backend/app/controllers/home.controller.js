@@ -3,7 +3,7 @@ const PropertyEntity = require("../entities/property.entity");
 class HomeController {
     async getHomes(req, res) {
         try {
-            const limit = 1;
+            const limit = 4;
             const property = new PropertyEntity();
             const mostViews = await property.fetchMostViewed(limit);
             const mostLiked = await property.fetchMostLiked(limit);
