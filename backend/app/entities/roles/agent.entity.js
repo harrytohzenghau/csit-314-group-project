@@ -18,7 +18,9 @@ class AgentEntity extends UserEntity {
     }
 
     async fetchAllAgents() {
-        this.allAgents = await Agent.find().populate("agent_properties");
+        this.allAgents = await Agent.find()
+            .populate("agent_properties")
+            .populate("agent_userSchema");
         return;
     }
 
