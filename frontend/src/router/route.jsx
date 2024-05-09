@@ -29,6 +29,7 @@ import {
 } from "../util/ProtectedRoute";
 import PropertyDetailPage from "../pages/Property/PropertyDetailPage";
 import YourPropertyListingPage from "../pages/Property/YourPropertyListingPage";
+import AgentDetailPage from "../pages/AgentDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,13 @@ const router = createBrowserRouter([
       { path: "register", element: <RegisterPage /> },
       { path: "property", element: <PropertyPage /> },
       { path: "mortgages", element: <MortgagesPage /> },
-      { path: "find-agent", element: <FindAgentPage /> },
+      {
+        path: "find-agent",
+        children: [
+          { index: true, element: <FindAgentPage /> },
+          { path: ":id", element: <AgentDetailPage /> },
+        ],
+      },
       {
         path: "saved-listing",
         element: (

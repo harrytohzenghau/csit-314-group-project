@@ -24,6 +24,10 @@ const MortgageCalculator = () => {
   const id = cookie.id;
 
   const resetInputHandler = () => {
+    if (!token) {
+      return toast.error("Please login to access this feature");
+    }
+
     downPaymentRef.current.value = "";
     interesetRateRef.current.value = "";
     loanPeriodRef.current.value = "";
@@ -184,7 +188,7 @@ const MortgageCalculator = () => {
           >
             Calculate
           </Button>
-          <Button type="submit" style="underline" onClick={resetInputHandler}>
+          <Button type="button" style="underline" onClick={resetInputHandler}>
             Reset
           </Button>
           <Button type="button" style="secondary" onClick={() => navigate(-1)}>

@@ -137,7 +137,6 @@ const PropertyDetail = () => {
         }
         const data = await response.json();
         setProperty(data.property);
-        (data.property.property_agentSchema);
         setAgent(data.property.property_agentSchema);
       } catch (error) {
         console.error("Error fetching property data:", error);

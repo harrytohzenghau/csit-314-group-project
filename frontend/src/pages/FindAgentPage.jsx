@@ -1,9 +1,7 @@
-import React from 'react'
+import FindAgent from "../components/Agent/FindAgent";
 
 const FindAgentPage = () => {
-  return (
-    <div>FindAgentPage</div>
-  )
-}
+  return <FindAgent />;
+};
 
-export default FindAgentPage
+export default FindAgentPage;

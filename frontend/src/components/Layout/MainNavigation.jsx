@@ -207,7 +207,7 @@ const MainNavigation = () => {
                     Add Property
                   </NavLink>
                 </li>
-                <li className={classes["header-list-item"]}>
+                {/* <li className={classes["header-list-item"]}>
                   <NavLink
                     to="/agent/manage-rating"
                     className={({ isActive }) => {
@@ -216,12 +216,12 @@ const MainNavigation = () => {
                   >
                     Manage Rating
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
             {userType && userType !== "admin" && userType !== "agent" && (
               <>
-                <li className={classes["header-list-item"]}>
+                {/* <li className={classes["header-list-item"]}>
                   <NavLink
                     to="/your-agent"
                     className={({ isActive }) => {
@@ -230,7 +230,7 @@ const MainNavigation = () => {
                   >
                     Your Agent
                   </NavLink>
-                </li>
+                </li> */}
                 <li className={classes["header-list-item"]}>
                   <NavLink
                     to="/your-listing"

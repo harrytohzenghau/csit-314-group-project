@@ -14,9 +14,9 @@ const HighlightedProject = ({ id, name, property }) => {
       {/* <img src={property.listing_images[0]} /> */}
       <div className={classes["property-details"]}>
         <h3>{name}</h3>
-        <h5>{property.property_location}</h5>
-        <p>Type: {property.property_type}</p>
-        <p>Build year: {property.property_build_year}</p>
+        <h4>{property.property_location}</h4>
+        <h5>Type: {property.property_type}</h5>
+        <h5>Build year: {property.property_build_year}</h5>
       </div>
     </Card>
   );

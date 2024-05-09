@@ -1,0 +1,45 @@
+.card-style {
+  width: 43%;
+  transition: all 0.2s ease-in;
+}
+
+.card-style:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  scale: 1.02;
+}
+
+.agent-card-wrapper {
+  margin: 2rem 0;
+  display: flex;
+  column-gap: 2rem;
+}
+
+.card-style:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  scale: 1.02;
+}
+
+.card-style img {
+  height: 20rem;
+}
+
+.agent-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.agent-details {
+  width: 70%;
+}
+
+.agent-name-and-rating-wrapper {
+  display: flex;
+}
+
+.agent-rating-wrapper {
+  display: flex;
+  align-items: center;
+}

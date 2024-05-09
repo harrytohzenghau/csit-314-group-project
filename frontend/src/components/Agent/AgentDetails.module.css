@@ -1,0 +1,58 @@
+.agent-detail-wrapper {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.agent-detail-inner-wrapper {
+  width: 50%;
+  display: flex;
+  row-gap: 1rem;
+  flex-direction: column;
+}
+
+.agent-detail-inner-wrapper textarea {
+  width: 100%;
+  height: 20vh;
+  box-sizing: border-box;
+  background-color: #e6e6e6;
+  border: none;
+  font-family: var(--font);
+  padding: 1rem;
+}
+
+.agent-detail-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.agent-detail-rating-wrapper {
+  width: 50%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.agent-detail-review-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.agent-detail-star svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.agent-detail-star svg:hover {
+  cursor: pointer;
+}
+
+.agent-detail-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  column-gap: 1rem;
+}
