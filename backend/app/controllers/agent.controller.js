@@ -127,22 +127,30 @@ class AgentController {
         property_existing_images,
       } = req.body;
 
-      const propertyDetails = new PropertyEntity();
-      await propertyDetails.fetchPropertyById(property_id);
+      const property = new PropertyEntity();
+      await property.fetchPropertyById(property_id);
 
       let property_images = [];
+      let removedImage = [];
 
-      if (Array.isArray(property_existing_images)) {
-        if (
-          propertyDetails.property.property_images.length !==
-          property_existing_images.length
-        ) {
-          for (let i = 0; i < property_existing_images.length; i++) {
-            property_images.push(property_existing_images[i]);
-          }
+      const existing_images = property_existing_images.split(",");
+
+      if (existing_images.length > 0 && existing_images[0] !== "") {
+        for (let i = 0; i < existing_images.length; i++) {
+          property_images.push(existing_images[i]);
         }
-      } else {
-        property_images.push(property_existing_images);
+
+        removedImage = property.property.property_images.filter(
+          (image) => !existing_images.includes(image)
+        );
+      }
+
+      if (removedImage.length > 0) {
+        for (let i = 0; i < removedImage.length; i++) {
+          fs.unlink(removedImage[i], (err) => {
+            // console.log(err);
+          });
+        }
       }
 
       if (req.files.length > 0) {
@@ -171,7 +179,6 @@ class AgentController {
         property_images: property_images,
       };
 
-      const property = new PropertyEntity();
       property.updateProperty(property_id, propertyData);
 
       res.status(201).json({
@@ -193,7 +200,7 @@ class AgentController {
 
     for (let i = 0; i < property.property.property_images.length; i++) {
       fs.unlink(property.property.property_images[i], (err) => {
-        console.log(err);
+        //  console.log(err);
       });
     }
 
