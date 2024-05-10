@@ -179,6 +179,7 @@ const EditProperty = () => {
     };
 
     const newImages = [...newImage, imageData];
+    console.log(newImages)
     setNewImage(newImages);
     removeImage("");
     toast.success("Image has been uploaded successfully.");
@@ -194,6 +195,7 @@ const EditProperty = () => {
     const newUploadImage = [...newImage];
     newUploadImage.splice(index, 1);
     setNewImage(newUploadImage);
+    toast.success("Image has been removed successfully.");
   };
 
   const propertyListPageNavigator = () => {

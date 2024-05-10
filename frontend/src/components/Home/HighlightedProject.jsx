@@ -13,10 +13,9 @@ const HighlightedProject = ({ id, name, images, property }) => {
 
   return (
     <Card className={classes["card-style"]} onClick={propertyDetailsHandler}>
-      <img src={images[0]} />
+      <img src={`http://localhost:3000/${images[0]}`} />
       <div className={classes["property-details"]}>
         <h3>{name}</h3>
-        <h4>{property.property_location}</h4>
         <h5>Type: {property.property_type}</h5>
         <h5>Build year: {property.property_build_year}</h5>
       </div>
