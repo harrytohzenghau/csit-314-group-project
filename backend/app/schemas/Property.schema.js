@@ -86,17 +86,6 @@ const listingSchema = new Schema(
     { _id: false }
 );
 
-const relevantSchema = new Schema(
-    {
-        // favourites: {
-        //     type: Number,
-        //     required: true,
-        //     default: 0,
-        // },
-    },
-    { _id: false }
-);
-
 const propertySchema = new Schema(
     {
         property_agentSchema: {

@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 const port = 8080;
@@ -15,51 +16,58 @@ async function main() {
         console.log(`Mongo connected to Atlas`);
         return;
     }
-    const uri = `mongodb://${config.mongodb.host}:${config.mongodb.port}/UOW_RBS`;
+    const uri = `mongodb://${config.mongodb.host}:${config.mongodb.port}/RedDotSeed`;
     await mongoose.connect(uri);
     console.log(`Mongo connected to ${uri}`);
 }
 
-const Staff = require("../app/api/user/staff.model");
-const Student = require("../app/api/user/student.model");
+const User = require("../app/schemas/User.schema");
+const Agent = require("../app/schemas/Agent.schema");
+const Property = require("../app/schemas/Property.schema");
+// const Review = require("../app/schemas/Review.schema");
 
-const staffs = require("./staffs");
-const students = require("./students");
+const properties = require("./db/properties");
+const users = require("./db/users");
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.get("/staff", async (req, res) => {
-    await Staff.deleteMany();
-    for (let i = 0; i < staffs.length; i++) {
-        const newStaff = new Staff({
-            staff_details: {
-                username: staffs[i].username,
-                password: staffs[i].password,
-                contact_number: staffs[i].contact_number,
-                email_address: staffs[i].email_address,
-                staff: staffs[i].staff,
-            },
+app.get("/users", async (req, res) => {
+    for (const user of users) {
+        const { user_details, user_agent, user_admin, user_finance } = user;
+        const { password } = user_details;
+        user_details.password = await bcrypt.hash(password, 10);
+
+        const newUser = new User({
+            user_details,
+            user_agent,
+            user_admin,
+            user_finance,
         });
-        await newStaff.save();
+
+        if (user_agent) {
+            const newAgent = new Agent({ agent_userSchema: newUser._id });
+            await newAgent.save();
+        }
+
+        await newUser.save();
     }
     res.send("Saved!");
 });
 
-app.get("/student", async (req, res) => {
-    await Student.deleteMany();
-    for (let i = 0; i < staffs.length; i++) {
-        const newStudent = new Student({
-            student_details: {
-                username: students[i].username,
-                password: students[i].password,
-                contact_number: students[i].contact_number,
-                email_address: students[i].email_address,
-                student: students[i].staff,
-            },
-        });
-        await newStudent.save();
+app.get("/properties", async (req, res) => {
+    for (const prop of properties) {
+        const numOfAgents = await Agent.find().count();
+        const rand = Math.floor(Math.random() * numOfAgents);
+        const agent = await Agent.findOne({ step: rand });
+
+        const newProp = new Property(prop);
+        newProp.property_agentSchema = agent;
+        agent.agent_properties.push(newProp);
+
+        await agent.save();
+        await newProp.save();
     }
     res.send("Saved!");
 });
