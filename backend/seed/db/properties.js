@@ -16,6 +16,7 @@ let properties = [
             property_keyword: ["test", "my", "app"],
         },
         property_name: "first property",
+        property_images: [],
     },
 ];
 
