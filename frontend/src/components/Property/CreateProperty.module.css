@@ -86,6 +86,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+  margin-top: 2rem;
 }
 
 .create-property-uploaded-image-preview-wrapper h5 {

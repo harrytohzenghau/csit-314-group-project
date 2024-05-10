@@ -36,6 +36,7 @@ const MostSaved = () => {
               key={p._id}
               id={p._id}
               name={p.property_name}
+              images={p.property_images}
               property={p.property_propertySchema}
             />
           ))}

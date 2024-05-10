@@ -35,6 +35,7 @@ const MostViewed = () => {
             <HighlightedProject
               key={p._id}
               id={p._id}
+              images={p.property_images}
               name={p.property_name}
               property={p.property_propertySchema}
             />

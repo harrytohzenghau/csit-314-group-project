@@ -1,64 +1,56 @@
-import { useRef, useState } from "react";
-import Button from "./Button";
-import toast from "react-hot-toast";
+import React, { useState, useRef } from "react";
 import Input from "./Input";
+import Button from "./Button";
 import clasess from "./ImageUploader.module.css";
 
-function ImageToBase64Converter({ imageUploadHandler }) {
+const ImageUploader = ({ imageUploadHandler }) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const fileRef = useRef();
-  const [base64Image, setBase64Image] = useState("");
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setBase64Image(reader.result);
-    };
-
-    reader.readAsDataURL(file);
-  };
 
   const removeImageHandler = () => {
-    setBase64Image("");
+    setSelectedFile("");
+    setPreviewUrl(null);
+
     fileRef.current.value = "";
   };
 
-  const uploadImageHandler = () => {
-    if (base64Image === "") {
-      return toast.error("Please select an image to upload.");
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedFile(file);
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+  };
 
-    imageUploadHandler(base64Image, removeImageHandler);
+  const handleImageUpload = () => {
+    if (selectedFile) {
+      imageUploadHandler(selectedFile, previewUrl, removeImageHandler);
+    }
   };
 
   return (
     <div className={clasess["image-uploader-preview-wrapper"]}>
       <h5>Upload an image</h5>
-      <Input
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        ref={fileRef}
-      />
-      {base64Image && (
+      <Input ref={fileRef} type="file" onChange={handleFileChange} />
+      {previewUrl && (
         <div className={clasess["image-uploader-preview-wrapper"]}>
           <h5>Preview</h5>
-          <img src={base64Image} alt="Base64 Image" />
+          <img src={previewUrl} alt="Preview" />
         </div>
       )}
-      {base64Image && (
-        <div className={clasess["image-uploader-button-wrapper"]}>
-          <Button type="button" onClick={uploadImageHandler}>
-            Upload
-          </Button>
-          <Button type="button" style="underline" onClick={removeImageHandler}>
-            Cancel
-          </Button>
-        </div>
+      {selectedFile && (
+        <Button type="button" onClick={handleImageUpload}>
+          Upload Image
+        </Button>
       )}
     </div>
   );
-}
+};
 
-export default ImageToBase64Converter;
+export default ImageUploader;

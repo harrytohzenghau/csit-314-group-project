@@ -44,7 +44,22 @@ const EditProperty = () => {
 
       const data = await response.json();
       setProperty(data.property);
-      setKeyword(data.property.property_propertySchema.property_keyword);
+      let imagesData = [];
+
+      if (Array.isArray(data.property.property_images)) {
+        for (let i = 0; i < data.property.property_images.length; i++) {
+          imagesData.push(data.property.property_images[i]);
+        }
+      } else {
+        imagesData.push(data.property.property_images);
+      }
+
+      setImage(imagesData);
+      if (data.property.property_propertySchema.property_keyword[0] !== "") {
+        setKeyword(data.property.property_propertySchema.property_keyword);
+      } else {
+        setKeyword([]);
+      }
     }
 
     getProperty();
@@ -88,6 +103,7 @@ const EditProperty = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
   const [image, setImage] = useState([]);
+  const [newImage, setNewImage] = useState([]);
 
   const handleTypeOption = (value) => {
     setType(value);
@@ -150,14 +166,21 @@ const EditProperty = () => {
     toast.success("Keyword has been removed successfully.");
   };
 
-  const addImageHandler = (encodedImage, removeEncodedImage) => {
-    if (image.includes(encodedImage)) {
-      return toast.error("This image has been added.");
+  const addImageHandler = (imageFile, previewUrl, removeImage) => {
+    const existingImage = image.find((img) => img.previewUrl === previewUrl);
+
+    if (existingImage) {
+      return toast.error("This image has already been added.");
     }
 
-    const newImages = [...image, encodedImage];
-    setImage(newImages);
-    removeEncodedImage("");
+    const imageData = {
+      imageFile,
+      previewUrl,
+    };
+
+    const newImages = [...newImage, imageData];
+    setNewImage(newImages);
+    removeImage("");
     toast.success("Image has been uploaded successfully.");
   };
 
@@ -165,6 +188,12 @@ const EditProperty = () => {
     const newImages = image.filter((encoded) => encoded !== encodedStr);
     setImage(newImages);
     toast.success("Image has been removed successfully.");
+  };
+
+  const removeNewImageHandler = (index) => {
+    const newUploadImage = [...newImage];
+    newUploadImage.splice(index, 1);
+    setNewImage(newUploadImage);
   };
 
   const propertyListPageNavigator = () => {
@@ -178,27 +207,35 @@ const EditProperty = () => {
   const updatePropertySubmitHandler = async (e) => {
     e.preventDefault();
 
-    const updated_property = {
-      property_propertySchema: {
-        property_location: locationRef.current.value,
-        property_type: type,
-        property_new_project: newProject === "Yes" ? true : false,
-        property_price: parseInt(priceRef.current.value),
-        property_bedroom: parseInt(numberBedrooms),
-        property_floor_size: parseInt(floorSizeRef.current.value),
-        property_PSF: parseInt(PSFRef.current.value),
-        property_bathroom: parseInt(numberBathrooms),
-        property_tenure: tenure,
-        property_build_year: parseInt(selectedYear),
-        property_floor_level: floorLevel,
-        property_furnishing: furnishing,
-        property_keyword: keyword,
-        // property_listing_live_tour: liveTour === "Yes" ? true : false,
-        // property_listing_virtual_tour: virtualTour === "Yes" ? true : false,
-      },
-      property_name: nameRef.current.value,
-      // property_images: image,
-    };
+    const formData = new FormData();
+
+    // Append form fields
+    formData.append("property_location", locationRef.current.value);
+    formData.append("property_type", type);
+    formData.append(
+      "property_new_project",
+      newProject === "Yes" ? true : false
+    );
+    formData.append("property_price", parseInt(priceRef.current.value));
+    formData.append("property_bedroom", parseInt(numberBedrooms));
+    formData.append(
+      "property_floor_size",
+      parseInt(floorSizeRef.current.value)
+    );
+    formData.append("property_PSF", parseInt(PSFRef.current.value));
+    formData.append("property_bathroom", parseInt(numberBathrooms));
+    formData.append("property_tenure", tenure);
+    formData.append("property_build_year", parseInt(selectedYear));
+    formData.append("property_floor_level", floorLevel);
+    formData.append("property_furnishing", furnishing);
+    formData.append("property_keyword", keyword);
+    formData.append("property_name", nameRef.current.value);
+    formData.append("property_existing_images", [...image]);
+
+    for (let i = 0; i < newImage.length; i++) {
+      const imgFile = newImage[i].imageFile;
+      formData.append("property_images", imgFile); // Append each file object
+    }
 
     try {
       const response = await fetch(
@@ -207,9 +244,8 @@ const EditProperty = () => {
           method: "PATCH",
           headers: {
             Authorization: token,
-            "Content-type": "application/json",
           },
-          body: JSON.stringify(updated_property),
+          body: formData,
         }
       );
 
@@ -420,9 +456,9 @@ const EditProperty = () => {
                 <div
                   className={classes["create-property-uploaded-image-preview"]}
                 >
-                  {image.map((img) => (
+                  {image.map((img, index) => (
                     <div
-                      key={img}
+                      key={index}
                       className={
                         classes["create-property-uploaded-image-preview-button"]
                       }
@@ -435,10 +471,32 @@ const EditProperty = () => {
                         <RiCloseCircleFill
                           className={classes["create-property-close-button"]}
                         />
-                        <img src={img} />
+                        <img src={`http://localhost:3000/${img}`} />
                       </Button>
                     </div>
                   ))}
+                  {newImage.length > 0 &&
+                    newImage.map((img, index) => (
+                      <div
+                        key={index}
+                        className={
+                          classes[
+                            "create-property-uploaded-image-preview-button"
+                          ]
+                        }
+                      >
+                        <Button
+                          type="button"
+                          onClick={() => removeNewImageHandler(index)}
+                          className={classes["create-property-keyword-button"]}
+                        >
+                          <RiCloseCircleFill
+                            className={classes["create-property-close-button"]}
+                          />
+                          <img src={img.previewUrl} />
+                        </Button>
+                      </div>
+                    ))}
                 </div>
               </div>
             )}

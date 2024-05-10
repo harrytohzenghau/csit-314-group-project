@@ -82,8 +82,10 @@ const CreateProperty = () => {
       });
 
       const data = await response.json();
-      const usersOnly = data.allUsers.filter((user) => !user.user_agent && !user.user_admin);
-      
+      const usersOnly = data.allUsers.filter(
+        (user) => !user.user_agent && !user.user_admin
+      );
+
       for (let i = 0; i < usersOnly.length; i++) {
         const user = usersOnly[i];
         if (!users.includes(users.user_details.username)) {
@@ -91,10 +93,10 @@ const CreateProperty = () => {
           setUsers(newUsers);
         }
       }
-    }
+    };
 
     getUsers();
-  }, [users, token])
+  }, [users, token]);
 
   const handleTypeOption = (value) => {
     setType(value);
@@ -157,14 +159,21 @@ const CreateProperty = () => {
     toast.success("Keyword has been removed successfully.");
   };
 
-  const addImageHandler = (encodedImage, removeEncodedImage) => {
-    if (image.includes(encodedImage)) {
-      return toast.error("This image has been added.");
+  const addImageHandler = (imageFile, previewUrl, removeImage) => {
+    const existingImage = image.find((img) => img.previewUrl === previewUrl);
+
+    if (existingImage) {
+      return toast.error("This image has already been added.");
     }
 
-    const newImages = [...image, encodedImage];
+    const imageData = {
+      imageFile,
+      previewUrl,
+    };
+
+    const newImages = [...image, imageData];
     setImage(newImages);
-    removeEncodedImage("");
+    removeImage("");
     toast.success("Image has been uploaded successfully.");
   };
 
@@ -185,27 +194,35 @@ const CreateProperty = () => {
   const createPropertySubmitHandler = async (e) => {
     e.preventDefault();
 
-    const property = {
-      property_propertySchema: {
-        property_location: locationRef.current.value,
-        property_type: type,
-        property_new_project: newProject === "Yes" ? true : false,
-        property_price: parseInt(priceRef.current.value),
-        property_bedroom: parseInt(numberBedrooms),
-        property_floor_size: parseInt(floorSizeRef.current.value),
-        property_PSF: parseInt(PSFRef.current.value),
-        property_bathroom: parseInt(numberBathrooms),
-        property_tenure: tenure,
-        property_build_year: parseInt(selectedYear),
-        property_floor_level: floorLevel,
-        property_furnishing: furnishing,
-        property_keyword: keyword,
-        // property_listing_live_tour: liveTour === "Yes" ? true : false,
-        // property_listing_virtual_tour: virtualTour === "Yes" ? true : false,
-      },
-      property_name: nameRef.current.value,
-      property_images: image,
-    };
+    const formData = new FormData();
+
+    // Append form fields
+    formData.append("property_location", locationRef.current.value);
+    formData.append("property_type", type);
+    formData.append(
+      "property_new_project",
+      newProject === "Yes" ? true : false
+    );
+    formData.append("property_price", parseInt(priceRef.current.value));
+    formData.append("property_bedroom", parseInt(numberBedrooms));
+    formData.append(
+      "property_floor_size",
+      parseInt(floorSizeRef.current.value)
+    );
+    formData.append("property_PSF", parseInt(PSFRef.current.value));
+    formData.append("property_bathroom", parseInt(numberBathrooms));
+    formData.append("property_tenure", tenure);
+    formData.append("property_build_year", parseInt(selectedYear));
+    formData.append("property_floor_level", floorLevel);
+    formData.append("property_furnishing", furnishing);
+    formData.append("property_keyword", keyword);
+    formData.append("property_name", nameRef.current.value);
+
+    for (let i = 0; i < image.length; i++) {
+      const imgFile = image[i].imageFile;
+      formData.append('property_images', imgFile); // Append each file object
+    }
+
     try {
       const response = await fetch(
         `http://localhost:3000/api/agent/${userId}`,
@@ -213,9 +230,8 @@ const CreateProperty = () => {
           method: "POST",
           headers: {
             Authorization: token,
-            "Content-type": "application/json",
           },
-          body: JSON.stringify(property),
+          body: formData,
         }
       );
 
@@ -392,9 +408,9 @@ const CreateProperty = () => {
                 <div
                   className={classes["create-property-uploaded-image-preview"]}
                 >
-                  {image.map((img) => (
+                  {image.map((img, index) => (
                     <div
-                      key={img}
+                      key={index}
                       className={
                         classes["create-property-uploaded-image-preview-button"]
                       }
@@ -407,7 +423,7 @@ const CreateProperty = () => {
                         <RiCloseCircleFill
                           className={classes["create-property-close-button"]}
                         />
-                        <img src={img} />
+                        <img src={img.previewUrl} />
                       </Button>
                     </div>
                   ))}

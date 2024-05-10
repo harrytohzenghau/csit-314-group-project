@@ -2,8 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "./HighlightedProject.module.css";
 
-const HighlightedProject = ({ id, name, property }) => {
+const HighlightedProject = ({ id, name, images, property }) => {
   const navigate = useNavigate();
+
+  console.log(property)
 
   const propertyDetailsHandler = () => {
     navigate(`/property/${id}`);
@@ -11,7 +13,7 @@ const HighlightedProject = ({ id, name, property }) => {
 
   return (
     <Card className={classes["card-style"]} onClick={propertyDetailsHandler}>
-      {/* <img src={property.listing_images[0]} /> */}
+      <img src={images[0]} />
       <div className={classes["property-details"]}>
         <h3>{name}</h3>
         <h4>{property.property_location}</h4>
