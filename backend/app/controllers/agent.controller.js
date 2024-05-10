@@ -67,9 +67,9 @@ class AgentController {
 
             let property_images = [];
 
-            // for (let i = 0; i < req.files.length; i++) {
-            //     property_images.push(req.files[i].path);
-            // }
+            for (let i = 0; i < req.files.length; i++) {
+                property_images.push(req.files[i].path);
+            }
 
             const propertyData = {
                 property_propertySchema: {
