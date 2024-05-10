@@ -108,7 +108,7 @@ const userSchema = new Schema(
             required: true,
             default: new Date(),
         },
-        agent_properties: [
+        user_agent_properties: [
             {
                 type: Schema.Types.ObjectId,
                 required: true,

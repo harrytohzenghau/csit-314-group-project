@@ -72,6 +72,12 @@ class UserEntity {
         return this.user;
     }
 
+    async fetchAllUsersOnly() {
+        return await User.find({ user_admin: false, user_agent: false }).select(
+            "user_details.username"
+        );
+    }
+
     async createUser(data) {
         const { user_details, user_agent, user_admin } = data;
         const user_finance = {};

@@ -28,10 +28,14 @@ class AgentController {
             const agent = new AgentEntity();
             await agent.fetchAgentByUserId(id);
 
+            const user = new UserEntity();
+            const allUsers = await user.fetchAllUsersOnly();
+
             res.status(201).json({
                 success: true,
                 message: "Agent fetched",
                 allProperty: agent.agentProperty,
+                allUsers,
             });
         } catch (error) {
             res.status(500).json({
