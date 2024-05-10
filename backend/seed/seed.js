@@ -16,7 +16,7 @@ async function main() {
         console.log(`Mongo connected to Atlas`);
         return;
     }
-    const uri = `mongodb://${config.mongodb.host}:${config.mongodb.port}/RedDotSeed`;
+    const uri = `mongodb://${config.mongodb.host}:${config.mongodb.port}/RedDot`;
     await mongoose.connect(uri);
     console.log(`Mongo connected to ${uri}`);
 }
