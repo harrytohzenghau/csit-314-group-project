@@ -30,7 +30,7 @@ const PropertyCard = ({
 
   return (
     <Card className={classes["card-style"]}>
-      <div>
+      <div onClick={() => propertyDetailHandler(property._id)}>
         <img src={`http://localhost:3000/${property.property_images[0]}`} />
       </div>
       <div className={classes["property-card-details-wrapper"]}>

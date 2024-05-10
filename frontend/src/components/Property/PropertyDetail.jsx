@@ -11,12 +11,14 @@ import { useCookies } from "react-cookie";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import toast from "react-hot-toast";
+import ImageCarousel from "../UI/ImageCarousel";
 
 const PropertyDetail = () => {
   const { id } = useParams();
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [property, setProperty] = useState(null);
+  const [images, setImages] = useState([]);
   const [agent, setAgent] = useState(null);
 
   const navigate = useNavigate();
@@ -45,7 +47,6 @@ const PropertyDetail = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -80,7 +81,6 @@ const PropertyDetail = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error(
@@ -137,6 +137,7 @@ const PropertyDetail = () => {
         }
         const data = await response.json();
         setProperty(data.property);
+        setImages(data.property.property_images);
         setAgent(data.property.property_agentSchema);
       } catch (error) {
         console.error("Error fetching property data:", error);
@@ -148,7 +149,9 @@ const PropertyDetail = () => {
 
   return (
     <Card className={classes["card-style"]}>
-      <div></div>
+      <div>
+        <ImageCarousel images={images} />
+      </div>
       <div className={classes["property-all-detail-wrapper"]}>
         <div className={classes["proprety-all-detail-outer-wrapper"]}>
           <div className={classes["property-detail-content-wrapper"]}>
