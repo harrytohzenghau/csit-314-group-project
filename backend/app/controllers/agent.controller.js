@@ -1,4 +1,5 @@
 const AgentEntity = require("../entities/roles/agent.entity");
+const UserEntity = require("../entities/roles/user.entity");
 const PropertyEntity = require("../entities/property.entity");
 const fs = require("fs");
 
@@ -43,7 +44,7 @@ class AgentController {
     async postProperty(req, res) {
         try {
             const {
-                user_id,
+                seller_id,
                 property_location,
                 property_type,
                 property_new_project,
@@ -62,9 +63,9 @@ class AgentController {
 
             let property_images = [];
 
-            for (let i = 0; i < req.files.length; i++) {
-                property_images.push(req.files[i].path);
-            }
+            // for (let i = 0; i < req.files.length; i++) {
+            //     property_images.push(req.files[i].path);
+            // }
 
             const propertyData = {
                 property_propertySchema: {
@@ -89,21 +90,20 @@ class AgentController {
             const agent = new AgentEntity();
             await agent.fetchAgentByUserId(id);
 
+            const user = new UserEntity();
+            await user.fetchUserById(seller_id);
+
             const property = new PropertyEntity();
-            await property.createProperty(
-                agent.agent._id,
-                user_id,
-                propertyData
-            );
+            await property.createProperty(agent.agent._id, propertyData);
 
             await agent.addToAgentProperty(property);
+            await user.addToUserProperty(property);
 
             res.status(201).json({
                 success: true,
                 message: "New property",
             });
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to create property",

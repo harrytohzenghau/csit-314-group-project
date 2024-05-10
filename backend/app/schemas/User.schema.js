@@ -108,6 +108,13 @@ const userSchema = new Schema(
             required: true,
             default: new Date(),
         },
+        agent_properties: [
+            {
+                type: Schema.Types.ObjectId,
+                required: true,
+                ref: "Property",
+            },
+        ],
     },
     { minimize: false }
 );

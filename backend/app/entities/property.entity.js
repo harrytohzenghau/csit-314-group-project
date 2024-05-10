@@ -61,11 +61,10 @@ class PropertyEntity {
         return;
     }
 
-    async createProperty(agent_id, user_id, data) {
+    async createProperty(agent_id, data) {
         this.property = new Property(data);
         this.property.property_agentSchema = agent_id;
-        console.log(this.property);
-        // await this.property.save();
+        await this.property.save();
 
         return;
     }

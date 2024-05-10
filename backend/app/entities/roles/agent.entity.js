@@ -33,7 +33,7 @@ class AgentEntity extends UserEntity {
 
     async addToAgentProperty(property) {
         this.agent.agent_properties.push(property.propertyId);
-        this.agent.save();
+        await this.agent.save();
         return;
     }
 

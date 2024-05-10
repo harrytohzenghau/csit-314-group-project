@@ -54,7 +54,10 @@ class UserEntity {
     }
 
     async fetchUserById(id) {
-        this.user = await User.findById(id).select("-user_details.password");
+        this.user = await User.findById(id)
+            .select("-user_details.password")
+            .populate("agent_properties");
+
         if (!this.user) throw "User not found";
         return this.user;
     }
@@ -124,6 +127,12 @@ class UserEntity {
 
     async removeUserById(id) {
         await User.findByIdAndDelete(id);
+        return;
+    }
+
+    async addToUserProperty(property) {
+        this.user.agent_properties.push(property.propertyId);
+        await this.user.save();
         return;
     }
 
