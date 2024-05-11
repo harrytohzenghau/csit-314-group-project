@@ -93,6 +93,11 @@ const propertySchema = new Schema(
             required: true,
             ref: "Agent",
         },
+        property_userSchema: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: "User",
+        },
         property_propertySchema: {
             type: listingSchema,
             required: true,

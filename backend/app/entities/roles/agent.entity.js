@@ -27,7 +27,14 @@ class AgentEntity extends UserEntity {
     async fetchAgentByUserId(user_id) {
         this.agent = await Agent.findOne({
             agent_userSchema: user_id,
-        }).populate("agent_properties");
+        }).populate({
+            path: "agent_properties",
+            populate: {
+                path: "property_userSchema",
+                select: "user_details.username",
+            },
+        });
+
         return;
     }
 

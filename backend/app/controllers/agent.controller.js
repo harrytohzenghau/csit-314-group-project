@@ -67,9 +67,9 @@ class AgentController {
 
             let property_images = [];
 
-            for (let i = 0; i < req.files.length; i++) {
-                property_images.push(req.files[i].path);
-            }
+            // for (let i = 0; i < req.files.length; i++) {
+            //     property_images.push(req.files[i].path);
+            // }
 
             const propertyData = {
                 property_propertySchema: {
@@ -98,7 +98,11 @@ class AgentController {
             await user.fetchUserById(seller_id);
 
             const property = new PropertyEntity();
-            await property.createProperty(agent.agent._id, propertyData);
+            await property.createProperty(
+                agent.agent._id,
+                user.user._id,
+                propertyData
+            );
 
             await agent.addToAgentProperty(property);
             await user.addToUserProperty(property);
@@ -108,6 +112,7 @@ class AgentController {
                 message: "New property",
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to create property",

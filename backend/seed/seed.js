@@ -62,8 +62,20 @@ app.get("/properties", async (req, res) => {
         const rand = Math.floor(Math.random() * numOfAgents);
         const agent = await Agent.findOne({ step: rand });
 
+        const numOfUsers = await Agent.find({
+            user_admin: false,
+            user_agent: false,
+        }).count();
+        const randUsers = Math.floor(Math.random() * numOfUsers);
+        const user = await User.findOne({
+            user_admin: false,
+            user_agent: false,
+            step: randUsers,
+        });
+
         const newProp = new Property(prop);
         newProp.property_agentSchema = agent;
+        newProp.property_userSchema = user;
         agent.agent_properties.push(newProp);
 
         await agent.save();
