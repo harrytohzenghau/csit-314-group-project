@@ -57,6 +57,7 @@ app.get("/users", async (req, res) => {
 });
 
 app.get("/properties", async (req, res) => {
+    let image = 1;
     for (const prop of properties) {
         const numOfAgents = await Agent.find().count();
         const rand = Math.floor(Math.random() * numOfAgents);
@@ -72,6 +73,11 @@ app.get("/properties", async (req, res) => {
             user_agent: false,
             step: randUsers,
         });
+
+        prop.property_images.push(`uploads/images/Property - ${image}.jpg`);
+        image++;
+        prop.property_images.push(`uploads/images/Property - ${image}.jpg`);
+        image++;
 
         const newProp = new Property(prop);
         newProp.property_agentSchema = agent;
