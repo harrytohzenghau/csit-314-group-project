@@ -184,7 +184,7 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
             type="radio"
             label="1"
             htmlFor="1"
-            name="1bedroom"
+            name="bedroom"
           />
           <Input
             ref={twoBedroomRef}

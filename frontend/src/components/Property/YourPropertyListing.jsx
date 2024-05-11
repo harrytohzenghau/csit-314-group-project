@@ -16,7 +16,11 @@ const YourPropertyListing = () => {
   const id = cookie.id;
   const token = cookie.token;
   const user_type = cookie.user_type;
-  
+
+  const viewPropertyHandler = (id) => {
+    navigate(`/property/${id}`)
+  }
+
   const customStyles = {
     table: {
       style: {
@@ -86,24 +90,39 @@ const YourPropertyListing = () => {
       },
       sortable: true,
     },
+    {
+      name: "Action",
+      selector: (row) => {
+        return (
+          <div className={classes["user-list-action-button"]}>
+            <Button
+              type="button"
+              style="primary"
+              onClick={() => viewPropertyHandler(row._id)}
+            >
+              View Property
+            </Button>
+          </div>
+        );
+      },
+    },
   ];
 
-//   useEffect(() => {
-//     async function getAllProperties() {
-//       const response = await fetch(`http://localhost:3000/api/agent/${id}`, {
-//         method: "GET",
-//         headers: {
-//           Authorization: token,
-//         },
-//       });
+  useEffect(() => {
+    async function getAllProperties() {
+      const response = await fetch(`http://localhost:3000/api/profile/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      });
 
-//       const data = await response.json();
-//       console.log(data);
-//       setAllProperties(data.allProperty);
-//     }
+      const data = await response.json();
+      setAllProperties(data.profile.user_agent_properties);
+    }
 
-//     getAllProperties();
-//   }, [token, id]);
+    getAllProperties();
+  }, [token, id]);
 
   return (
     <Card className={classes["user-list-wrapper"]}>

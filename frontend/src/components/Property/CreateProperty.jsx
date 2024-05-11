@@ -204,8 +204,7 @@ const CreateProperty = () => {
 
     const formData = new FormData();
 
-    console.log(user);
-
+    console.log(user)
     // Append form fields
     formData.append("seller_id", user);
     formData.append("property_location", locationRef.current.value);
@@ -229,13 +228,12 @@ const CreateProperty = () => {
     formData.append("property_keyword", keyword);
     formData.append("property_name", nameRef.current.value);
 
-    console.log(user);
-    console.log(numberBedrooms);
-    console.log(numberBathrooms);
     for (let i = 0; i < image.length; i++) {
       const imgFile = image[i].imageFile;
+      console.log(imgFile)
       formData.append("property_images", imgFile); // Append each file object
     }
+
 
     try {
       const response = await fetch(

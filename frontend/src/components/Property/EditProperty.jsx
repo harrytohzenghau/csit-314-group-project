@@ -10,6 +10,7 @@ import YearPicker from "../UI/YearPicker";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ImageUploader from "../UI/ImageUploader";
 import { useCookies } from "react-cookie";
+import SpecialDropdown from "../UI/SpecialDropdown";
 
 const EditProperty = () => {
   const { id } = useParams();
@@ -29,8 +30,10 @@ const EditProperty = () => {
   const user_type = cookie.user_type;
 
   const [property, setProperty] = useState(null);
+  const [user, setUser] = useState([])
   const [agent, setAgent] = useState([]);
 
+  const [users, setUsers] = useState([])
   const [agents, setAgents] = useState([]);
 
   useEffect(() => {
@@ -91,6 +94,35 @@ const EditProperty = () => {
     }
   });
 
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/agent/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const data = await response.json();
+      const usersOnly = data.allUsers.filter(
+        (user) => !user.user_agent && !user.user_admin
+      );
+
+      for (let i = 0; i < usersOnly.length; i++) {
+        const user = usersOnly[i];
+        if (!users.find((u) => u._id === user._id)) {
+          const newUsers = [...users, user];
+          setUsers(newUsers);
+        }
+      }
+    };
+
+    getUsers();
+  }, [userId, token, users]);
+
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");
   const [numberBedrooms, setNumberBedrooms] = useState(1);
@@ -140,6 +172,10 @@ const EditProperty = () => {
   const handleYearOption = (value) => {
     console.log(value);
     setSelectedYear(value);
+  };
+
+  const handleUserOption = (value) => {
+    setUser(value);
   };
 
   const handleAgentOption = (value) => {
@@ -213,6 +249,7 @@ const EditProperty = () => {
     const formData = new FormData();
 
     // Append form fields
+    
     formData.append("property_location", locationRef.current.value);
     formData.append("property_type", type);
     formData.append(
@@ -374,6 +411,14 @@ const EditProperty = () => {
                   property.property_propertySchema.property_build_year)
               }
               selectedHandler={handleYearOption}
+            />
+          </div>
+          <div className={classes["create-property-input-row-wrapper"]}>
+            <SpecialDropdown
+              title="Customer"
+              value={users.map((u) => u._id)}
+              options={users.map((u) => u.user_details.username)}
+              selectedHandler={handleUserOption}
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
