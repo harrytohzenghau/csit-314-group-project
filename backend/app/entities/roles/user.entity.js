@@ -56,7 +56,7 @@ class UserEntity {
     async fetchUserById(id) {
         this.user = await User.findById(id)
             .select("-user_details.password")
-            .populate("agent_properties");
+            .populate("user_agent_properties");
 
         if (!this.user) throw "User not found";
         return this.user;
