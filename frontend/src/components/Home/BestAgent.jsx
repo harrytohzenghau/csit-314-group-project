@@ -1,7 +1,7 @@
 import { MdStar } from "react-icons/md";
 import Card from "../UI/Card";
 import classes from "./BestAgent.module.css";
-import data from "../../util/DUMMY_AGENTS.json";
+// import data from "../../util/DUMMY_AGENTS.json";
 
 const BestAgent = () => {
   return (

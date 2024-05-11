@@ -11,7 +11,7 @@ const HomePage = () => {
       <Divider size="small" />
       <MostViewed />
       <MostLiked />
-      <BestAgent />
+      {/* <BestAgent /> */}
     </>
   );
 };
