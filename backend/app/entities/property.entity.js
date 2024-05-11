@@ -40,6 +40,7 @@ class PropertyEntity {
             property_bedroom,
             price_max,
             price_min,
+            sort,
         } = data;
 
         this.allProperty = await Property.find({
@@ -56,7 +57,7 @@ class PropertyEntity {
                 $regex: property_bedroom || "",
                 $options: "i",
             },
-        });
+        }).sort(["property_propertySchema.property_price", sort || -1]);
 
         return;
     }
@@ -78,6 +79,10 @@ class PropertyEntity {
         return;
     }
 
+    filterOut(property_id, obj) {
+        return obj.filter((e) => e != property_id);
+    }
+
     async deleteProperty(property_id) {
         this.property = await Property.findById(property_id)
             .populate("property_agentSchema")
@@ -85,20 +90,26 @@ class PropertyEntity {
 
         const allUserProperties =
             this.property.property_userSchema.user_agent_properties;
+        const allUserFav = this.property.property_userSchema.user_favourites;
+        const allUserLikes = this.property.property_userSchema.user_likes;
         const allAgentProperties =
             this.property.property_agentSchema.agent_properties;
 
-        const remainingUserProperties = allUserProperties.filter(
-            (e) => e != property_id
+        this.property.property_userSchema.user_agent_properties =
+            this.filterOut(property_id, allUserProperties);
+        this.property.property_userSchema.user_favourites = this.filterOut(
+            property_id,
+            allUserFav
         );
-        const remainingAgentProperties = allAgentProperties.filter(
-            (e) => e != property_id
+        this.property.property_userSchema.user_likes = this.filterOut(
+            property_id,
+            allUserLikes
         );
 
-        this.property.property_userSchema.user_agent_properties =
-            remainingUserProperties;
-        this.property.property_agentSchema.agent_properties =
-            remainingAgentProperties;
+        this.property.property_agentSchema.agent_properties = this.filterOut(
+            property_id,
+            allAgentProperties
+        );
 
         await this.property.property_agentSchema.save();
         await this.property.property_userSchema.save();
