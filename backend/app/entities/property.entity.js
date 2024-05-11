@@ -79,20 +79,30 @@ class PropertyEntity {
     }
 
     async deleteProperty(property_id) {
-        this.property = await Property.findById(property_id).populate(
-            "property_agentSchema"
-        );
+        this.property = await Property.findById(property_id)
+            .populate("property_agentSchema")
+            .populate("property_userSchema");
+
+        const allUserProperties =
+            this.property.property_userSchema.user_agent_properties;
         const allAgentProperties =
             this.property.property_agentSchema.agent_properties;
 
+        const remainingUserProperties = allUserProperties.filter(
+            (e) => e != property_id
+        );
         const remainingAgentProperties = allAgentProperties.filter(
             (e) => e != property_id
         );
 
+        this.property.property_userSchema.user_agent_properties =
+            remainingUserProperties;
         this.property.property_agentSchema.agent_properties =
             remainingAgentProperties;
 
         await this.property.property_agentSchema.save();
+        await this.property.property_userSchema.save();
+
         await Property.findByIdAndDelete(property_id);
         return;
     }

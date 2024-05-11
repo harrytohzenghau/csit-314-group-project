@@ -83,8 +83,10 @@ app.get("/properties", async (req, res) => {
         newProp.property_agentSchema = agent;
         newProp.property_userSchema = user;
         agent.agent_properties.push(newProp);
+        user.user_agent_properties.push(newProp);
 
         await agent.save();
+        await user.save();
         await newProp.save();
     }
     res.send("Saved!");

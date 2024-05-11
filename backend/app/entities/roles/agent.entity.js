@@ -1,6 +1,7 @@
 const UserEntity = require("./user.entity");
 const Agent = require("../../schemas/Agent.schema");
 const User = require("../../schemas/User.schema");
+const Property = require("../../schemas/Property.schema");
 
 class AgentEntity extends UserEntity {
     agent = {};
@@ -54,6 +55,7 @@ class AgentEntity extends UserEntity {
     }
 
     async removeAgentById(id) {
+        await Property.deleteMany({ property_userSchema: id });
         await Agent.findOneAndDelete({ agent_userSchema: id });
         await User.findByIdAndDelete(id);
         return;

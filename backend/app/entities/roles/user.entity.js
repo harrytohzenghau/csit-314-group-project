@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 
 const User = require("../../schemas/User.schema");
+const Agent = require("../../schemas/Agent.schema");
+const Property = require("../../schemas/Property.schema");
 
 class UserEntity {
     user_details = {};
@@ -132,6 +134,25 @@ class UserEntity {
     }
 
     async removeUserById(id) {
+        const allProp = await Property.find({
+            property_userSchema: id,
+        }).populate({ property_agentSchema });
+
+        for (const prop of allProp) {
+            const allAgentProperties =
+                prop.property_agentSchema.agent_properties;
+
+            const remainingAgentProperties = allAgentProperties.filter(
+                (e) => e != prop._id
+            );
+
+            prop.property_agentSchema.agent_properties =
+                remainingAgentProperties;
+
+            await prop.property_agentSchema.save();
+        }
+
+        await Property.deleteMany({ property_userSchema: id });
         await User.findByIdAndDelete(id);
         return;
     }
