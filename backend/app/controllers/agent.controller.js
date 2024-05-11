@@ -31,13 +31,12 @@ class AgentController {
 
             res.status(201).json({
                 success: true,
-                message: "All Agents fetched",
-                allAgents: agent.allAgents,
+                message: "Agent Reviewed",
             });
         } catch (error) {
             res.status(500).json({
                 error,
-                message: "Failed to fetch agents",
+                message: "Agent Reviewed",
             });
         }
     }

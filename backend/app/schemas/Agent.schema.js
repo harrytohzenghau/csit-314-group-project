@@ -11,7 +11,7 @@ const agentSchema = new Schema(
         agent_rating: {
             type: Number,
             required: true,
-            default: 5,
+            default: 0,
         },
         agent_reviews: [
             {
