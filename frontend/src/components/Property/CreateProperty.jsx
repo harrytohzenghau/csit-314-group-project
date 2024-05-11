@@ -10,6 +10,7 @@ import YearPicker from "../UI/YearPicker";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ImageUploader from "../UI/ImageUploader";
 import { useCookies } from "react-cookie";
+import SpecialDropdown from "../UI/SpecialDropdown";
 
 const CreateProperty = () => {
   const nameRef = useRef();
@@ -74,12 +75,15 @@ const CreateProperty = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await fetch("http://localhost:3000/api/admin", {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/agent/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
       const data = await response.json();
       const usersOnly = data.allUsers.filter(
@@ -88,15 +92,15 @@ const CreateProperty = () => {
 
       for (let i = 0; i < usersOnly.length; i++) {
         const user = usersOnly[i];
-        if (!users.includes(users.user_details.username)) {
-          const newUsers = [...users, user.user_details];
+        if (!users.find((u) => u._id === user._id)) {
+          const newUsers = [...users, user];
           setUsers(newUsers);
         }
       }
     };
 
     getUsers();
-  }, [users, token]);
+  }, [userId, token, users]);
 
   const handleTypeOption = (value) => {
     setType(value);
@@ -132,6 +136,10 @@ const CreateProperty = () => {
 
   const handleYearOption = (value) => {
     setSelectedYear(value);
+  };
+
+  const handleUserOption = (value) => {
+    setUser(value);
   };
 
   const handleAgentOption = (value) => {
@@ -196,7 +204,10 @@ const CreateProperty = () => {
 
     const formData = new FormData();
 
+    console.log(user);
+
     // Append form fields
+    formData.append("seller_id", user);
     formData.append("property_location", locationRef.current.value);
     formData.append("property_type", type);
     formData.append(
@@ -218,9 +229,12 @@ const CreateProperty = () => {
     formData.append("property_keyword", keyword);
     formData.append("property_name", nameRef.current.value);
 
+    console.log(user);
+    console.log(numberBedrooms);
+    console.log(numberBathrooms);
     for (let i = 0; i < image.length; i++) {
       const imgFile = image[i].imageFile;
-      formData.append('property_images', imgFile); // Append each file object
+      formData.append("property_images", imgFile); // Append each file object
     }
 
     try {
@@ -331,10 +345,11 @@ const CreateProperty = () => {
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
-            <Dropdown
+            <SpecialDropdown
               title="Customer"
-              options={["Ground", "Low", "Mid", "High", "Penthouse"]}
-              selectedHandler={handleFloorLevelOption}
+              value={users.map((u) => u._id)}
+              options={users.map((u) => u.user_details.username)}
+              selectedHandler={handleUserOption}
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>

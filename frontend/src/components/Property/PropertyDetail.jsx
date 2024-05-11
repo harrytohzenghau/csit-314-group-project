@@ -149,9 +149,7 @@ const PropertyDetail = () => {
 
   return (
     <Card className={classes["card-style"]}>
-      <div>
-        <ImageCarousel images={images} />
-      </div>
+      <div>{images.length > 0 && <ImageCarousel images={images} />}</div>
       <div className={classes["property-all-detail-wrapper"]}>
         <div className={classes["proprety-all-detail-outer-wrapper"]}>
           <div className={classes["property-detail-content-wrapper"]}>

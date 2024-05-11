@@ -138,6 +138,7 @@ const EditProperty = () => {
   // };
 
   const handleYearOption = (value) => {
+    console.log(value);
     setSelectedYear(value);
   };
 
@@ -179,7 +180,7 @@ const EditProperty = () => {
     };
 
     const newImages = [...newImage, imageData];
-    console.log(newImages)
+    console.log(newImages);
     setNewImage(newImages);
     removeImage("");
     toast.success("Image has been uploaded successfully.");
@@ -368,9 +369,9 @@ const EditProperty = () => {
             />
             <YearPicker
               selectedYear={
+                selectedYear ||
                 (property &&
-                  property.property_propertySchema.property_build_year) ||
-                selectedYear
+                  property.property_propertySchema.property_build_year)
               }
               selectedHandler={handleYearOption}
             />
@@ -448,7 +449,7 @@ const EditProperty = () => {
           </div>
           <div>
             <ImageUploader imageUploadHandler={addImageHandler} />
-            {image.length > 0 && (
+            {(image.length > 0 || newImage.length > 0) && (
               <div
                 className={
                   classes["create-property-uploaded-image-preview-wrapper"]
