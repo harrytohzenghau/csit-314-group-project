@@ -57,7 +57,7 @@ class PropertyEntity {
                 $regex: property_bedroom || "",
                 $options: "i",
             },
-        }).sort(["property_propertySchema.property_price", sort || -1]);
+        }).sort({ "property_propertySchema.property_price": sort || 1 });
 
         return;
     }

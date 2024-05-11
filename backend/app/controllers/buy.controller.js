@@ -12,6 +12,7 @@ class BuyController {
                 properties: property.allProperty,
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error,
                 message: "No Property Found",
