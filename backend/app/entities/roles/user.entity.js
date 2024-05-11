@@ -137,7 +137,7 @@ class UserEntity {
     }
 
     async addToUserProperty(property) {
-        this.user.agent_properties.push(property.propertyId);
+        this.user.user_agent_properties.push(property.propertyId);
         await this.user.save();
         return;
     }
