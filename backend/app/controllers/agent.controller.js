@@ -22,10 +22,12 @@ class AgentController {
         }
     }
 
-    async postAgentRating(req, res) {
+    async postAgentReview(req, res) {
         try {
+            const { user_id } = req.params;
             const agent = new AgentEntity();
-            await agent.fetchAllAgents();
+            await agent.fetchAgentByUserId(user_id);
+            await agent.reviewAgent(req.body);
 
             res.status(201).json({
                 success: true,

@@ -24,6 +24,15 @@ class AgentEntity extends UserEntity {
         return;
     }
 
+    async reviewAgent(data) {
+        const { agentRating, agentReview } = data;
+        this.agent.agent_reviews.push(agentReview);
+        const reviews = this.agent.agent_reviews.length;
+        this.agent.agent_rating =
+            (this.agent.agent_rating + agentRating) / reviews;
+        this.agent.save();
+    }
+
     async fetchAgentByUserId(user_id) {
         this.agent = await Agent.findOne({
             agent_userSchema: user_id,

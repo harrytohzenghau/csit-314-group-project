@@ -19,13 +19,21 @@ const agent = new AgentController();
 router.route("/").get(catchAsync(agent.getAllAgents));
 
 router
-  .route("/:id")
-  .get(catchAsync(agent.getAgentProperty))
-  .post(fileUpload.array("property_images", 4), catchAsync(agent.postProperty));
+    .route("/:id")
+    .get(catchAsync(agent.getAgentProperty))
+    .post(
+        fileUpload.array("property_images", 4),
+        catchAsync(agent.postProperty)
+    );
 
 router
-  .route("/:property_id")
-  .patch(fileUpload.array("property_images", 4), catchAsync(agent.patchProperty))
-  .delete(catchAsync(agent.deleteProperty));
+    .route("/:property_id")
+    .patch(
+        fileUpload.array("property_images", 4),
+        catchAsync(agent.patchProperty)
+    )
+    .delete(catchAsync(agent.deleteProperty));
+
+router.route("/review/:user_id").post(catchAsync(agent.postAgentReview));
 
 module.exports = router;

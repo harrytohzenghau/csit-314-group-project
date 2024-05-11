@@ -15,9 +15,9 @@ const agentSchema = new Schema(
         },
         agent_reviews: [
             {
-                type: Schema.Types.ObjectId,
+                type: String,
                 required: true,
-                ref: "Review",
+                default: "He was Great!!",
             },
         ],
         agent_properties: [
