@@ -20,7 +20,6 @@ const FindAgent = () => {
       }
 
       const data = await response.json();
-      console.log(data.allAgents)
       setAgents(data.allAgents);
     };
 

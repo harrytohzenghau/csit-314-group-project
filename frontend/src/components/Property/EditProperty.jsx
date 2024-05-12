@@ -125,7 +125,6 @@ const EditProperty = () => {
   };
 
   const handleYearOption = (value) => {
-    console.log(value);
     setSelectedYear(value);
   };
 
@@ -197,9 +196,6 @@ const EditProperty = () => {
     e.preventDefault();
 
     const formData = new FormData();
-
-    console.log(nameRef.current.value)
-
     // Append form fields
     formData.append("property_location", locationRef.current.value);
     formData.append("property_type", type);

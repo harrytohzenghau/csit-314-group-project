@@ -159,8 +159,6 @@ const CreateProperty = () => {
 
     const formData = new FormData();
 
-    console.log(user)
-
     // Append form fields
     formData.append("seller_id", user);
     formData.append("property_location", locationRef.current.value);

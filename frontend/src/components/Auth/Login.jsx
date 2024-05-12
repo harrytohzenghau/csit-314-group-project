@@ -47,8 +47,6 @@ const Login = () => {
     setCookie("id", userId);
     setCookie("token", token);
 
-    console.log(data)
-
     const userData_response = await fetch(
       `http://localhost:3000/api/profile/${userId}`,
       {

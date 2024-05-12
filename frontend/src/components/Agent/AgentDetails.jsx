@@ -32,7 +32,6 @@ const AgentDetails = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setAgent(data.profile.user_details);
     };
 
