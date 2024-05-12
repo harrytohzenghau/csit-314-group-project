@@ -38,7 +38,6 @@ const SavedListing = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -75,7 +74,6 @@ const SavedListing = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error(
@@ -128,24 +126,25 @@ const SavedListing = () => {
   return (
     <>
       <div className={classes["property-card-wrapper"]}>
-        {savedProperties.length === 0 && (
+        {savedProperties.length === 0 ? (
           <Card className={classes["card-style"]}>
             <h1>No properties saved</h1>
           </Card>
+        ) : (
+          savedProperties.map((p) => {
+            const isLiked = liked.includes(p._id);
+            return (
+              <PropertyCard
+                key={p._id}
+                property={p}
+                savedHandler={savedHandler}
+                likeHandler={likedHandler}
+                isSaved={true}
+                isLiked={isLiked}
+              />
+            );
+          })
         )}
-        {savedProperties.map((p) => {
-          const isLiked = liked.includes(p._id);
-          return (
-            <PropertyCard
-              key={p._id}
-              property={p}
-              savedHandler={savedHandler}
-              likeHandler={likedHandler}
-              isSaved={true}
-              isLiked={isLiked}
-            />
-          );
-        })}
       </div>
     </>
   );
