@@ -55,7 +55,6 @@ const EditProperty = () => {
 
       setImage(imagesData);
       if (data.property.property_propertySchema.property_keyword[0] !== "") {
-        console.log(data.property.property_propertySchema.property_keyword);
         setKeyword(data.property.property_propertySchema.property_keyword);
       } else {
         setKeyword([]);
