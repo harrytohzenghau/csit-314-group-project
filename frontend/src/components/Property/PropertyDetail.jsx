@@ -139,6 +139,13 @@ const PropertyDetail = () => {
         setProperty(data.property);
         setImages(data.property.property_images);
         setAgent(data.property.property_agentSchema);
+
+        await fetch(`http://localhost:3000/api/buy/add/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
       } catch (error) {
         console.error("Error fetching property data:", error);
       }

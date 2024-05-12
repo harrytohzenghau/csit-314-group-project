@@ -76,7 +76,7 @@ const UserList = () => {
     );
 
     const userData = await userData_response.json();
-
+    
     const response = await fetch(`http://localhost:3000/api/admin`, {
       method: "DELETE",
       headers: {
@@ -85,7 +85,7 @@ const UserList = () => {
       },
       body: JSON.stringify({
         id: userData.profile._id,
-        "user-agent": userData.user_agent,
+        "user_agent": userData.profile.user_agent,
       }),
     });
 
