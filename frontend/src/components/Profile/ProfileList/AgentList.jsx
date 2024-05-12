@@ -85,7 +85,7 @@ const AgentList = () => {
       },
       body: JSON.stringify({
         id: userData.profile._id,
-        "user-agent": userData.user_agent,
+        user_agent: userData.profile.user_agent,
       }),
     });
 
