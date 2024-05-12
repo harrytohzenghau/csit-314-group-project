@@ -102,6 +102,7 @@ const Register = () => {
         const token = data.token;
 
         setCookie("id", userId);
+        setCookie("username", usernameRef.current.value);
         setCookie("token", token);
 
         const userData_response = await fetch(
