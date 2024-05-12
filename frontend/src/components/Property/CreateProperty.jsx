@@ -21,12 +21,11 @@ const CreateProperty = () => {
   const keywordRef = useRef();
 
   const [cookie] = useCookies();
-
   const token = cookie.token;
   const userId = cookie.id;
+  const user_type = cookie.user_type;
 
   const navigate = useNavigate();
-  const user_type = cookie.user_type;
 
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");
@@ -34,44 +33,12 @@ const CreateProperty = () => {
   const [tenure, setTenure] = useState("");
   const [floorLevel, setFloorLevel] = useState("");
   const [furnishing, setFurnishing] = useState("");
-  // const [liveTour, setLiveTour] = useState("");
-  // const [virtualTour, setVirtualTour] = useState("");
   const [numberBathrooms, setNumberBathrooms] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
   const [image, setImage] = useState([]);
   const [user, setUser] = useState([]);
   const [users, setUsers] = useState([]);
-
-  const [agent, setAgent] = useState([]);
-
-  const [agents, setAgents] = useState([]);
-
-  useEffect(() => {
-    async function getAgent() {
-      const response = await fetch("http://localhost:3000/api/admin", {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      });
-
-      const data = await response.json();
-      const agentOnly = data.allUsers.filter((user) => user.user_agent);
-
-      for (let i = 0; i < agentOnly.length; i++) {
-        const agent = agentOnly[i];
-        if (!agents.includes(agent.user_details.username)) {
-          const newAgents = [...agents, agent.user_details.username];
-          setAgents(newAgents);
-        }
-      }
-    }
-
-    if (user_type === "admin") {
-      getAgent();
-    }
-  });
 
   useEffect(() => {
     const getUsers = async () => {
@@ -126,24 +93,12 @@ const CreateProperty = () => {
     setFurnishing(value);
   };
 
-  // const handleLiveTourOption = (value) => {
-  //   setLiveTour(value);
-  // };
-
-  // const handleVirtualTourOption = (value) => {
-  //   setVirtualTour(value);
-  // };
-
   const handleYearOption = (value) => {
     setSelectedYear(value);
   };
 
   const handleUserOption = (value) => {
     setUser(value);
-  };
-
-  const handleAgentOption = (value) => {
-    setAgent(value);
   };
 
   const addKeywordHandler = () => {
@@ -205,6 +160,7 @@ const CreateProperty = () => {
     const formData = new FormData();
 
     console.log(user)
+
     // Append form fields
     formData.append("seller_id", user);
     formData.append("property_location", locationRef.current.value);
@@ -232,7 +188,6 @@ const CreateProperty = () => {
       const imgFile = image[i].imageFile;
       formData.append("property_images", imgFile); // Append each file object
     }
-
 
     try {
       const response = await fetch(
@@ -317,19 +272,6 @@ const CreateProperty = () => {
               selectedHandler={handleFurnishingOption}
             />
           </div>
-
-          {/* <div className={classes["create-property-input-row-wrapper"]}>
-            <Dropdown
-              title="Live Tour"
-              options={["Yes", "No"]}
-              selectedHandler={handleLiveTourOption}
-            />
-            <Dropdown
-              title="Virtual Tour"
-              options={["Yes", "No"]}
-              selectedHandler={handleVirtualTourOption}
-            />
-          </div> */}
           <div className={classes["create-property-input-row-wrapper"]}>
             <Dropdown
               title="Number of Bathrooms"
@@ -348,15 +290,6 @@ const CreateProperty = () => {
               options={users.map((u) => u.user_details.username)}
               selectedHandler={handleUserOption}
             />
-          </div>
-          <div className={classes["create-property-input-row-wrapper"]}>
-            {user_type === "admin" && (
-              <Dropdown
-                title="Agent"
-                options={agents}
-                selectedHandler={handleAgentOption}
-              />
-            )}
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
             <Input
@@ -475,52 +408,6 @@ const CreateProperty = () => {
                 </Button>
               ))}
           </div>
-
-          {/* <div className={classes["create-property-input-row-wrapper"]}>
-            <Input
-              ref={usernameRef}
-              required={true}
-              name="username"
-              type="text"
-              label="Username"
-              className={classes["input-style"]}
-            />
-            <Input
-              ref={emailRef}
-              required={true}
-              name="email"
-              type="email"
-              label="Email"
-              className={classes["input-style"]}
-            />
-          </div>
-          <div className={classes["create-property-input-row-wrapper"]}>
-            <Input
-              ref={mobileNumberRef}
-              required={true}
-              name="mobile"
-              type="tel"
-              label="Mobile number"
-              className={classes["input-style"]}
-            />
-            <div></div>
-          </div>
-          <div className={classes["create-property-input-row-wrapper"]}>
-            <Input
-              ref={passwordRef}
-              required={true}
-              name="password"
-              type="password"
-              label="Password"
-              className={classes["input-style"]}
-            />
-            <Input
-              ref={repeatPasswordRef}
-              type="password"
-              label="Repeat Password"
-              className={classes["input-style"]}
-            />
-          </div>*/}
         </div>
         <div className={classes["create-property-button-wrapper"]}>
           <div className={classes["create-property-action-button"]}>

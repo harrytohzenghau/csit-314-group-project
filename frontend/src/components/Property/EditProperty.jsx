@@ -31,10 +31,6 @@ const EditProperty = () => {
 
   const [property, setProperty] = useState(null);
   const [user, setUser] = useState("");
-  const [agent, setAgent] = useState([]);
-
-  const [users, setUsers] = useState([]);
-  const [agents, setAgents] = useState([]);
 
   useEffect(() => {
     async function getProperty() {
@@ -92,69 +88,12 @@ const EditProperty = () => {
     getProperty();
   }, [id, userId, token]);
 
-  // useEffect(() => {
-  //   async function getAgent() {
-  //     const response = await fetch("http://localhost:3000/api/admin", {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: token,
-  //       },
-  //     });
-
-  //     const data = await response.json();
-  //     const agentOnly = data.allUsers.filter((user) => user.user_agent);
-
-  //     for (let i = 0; i < agentOnly.length; i++) {
-  //       const agent = agentOnly[i];
-  //       if (!agents.includes(agent.user_details.username)) {
-  //         const newAgents = [...agents, agent.user_details.username];
-  //         setAgents(newAgents);
-  //       }
-  //     }
-  //   }
-
-  //   if (user_type === "admin") {
-  //     getAgent();
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     const response = await fetch(
-  //       `http://localhost:3000/api/agent/${userId}`,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           Authorization: token,
-  //         },
-  //       }
-  //     );
-
-  //     const data = await response.json();
-  //     const usersOnly = data.allUsers.filter(
-  //       (user) => !user.user_agent && !user.user_admin
-  //     );
-
-  //     for (let i = 0; i < usersOnly.length; i++) {
-  //       const user = usersOnly[i];
-  //       if (!users.find((u) => u._id === user._id)) {
-  //         const newUsers = [...users, user];
-  //         setUsers(newUsers);
-  //       }
-  //     }
-  //   };
-
-  //   getUsers();
-  // }, [userId, token, users]);
-
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");
   const [numberBedrooms, setNumberBedrooms] = useState(1);
   const [tenure, setTenure] = useState("");
   const [floorLevel, setFloorLevel] = useState("");
   const [furnishing, setFurnishing] = useState("");
-  // const [liveTour, setLiveTour] = useState("");
-  // const [virtualTour, setVirtualTour] = useState("");
   const [numberBathrooms, setNumberBathrooms] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [keyword, setKeyword] = useState([]);
@@ -185,14 +124,6 @@ const EditProperty = () => {
     setFurnishing(value);
   };
 
-  // const handleLiveTourOption = (value) => {
-  //   setLiveTour(value);
-  // };
-
-  // const handleVirtualTourOption = (value) => {
-  //   setVirtualTour(value);
-  // };
-
   const handleYearOption = (value) => {
     console.log(value);
     setSelectedYear(value);
@@ -200,10 +131,6 @@ const EditProperty = () => {
 
   const handleUserOption = (value) => {
     // setUser(value);
-  };
-
-  const handleAgentOption = (value) => {
-    setAgent(value);
   };
 
   const addKeywordHandler = () => {
@@ -270,6 +197,8 @@ const EditProperty = () => {
     e.preventDefault();
 
     const formData = new FormData();
+
+    console.log(nameRef.current.value)
 
     // Append form fields
     formData.append("property_location", locationRef.current.value);
@@ -405,18 +334,6 @@ const EditProperty = () => {
               }
             />
           </div>
-          {/* <div className={classes["create-property-input-row-wrapper"]}>
-            <Dropdown
-              title="Live Tour"
-              options={["Yes", "No"]}
-              selectedHandler={handleLiveTourOption}
-            />
-            <Dropdown
-              title="Virtual Tour"
-              options={["Yes", "No"]}
-              selectedHandler={handleVirtualTourOption}
-            />
-          </div> */}
           <div className={classes["create-property-input-row-wrapper"]}>
             <Dropdown
               title="Number of Bathrooms"
@@ -441,18 +358,8 @@ const EditProperty = () => {
               value={[user]}
               options={[user]}
               selectedHandler={handleUserOption}
-              // defaultValue={user && user.user_details.username}
               disabled
             />
-          </div>
-          <div className={classes["create-property-input-row-wrapper"]}>
-            {user_type === "admin" && (
-              <Dropdown
-                title="Agent"
-                options={agents}
-                selectedHandler={handleAgentOption}
-              />
-            )}
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
             <Input

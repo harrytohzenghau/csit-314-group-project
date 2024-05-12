@@ -24,7 +24,7 @@ function Dropdown({ title, options, selectedHandler, defaultValue }) {
       <h5>{title}:</h5>
       <select
         className={classes["dropdown-field"]}
-        value={defaultValue || selectedOption}
+        value={selectedOption}
         onChange={handleSelectChange}
       >
         {options.map((option) => (
