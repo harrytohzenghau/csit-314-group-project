@@ -57,7 +57,7 @@ class AgentEntity extends UserEntity {
     async removeAgentById(id) {
         await Property.deleteMany({ property_userSchema: id });
         await Agent.findOneAndDelete({ agent_userSchema: id });
-        await User.findByIdAndDelete(id);
+        await this.removeUserById(id);
         return;
     }
 }

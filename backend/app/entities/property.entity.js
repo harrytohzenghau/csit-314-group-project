@@ -84,31 +84,41 @@ class PropertyEntity {
             .populate("property_agentSchema")
             .populate("property_userSchema");
 
-        const allUserProperties =
-            this.property.property_userSchema.user_agent_properties;
-        const allUserFav = this.property.property_userSchema.user_favourites;
-        const allUserLikes = this.property.property_userSchema.user_likes;
         const allAgentProperties =
             this.property.property_agentSchema.agent_properties;
-
-        this.property.property_userSchema.user_agent_properties =
-            this.filterOut(property_id, allUserProperties);
-        this.property.property_userSchema.user_favourites = this.filterOut(
-            property_id,
-            allUserFav
-        );
-        this.property.property_userSchema.user_likes = this.filterOut(
-            property_id,
-            allUserLikes
-        );
-
         this.property.property_agentSchema.agent_properties = this.filterOut(
             property_id,
             allAgentProperties
         );
 
+        const allUsers = await User.find({
+            $or: [
+                {
+                    user_favourites: property_id,
+                },
+                {
+                    user_likes: property_id,
+                },
+                {
+                    user_agent_properties: property_id,
+                },
+            ],
+        });
+
+        for (const user of allUsers) {
+            user.user_favourites = this.filterOut(
+                property_id,
+                user.user_favourites
+            );
+            user.user_likes = this.filterOut(property_id, user.user_likes);
+            user.user_agent_properties = this.filterOut(
+                property_id,
+                user.user_agent_properties
+            );
+            await user.save();
+        }
+
         await this.property.property_agentSchema.save();
-        await this.property.property_userSchema.save();
 
         await Property.findByIdAndDelete(property_id);
         return;
