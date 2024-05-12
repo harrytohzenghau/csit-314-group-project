@@ -17,37 +17,36 @@ app.use("/api/auth", require("./routes/auth.router"));
 app.use("/api/buy", require("./routes/buy.router"));
 app.use("/api/home", require("./routes/home.router"));
 app.use("/api/profile", require("./routes/profile.router"));
-app.use("/api/saved", require("./routes/saved.router"));
 
 app.use((error, req, res, next) => {
-  if (req.file) {
-    fs.unlink(req.file.path, (err) => {
-      console.log(err);
-    });
-  }
-  if (res.headerSent) {
-    return next(error);
-  }
-  res.status(error.code || 500);
-  res.json({ message: error.message || "An unknown error occurred!" });
+    if (req.file) {
+        fs.unlink(req.file.path, (err) => {
+            console.log(err);
+        });
+    }
+    if (res.headerSent) {
+        return next(error);
+    }
+    res.status(error.code || 500);
+    res.json({ message: error.message || "An unknown error occurred!" });
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+    res.send("Hello world");
 });
 
 // Error Handling
 app.all("*", (req, res, next) => {
-  next(new ExpressError("Page Not Found", 404));
+    next(new ExpressError("Page Not Found", 404));
 });
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (!err.message) {
-    err.message =
-      "Something went wrong, inform media team on the bug you experienced";
-  }
-  res.status(statusCode);
+    const { statusCode = 500 } = err;
+    if (!err.message) {
+        err.message =
+            "Something went wrong, inform media team on the bug you experienced";
+    }
+    res.status(statusCode);
 });
 // app.use(require("./errors/*"));
 

@@ -136,7 +136,7 @@ class UserEntity {
     async removeUserById(id) {
         const allProp = await Property.find({
             property_userSchema: id,
-        }).populate({ property_agentSchema });
+        }).populate("property_agentSchema");
 
         for (const prop of allProp) {
             const allAgentProperties =

@@ -20,5 +20,6 @@ router.route("/:id").get(catchAsync(buy.getProperty));
 
 router.route("/favourite").post(catchAsync(buy.postFavourite));
 router.route("/like").post(catchAsync(buy.postLike));
+router.route("/add/:id").get(catchAsync(buy.addOneView));
 
 module.exports = router;

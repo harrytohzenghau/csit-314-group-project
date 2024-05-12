@@ -75,6 +75,7 @@ class AdminController {
                 message: "User deleted",
             });
         } catch (error) {
+            console.log(error);
             res.status(500).json({
                 error,
                 message: "Failed to delete user",

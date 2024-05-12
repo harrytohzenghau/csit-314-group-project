@@ -20,12 +20,29 @@ class BuyController {
         }
     }
 
-    async getProperty(req, res) {
+    async addOneView(req, res) {
         try {
             const { id } = req.params;
             const property = new PropertyEntity();
             await property.fetchPropertyById(id);
             await property.increaseViewCount();
+
+            res.status(201).json({
+                success: true,
+                message: "View Increased",
+            });
+        } catch (error) {
+            res.status(500).json({
+                error,
+                message: "View Decreased",
+            });
+        }
+    }
+    async getProperty(req, res) {
+        try {
+            const { id } = req.params;
+            const property = new PropertyEntity();
+            await property.fetchPropertyById(id);
 
             res.status(201).json({
                 success: true,

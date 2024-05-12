@@ -13,11 +13,6 @@ class PropertyEntity {
         return this.allProperty;
     }
 
-    // async fetchPropertyByAgentId(id) {
-    //     this.allProperty = await Property.find({ property_agentSchema: id });
-    //     return;
-    // }
-
     async fetchPropertyById(id) {
         this.property = await Property.findById(id).populate({
             path: "property_agentSchema",
