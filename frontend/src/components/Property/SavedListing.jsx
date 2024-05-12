@@ -110,10 +110,12 @@ const SavedListing = () => {
         }
       );
       const data = await response.json();
-      if (
-        savedProperties.findIndex((p) => p._id === data.property._id) === -1
-      ) {
-        updatedSavedProperties.push(data.property);
+      if (data.property) {
+        if (
+          savedProperties.findIndex((p) => p._id === data.property._id) === -1
+        ) {
+          updatedSavedProperties.push(data.property);
+        }
       }
     }
     setSavedProperties(updatedSavedProperties);
