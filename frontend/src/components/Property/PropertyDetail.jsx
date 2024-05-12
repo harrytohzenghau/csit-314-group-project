@@ -322,7 +322,7 @@ const PropertyDetail = () => {
                     agent.agent_userSchema.user_details.last_name}
               </h5>
               <h5 style={{ display: "flex", alignItems: "center" }}>
-                Review: {agent && agent.agent_rating.toFixed(1)} <MdStar />
+                Rating: {agent && agent.agent_rating.toFixed(1)} <MdStar />
               </h5>
             </div>
             <Button type="button" style="secondary">

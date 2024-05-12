@@ -92,60 +92,60 @@ const EditProperty = () => {
     getProperty();
   }, [id, userId, token]);
 
-  useEffect(() => {
-    async function getAgent() {
-      const response = await fetch("http://localhost:3000/api/admin", {
-        method: "GET",
-        headers: {
-          Authorization: token,
-        },
-      });
+  // useEffect(() => {
+  //   async function getAgent() {
+  //     const response = await fetch("http://localhost:3000/api/admin", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     });
 
-      const data = await response.json();
-      const agentOnly = data.allUsers.filter((user) => user.user_agent);
+  //     const data = await response.json();
+  //     const agentOnly = data.allUsers.filter((user) => user.user_agent);
 
-      for (let i = 0; i < agentOnly.length; i++) {
-        const agent = agentOnly[i];
-        if (!agents.includes(agent.user_details.username)) {
-          const newAgents = [...agents, agent.user_details.username];
-          setAgents(newAgents);
-        }
-      }
-    }
+  //     for (let i = 0; i < agentOnly.length; i++) {
+  //       const agent = agentOnly[i];
+  //       if (!agents.includes(agent.user_details.username)) {
+  //         const newAgents = [...agents, agent.user_details.username];
+  //         setAgents(newAgents);
+  //       }
+  //     }
+  //   }
 
-    if (user_type === "admin") {
-      getAgent();
-    }
-  });
+  //   if (user_type === "admin") {
+  //     getAgent();
+  //   }
+  // });
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/agent/${userId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const response = await fetch(
+  //       `http://localhost:3000/api/agent/${userId}`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
 
-      const data = await response.json();
-      const usersOnly = data.allUsers.filter(
-        (user) => !user.user_agent && !user.user_admin
-      );
+  //     const data = await response.json();
+  //     const usersOnly = data.allUsers.filter(
+  //       (user) => !user.user_agent && !user.user_admin
+  //     );
 
-      for (let i = 0; i < usersOnly.length; i++) {
-        const user = usersOnly[i];
-        if (!users.find((u) => u._id === user._id)) {
-          const newUsers = [...users, user];
-          setUsers(newUsers);
-        }
-      }
-    };
+  //     for (let i = 0; i < usersOnly.length; i++) {
+  //       const user = usersOnly[i];
+  //       if (!users.find((u) => u._id === user._id)) {
+  //         const newUsers = [...users, user];
+  //         setUsers(newUsers);
+  //       }
+  //     }
+  //   };
 
-    getUsers();
-  }, [userId, token, users]);
+  //   getUsers();
+  // }, [userId, token, users]);
 
   const [type, setType] = useState("");
   const [newProject, setNewProject] = useState("");

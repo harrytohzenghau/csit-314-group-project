@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-const PropertyList = () => {
+const PropertyListing = () => {
   const [allProperties, setAllProperties] = useState([]);
 
   const navigate = useNavigate();
@@ -228,4 +228,4 @@ const PropertyList = () => {
   );
 };
 
-export default PropertyList;
+export default PropertyListing;
