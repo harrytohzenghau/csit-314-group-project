@@ -19,7 +19,7 @@ const Property = () => {
   const propertyBedroom = searchParams.get("property_bedroom") || "";
   const minPropertyPrice = searchParams.get("price_min") || "";
   const maxPropertyPrice = searchParams.get("price_max") || "";
-  const sortByPrice = searchParams.get("sort") || 0;
+  const sortByPrice = searchParams.get("sort") || 1;
 
   const [propertyNameState, setPropertyNameState] = useState(
     propertyName || ""
@@ -36,7 +36,7 @@ const Property = () => {
   const [maxPropertyPriceState, setMaxPropertyPrice] = useState(
     maxPropertyPrice || ""
   );
-  const [sortByPriceState, setSortByPriceState] = useState(sortByPrice || 0);
+  const [sortByPriceState, setSortByPriceState] = useState(sortByPrice || 1);
 
   useEffect(() => {
     setPropertyNameState(propertyName);
@@ -174,7 +174,7 @@ const Property = () => {
         propertyBedroomState == "" &&
         minPropertyPriceState == "" &&
         maxPropertyPriceState == "" &&
-        sortByPriceState == 0
+        sortByPriceState === 0
       ) {
         const response = await fetch("http://localhost:3000/api/buy", {
           method: "GET",
@@ -191,7 +191,7 @@ const Property = () => {
         propertyBedroomState ||
         minPropertyPriceState ||
         maxPropertyPriceState ||
-        sortByPriceState
+        sortByPriceState != 0
       ) {
         const response = await fetch(
           `http://localhost:3000/api/buy?property_name=${propertyNameState}&property_type=${propertyTypeState}&property_bedroom=${propertyBedroomState}&price_min=${minPropertyPriceState}&price_max=${maxPropertyPriceState}&sort=${sortByPriceState}`,

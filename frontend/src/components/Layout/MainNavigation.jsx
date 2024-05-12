@@ -42,6 +42,7 @@ const MainNavigation = () => {
     removeCookie("id");
     removeCookie("token");
     removeCookie("user_type");
+    removeCookie("username");
     setUserType("");
     dispatch(logout());
   };

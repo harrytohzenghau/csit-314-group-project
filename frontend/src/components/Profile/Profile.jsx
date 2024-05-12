@@ -60,9 +60,7 @@ const Profile = () => {
         username: user.username,
         mobile_number: mobileNumberRef.current.value || user.mobile_number,
         email_address: emailRef.current.value || user.email_address,
-      },
-      user_admin: user.user_admin,
-      user_agent: user.user_agent,
+      }
     };
 
     if (showEditPassword) {
@@ -74,7 +72,7 @@ const Profile = () => {
       userData.user_details.password = passwordRef.current.value;
     }
 
-    const response = await fetch(`http://localhost:3000/api/profile`, {
+    const response = await fetch(`http://localhost:3000/api/profile/${userId}`, {
       method: "PATCH",
       headers: {
         Authorization: token,
