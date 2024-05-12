@@ -25,9 +25,9 @@ const MostSaved = () => {
     <div className={`${classes["project-wrapper"]} ${classes["hot-location"]}`}>
       <div className={classes["project-button-wrapper"]}>
         <h2>Most Liked</h2>
-        <Button style="underline" type="button">
+        {/* <Button style="underline" type="button">
           View more
-        </Button>
+        </Button> */}
       </div>
       <div className={classes["project-card-wrapper"]}>
         {properties &&

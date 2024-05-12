@@ -6,10 +6,16 @@ import { useEffect, useState } from "react";
 
 const AgentCard = ({ agent }) => {
   const [agentDetail, setAgentDetail] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   const navigate = useNavigate();
-  
   useEffect(() => {
+    let sortedReviews = [];
+
+    if (agent.agent_reviews) {
+      sortedReviews = agent.agent_reviews.sort((a, b) => b - a).slice(0, 3);
+    }
+
     const agentData = {
       id: agent.agent_userSchema && agent.agent_userSchema._id,
       rating: agent && agent.agent_rating.toFixed(1),
@@ -21,8 +27,10 @@ const AgentCard = ({ agent }) => {
       email:
         agent.agent_userSchema &&
         agent.agent_userSchema.user_details.email_address,
+      reviews: agent.agent_reviews && sortedReviews,
     };
 
+    setReviews(sortedReviews);
     setAgentDetail(agentData);
   }, [agent]);
 
@@ -48,10 +56,15 @@ const AgentCard = ({ agent }) => {
           <h4>Email: {agentDetail.email}</h4>
         </div>
         <div>
-          {/* <h5>Recent reviews</h5> */}
-          {/* {d["agent-reviews"].map((review, index) => (
-            <p key={index}>{review}</p>
-          ))} */}
+          <h5>Recent reviews</h5>
+          {reviews &&
+            reviews.map((review, index) => {
+              return (
+                <h5 key={index}>
+                  {index+1}: &nbsp;{review}
+                </h5>
+              );
+            })}
         </div>
       </div>
     </Card>

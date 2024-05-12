@@ -25,9 +25,9 @@ const MostViewed = () => {
     <div className={classes["project-wrapper"]}>
       <div className={classes["project-button-wrapper"]}>
         <h2>Most Viewed</h2>
-        <Button style="underline" type="button">
+        {/* <Button style="underline" type="button">
           View more
-        </Button>
+        </Button> */}
       </div>
       <div className={classes["project-card-wrapper"]}>
         {properties &&
