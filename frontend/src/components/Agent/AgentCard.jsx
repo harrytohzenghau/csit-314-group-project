@@ -56,12 +56,12 @@ const AgentCard = ({ agent }) => {
           <h4>Email: {agentDetail.email}</h4>
         </div>
         <div>
-          <h5>Recent reviews</h5>
+          {(reviews && reviews.length) > 0 ? <h5>Recent reviews</h5> : <h5>No reviews yet</h5>}
           {reviews &&
             reviews.map((review, index) => {
               return (
                 <h5 key={index}>
-                  {index+1}: &nbsp;{review}
+                  {index + 1}: &nbsp;{review}
                 </h5>
               );
             })}
