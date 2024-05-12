@@ -141,7 +141,7 @@ const PropertyDetail = () => {
         setAgent(data.property.property_agentSchema);
 
         await fetch(`http://localhost:3000/api/buy/add/${id}`, {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-type": "application/json",
           },
