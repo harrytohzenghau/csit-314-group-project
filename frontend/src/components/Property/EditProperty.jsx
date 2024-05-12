@@ -55,6 +55,7 @@ const EditProperty = () => {
 
       setImage(imagesData);
       if (data.property.property_propertySchema.property_keyword[0] !== "") {
+        console.log(data.property.property_propertySchema.property_keyword);
         setKeyword(data.property.property_propertySchema.property_keyword);
       } else {
         setKeyword([]);
@@ -215,9 +216,12 @@ const EditProperty = () => {
     formData.append("property_build_year", parseInt(selectedYear));
     formData.append("property_floor_level", floorLevel);
     formData.append("property_furnishing", furnishing);
-    formData.append("property_keyword", keyword);
     formData.append("property_name", nameRef.current.value);
     formData.append("property_existing_images", [...image]);
+
+    for (let i = 0; i < keyword.length; i++) {
+      formData.append("property_keyword", keyword[i]);
+    }
 
     for (let i = 0; i < newImage.length; i++) {
       const imgFile = newImage[i].imageFile;

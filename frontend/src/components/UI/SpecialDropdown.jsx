@@ -31,7 +31,7 @@ const SpecialDropdown = ({
       <h5>{title}:</h5>
       <select
         className={classes["dropdown-field"]}
-        value={selectedValue || value[0]}
+        value={selectedValue || (value[0] || selectedValue)}
         onChange={handleSelectChange}
         disabled={disabled}
       >

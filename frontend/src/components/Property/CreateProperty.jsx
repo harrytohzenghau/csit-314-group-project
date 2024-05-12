@@ -159,8 +159,15 @@ const CreateProperty = () => {
 
     const formData = new FormData();
 
+    let user_id;
+
+    if (!user) {
+      user_id = users[0]._id;
+    }
+
+    console.log(user);
     // Append form fields
-    formData.append("seller_id", user);
+    formData.append("seller_id", user || user_id);
     formData.append("property_location", locationRef.current.value);
     formData.append("property_type", type);
     formData.append(
@@ -179,8 +186,11 @@ const CreateProperty = () => {
     formData.append("property_build_year", parseInt(selectedYear));
     formData.append("property_floor_level", floorLevel);
     formData.append("property_furnishing", furnishing);
-    formData.append("property_keyword", keyword);
     formData.append("property_name", nameRef.current.value);
+
+    for (let i = 0; i < keyword.length; i++) {
+      formData.append("property_keyword", keyword[i]);
+    }
 
     for (let i = 0; i < image.length; i++) {
       const imgFile = image[i].imageFile;
@@ -287,6 +297,7 @@ const CreateProperty = () => {
               value={users.map((u) => u._id)}
               options={users.map((u) => u.user_details.username)}
               selectedHandler={handleUserOption}
+              one={false}
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>
