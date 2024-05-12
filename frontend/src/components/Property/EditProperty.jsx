@@ -30,10 +30,10 @@ const EditProperty = () => {
   const user_type = cookie.user_type;
 
   const [property, setProperty] = useState(null);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState("");
   const [agent, setAgent] = useState([]);
 
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   const [agents, setAgents] = useState([]);
 
   useEffect(() => {
@@ -63,10 +63,34 @@ const EditProperty = () => {
       } else {
         setKeyword([]);
       }
+
+      const agent_response = await fetch(
+        `http://localhost:3000/api/agent/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const agent_data = await agent_response.json();
+      const usersOnly = agent_data.allUsers.filter(
+        (user) => !user.user_agent && !user.user_admin
+      );
+
+      for (let i = 0; i < usersOnly.length; i++) {
+        const u = usersOnly[i];
+        if (u._id === data.property.property_userSchema) {
+          if (typeof u === "object") {
+            setUser(u.user_details.username);
+          }
+        }
+      }
     }
 
     getProperty();
-  }, [id, token]);
+  }, [id, userId, token]);
 
   useEffect(() => {
     async function getAgent() {
@@ -175,7 +199,7 @@ const EditProperty = () => {
   };
 
   const handleUserOption = (value) => {
-    setUser(value);
+    // setUser(value);
   };
 
   const handleAgentOption = (value) => {
@@ -216,7 +240,6 @@ const EditProperty = () => {
     };
 
     const newImages = [...newImage, imageData];
-    console.log(newImages);
     setNewImage(newImages);
     removeImage("");
     toast.success("Image has been uploaded successfully.");
@@ -249,7 +272,6 @@ const EditProperty = () => {
     const formData = new FormData();
 
     // Append form fields
-    
     formData.append("property_location", locationRef.current.value);
     formData.append("property_type", type);
     formData.append(
@@ -416,9 +438,11 @@ const EditProperty = () => {
           <div className={classes["create-property-input-row-wrapper"]}>
             <SpecialDropdown
               title="Customer"
-              value={users.map((u) => u._id)}
-              options={users.map((u) => u.user_details.username)}
+              value={[user]}
+              options={[user]}
               selectedHandler={handleUserOption}
+              // defaultValue={user && user.user_details.username}
+              disabled
             />
           </div>
           <div className={classes["create-property-input-row-wrapper"]}>

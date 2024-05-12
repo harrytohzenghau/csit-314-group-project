@@ -19,6 +19,8 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
   const threeBedroomRef = useRef();
   const fourBedroomRef = useRef();
   const fiveBedroomRef = useRef();
+  const sortByPriceAsc = useRef();
+  const sortByPriceDsc = useRef();
 
   const [enablePriceInput, setEnablePriceInput] = useState(false);
 
@@ -46,6 +48,8 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
     threeBedroomRef.current.checked = false;
     fourBedroomRef.current.checked = false;
     fiveBedroomRef.current.checked = false;
+    sortByPriceAsc.current.checked = true;
+    sortByPriceDsc.current.checked = true;
   };
 
   const applyFilterHandler = () => {
@@ -79,11 +83,20 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
     } else if (fiveBedroomRef.current.checked) {
       property_bedroom = "5";
     }
+
+    let sort = 0;
+    if (sortByPriceAsc.current.checked) {
+      sort = 1;
+    } else if (sortByPriceDsc.current.checked) {
+      sort = -1;
+    }
+
     searchWithFilterHandler(
       property_type,
       price_min,
       price_max,
-      property_bedroom
+      property_bedroom,
+      sort
     );
   };
 
@@ -213,6 +226,26 @@ const ExtraFilter = ({ searchWithFilterHandler }) => {
             label="5"
             htmlFor="5"
             name="bedroom"
+          />
+        </div>
+      </div>
+      <div className={classes["extra-filter-content"]}>
+        <h5>Sort by Price</h5>
+        <div className={classes["extra-filter-field-wrapper"]}>
+          <Input
+            ref={sortByPriceAsc}
+            type="radio"
+            label="Ascending"
+            htmlFor="Ascending"
+            name="sort"
+            defaultChecked={true}
+          />
+          <Input
+            ref={sortByPriceDsc}
+            type="radio"
+            label="Descending"
+            htmlFor="Descending"
+            name="sort"
           />
         </div>
       </div>

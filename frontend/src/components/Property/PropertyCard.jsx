@@ -18,8 +18,6 @@ const PropertyCard = ({
     navigate(`/property/${id}`);
   };
 
-  console.log(property.property_images[0]);
-
   const savedPropertyHandler = async (property_id) => {
     savedHandler(property_id);
   };

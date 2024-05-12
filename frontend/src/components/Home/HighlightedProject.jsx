@@ -5,8 +5,6 @@ import classes from "./HighlightedProject.module.css";
 const HighlightedProject = ({ id, name, images, property }) => {
   const navigate = useNavigate();
 
-  console.log(property)
-
   const propertyDetailsHandler = () => {
     navigate(`/property/${id}`);
   };

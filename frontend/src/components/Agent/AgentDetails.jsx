@@ -32,6 +32,7 @@ const AgentDetails = () => {
       }
 
       const data = await response.json();
+      console.log(data);
       setAgent(data.profile.user_details);
     };
 
@@ -46,14 +47,38 @@ const AgentDetails = () => {
     setRating(selectedRating);
   };
 
-  const ratingReviewSubmitHandler = (e) => {
+  const ratingReviewSubmitHandler = async (e) => {
     e.preventDefault();
 
     if (!token) {
       return toast.error("Please login to perform this action.");
     }
-    console.log(review);
-    console.log(rating);
+
+    const rating_review = {
+      agentRating: rating,
+      agentReview: review,
+    };
+
+    const response = await fetch(
+      `http://localhost:3000/api/agent/review/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(rating_review),
+      }
+    );
+
+    if (!response.ok) {
+      return toast.error("Something went wrong when posting a review");
+    }
+
+    const data = await response.json();
+
+    toast.success(data.message);
+
+    return navigate("/find-agent");
   };
 
   return (
@@ -91,6 +116,7 @@ const AgentDetails = () => {
             <textarea
               placeholder="Provide a review..."
               onChange={reviewChangeHandler}
+              required={true}
             />
           </div>
           <div className={classes["agent-detail-button-wrapper"]}>

@@ -230,7 +230,6 @@ const CreateProperty = () => {
 
     for (let i = 0; i < image.length; i++) {
       const imgFile = image[i].imageFile;
-      console.log(imgFile)
       formData.append("property_images", imgFile); // Append each file object
     }
 

@@ -33,6 +33,9 @@
 
 .agent-details {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .agent-name-and-rating-wrapper {

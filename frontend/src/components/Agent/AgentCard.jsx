@@ -12,7 +12,7 @@ const AgentCard = ({ agent }) => {
   useEffect(() => {
     const agentData = {
       id: agent.agent_userSchema && agent.agent_userSchema._id,
-      rating: agent && agent.agent_rating,
+      rating: agent && agent.agent_rating.toFixed(1),
       first_name:
         agent.agent_userSchema &&
         agent.agent_userSchema.user_details.first_name,

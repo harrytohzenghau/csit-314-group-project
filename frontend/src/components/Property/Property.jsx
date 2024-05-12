@@ -19,6 +19,7 @@ const Property = () => {
   const propertyBedroom = searchParams.get("property_bedroom") || "";
   const minPropertyPrice = searchParams.get("price_min") || "";
   const maxPropertyPrice = searchParams.get("price_max") || "";
+  const sortByPrice = searchParams.get("sort") || 0;
 
   const [propertyNameState, setPropertyNameState] = useState(
     propertyName || ""
@@ -35,6 +36,7 @@ const Property = () => {
   const [maxPropertyPriceState, setMaxPropertyPrice] = useState(
     maxPropertyPrice || ""
   );
+  const [sortByPriceState, setSortByPriceState] = useState(sortByPrice || 0);
 
   useEffect(() => {
     setPropertyNameState(propertyName);
@@ -42,12 +44,14 @@ const Property = () => {
     setPropertyBedroomState(propertyBedroom);
     seMinPropertyPriceState(minPropertyPrice);
     setMaxPropertyPrice(maxPropertyPrice);
+    setSortByPriceState(sortByPrice);
   }, [
     propertyName,
     propertyType,
     propertyBedroom,
     minPropertyPrice,
     maxPropertyPrice,
+    sortByPrice,
   ]);
 
   const [cookie] = useCookies();
@@ -103,7 +107,6 @@ const Property = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error("Something went wrong when liking property");
@@ -145,7 +148,6 @@ const Property = () => {
     });
 
     const data = await response.json();
-    
 
     if (!response.ok) {
       return toast.error(
@@ -171,7 +173,8 @@ const Property = () => {
         propertyTypeState == "" &&
         propertyBedroomState == "" &&
         minPropertyPriceState == "" &&
-        maxPropertyPriceState == ""
+        maxPropertyPriceState == "" &&
+        sortByPriceState == 0
       ) {
         const response = await fetch("http://localhost:3000/api/buy", {
           method: "GET",
@@ -180,17 +183,18 @@ const Property = () => {
           },
         });
         const data = await response.json();
-        
+
         setProperties(data.properties);
       } else if (
         propertyNameState ||
         propertyTypeState ||
         propertyBedroomState ||
         minPropertyPriceState ||
-        maxPropertyPriceState
+        maxPropertyPriceState ||
+        sortByPriceState
       ) {
         const response = await fetch(
-          `http://localhost:3000/api/buy?property_name=${propertyNameState}&property_type=${propertyTypeState}&property_bedroom=${propertyBedroomState}&price_min=${minPropertyPriceState}&price_max=${maxPropertyPriceState}`,
+          `http://localhost:3000/api/buy?property_name=${propertyNameState}&property_type=${propertyTypeState}&property_bedroom=${propertyBedroomState}&price_min=${minPropertyPriceState}&price_max=${maxPropertyPriceState}&sort=${sortByPriceState}`,
           {
             method: "GET",
             headers: {
@@ -208,7 +212,7 @@ const Property = () => {
           },
         });
         const data = await response.json();
-        
+
         setProperties(data.properties);
       }
     };
@@ -220,6 +224,7 @@ const Property = () => {
     propertyBedroomState,
     minPropertyPriceState,
     maxPropertyPriceState,
+    sortByPriceState,
   ]);
 
   return (
@@ -254,4 +259,4 @@ const Property = () => {
   );
 };
 
-export default Property; 
+export default Property;

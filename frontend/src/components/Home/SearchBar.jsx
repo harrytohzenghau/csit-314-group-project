@@ -25,10 +25,11 @@ const SearchBar = ({ className, defaultText }) => {
     property_type,
     price_min,
     price_max,
-    property_bedroom
+    property_bedroom,
+    sort
   ) => {
     navigate(
-      `/property?property_name=${searchRef.current.value}&property_type=${property_type}&property_bedroom=${property_bedroom}&price_min=${price_min}&price_max=${price_max}`
+      `/property?property_name=${searchRef.current.value}&property_type=${property_type}&property_bedroom=${property_bedroom}&price_min=${price_min}&price_max=${price_max}&sort=${sort}`
     );
   };
 

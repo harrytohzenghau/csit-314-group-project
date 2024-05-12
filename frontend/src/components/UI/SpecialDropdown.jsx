@@ -3,19 +3,21 @@ import classes from "./Dropdown.module.css";
 
 let initial = 0;
 
-function SpecialDropdown({
+const SpecialDropdown = ({
   title,
   options,
   value,
   selectedHandler,
   defaultValue,
-}) {
+  disabled,
+}) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
 
   useEffect(() => {
-    if (defaultValue) {
-      setSelectedValue(selectedValue);
+    if (typeof defaultValue === "object") {
+      setSelectedOption(defaultValue.username);
+      setSelectedValue(defaultValue._id);
     } else if (Array.isArray(value)) {
       setSelectedValue(value[0]);
     }
@@ -29,7 +31,7 @@ function SpecialDropdown({
     const option = event.target.selectedOptions[0];
     const extraInfo = option.getAttribute("data-extra-info");
     selectedHandler(event.target.value);
-    setSelectedValue(event.target.value)
+    setSelectedValue(event.target.value);
     setSelectedOption(extraInfo);
   };
 
@@ -40,14 +42,11 @@ function SpecialDropdown({
         className={classes["dropdown-field"]}
         value={defaultValue || selectedValue}
         onChange={handleSelectChange}
+        disabled={disabled}
       >
         {options.map((option, index) => {
           return (
-            <option
-              key={option}
-              value={value[index]}
-              data-extra-info={option}
-            >
+            <option key={option} value={value[index]} data-extra-info={option}>
               {option}
             </option>
           );
@@ -55,6 +54,6 @@ function SpecialDropdown({
       </select>
     </div>
   );
-}
+};
 
 export default SpecialDropdown;
