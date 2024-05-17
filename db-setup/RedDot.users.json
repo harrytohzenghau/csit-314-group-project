@@ -1,0 +1,1503 @@
+[{
+  "_id": {
+    "$oid": "6641024a1e01693eba310f50"
+  },
+  "user_admin": true,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "sarah",
+    "last_name": "chen",
+    "username": "admin",
+    "password": "$2b$10$p6dtq22TA4p3oYvoD.6tOOu066t.lixHzITCZPirRG6.3qKS8.PR2",
+    "mobile_number": 97563284,
+    "email_address": "admin@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:11.870Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641024a1e01693eba310f52"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Frank",
+    "last_name": "Chen",
+    "username": "agent",
+    "password": "$2b$10$wXtlX5HCloQuzQ.X1AENw.Zwwmy4NsuOWOdQrnsxWGEgqbVadFS4.",
+    "mobile_number": 97563284,
+    "email_address": "agent@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:11.870Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641024b1e01693eba310f56"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "first",
+    "last_name": "last",
+    "username": "user",
+    "password": "$2b$10$cvhlmM5DuQ/01K/33Hs9T.TphcTvK5sSdxUXyhJ0J9i9NzT4HFCna",
+    "mobile_number": 97563284,
+    "email_address": "agent@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 300000,
+    "interest_rate": 5,
+    "loan_period": 35,
+    "property_price": 1523311,
+    "loan_amt": 1223311,
+    "monthly": 6225.807603689842
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:11.870Z"
+  },
+  "user_agent_properties": [],
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "66404b9ef0bc3371c8ff45f5"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [
+    {
+      "$oid": "66404b79f0bc3371c8ff45dc"
+    }
+  ],
+  "user_likes": [
+    {
+      "$oid": "66404b79f0bc3371c8ff45dc"
+    },
+    {
+      "$oid": "66404b5ef0bc3371c8ff45b9"
+    }
+  ],
+  "user_details": {
+    "first_name": "Jane",
+    "last_name": "Lim",
+    "username": "janelim",
+    "password": "$2b$10$/KAZNXZT8xcEx2tiEFewpuBN.h6B5rVE7AVxgg.s0KbL.TfxQP1l2",
+    "mobile_number": 51251251,
+    "email_address": "jl@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T04:52:16.786Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "66410a75a20cab4724778eab"
+    },
+    {
+      "$oid": "66410b30a20cab4724778f14"
+    },
+    {
+      "$oid": "66410c34a20cab4724778f72"
+    }
+  ],
+  "__v": 12
+},
+{
+  "_id": {
+    "$oid": "663eff631306b4685ff46808"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "B",
+    "username": "Agent B",
+    "password": "$2b$10$9PyYSt287jsjv8YTvYjxouHEIuxU28kjRb.nZ7PlO8HXHQ2/qkNSO",
+    "mobile_number": 12515122,
+    "email_address": "AgentC@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663effd01306b4685ff4683f"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "C",
+    "username": "Agent C",
+    "password": "$2b$10$oPoM8Zg6r5BrlPuw1OjgDOG9KYcbcTUtpWDjSDE2lOpPqqwXMae5q",
+    "mobile_number": 1231231,
+    "email_address": "AgentC@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f00611306b4685ff4684f"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "D",
+    "username": "Agent D",
+    "password": "$2b$10$fFVyTxBQPqYh5PF3X7ejCezdlZKJ51r9T8Mljn3MCQUoB6CbzLiQe",
+    "mobile_number": 125412512,
+    "email_address": "AgentD@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f007a1306b4685ff46855"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "E",
+    "username": "Agent E",
+    "password": "$2b$10$eGPBrQFKHxErFb2Ej6bTF.KRMyLrTpPWN6hmH5gAHRrTxo6.lrLo6",
+    "mobile_number": {
+      "$numberLong": "14125125125"
+    },
+    "email_address": "AgentE@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f01831306b4685ff46887"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "F",
+    "username": "Agent F",
+    "password": "$2b$10$eoJ6LFVA/rh8/aRajuQbI.NfAhjCJwJHs8KHUy8cS1xpBPo0fddTy",
+    "mobile_number": 123123,
+    "email_address": "AgentF@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f01991306b4685ff4688d"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "G",
+    "username": "Agent G",
+    "password": "$2b$10$O98W8cF4fLsTVrgCDg0KLeMf9O6L40JszDgCOujdthP5Irv3SBh86",
+    "mobile_number": 1251251515,
+    "email_address": "AgentG@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f01b91306b4685ff46893"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Agent",
+    "last_name": "H",
+    "username": "Agent H",
+    "password": "$2b$10$JuEkPoxS./ZOfw3FtCel6.roJAxCoWgfQLalWfPaErxwT4kW0kwY.",
+    "mobile_number": 91827223,
+    "email_address": "AgentH@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f01ee1306b4685ff46899"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "James",
+    "last_name": "Tan",
+    "username": "jamestan",
+    "password": "$2b$10$BKjREjqYOg.ZGDjM9q/pW.E.PgIT2GamjyIkGYRRltUTWZadJ2G9e",
+    "mobile_number": 1521525125,
+    "email_address": "jamestan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f021e1306b4685ff4689f"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Sally",
+    "last_name": "Lim",
+    "username": "sallylim",
+    "password": "$2b$10$/X0dvgHqFaM58uhJiolhXOS4Ev0lhFibXd4Up3jQz27nwqPHelOr2",
+    "mobile_number": 124124124,
+    "email_address": "sallylim@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f036e1306b4685ff468a5"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [
+    {
+      "$oid": "66407e28a3c9540f38ed8ec9"
+    }
+  ],
+  "user_details": {
+    "first_name": "Peter",
+    "last_name": "Lim",
+    "username": "peterlim",
+    "password": "$2b$10$8GkHwuAXK3/R/hc.mszmqeLxKEu3gwmd9.pN3zGqR5zoTWARi3OPi",
+    "mobile_number": 777888,
+    "email_address": "peterlim000@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "663f039e1306b4685ff468ab"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Zac",
+    "last_name": "Wong",
+    "username": "zacwong",
+    "password": "$2b$10$1B8g6syb8rb52BOUyqK/leMG4bfmqTYI/gabavQ8gHiA4MA.gg7EO",
+    "mobile_number": {
+      "$numberLong": "65748458745"
+    },
+    "email_address": "zw@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f03bd1306b4685ff468b1"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Ben",
+    "last_name": "Lee",
+    "username": "benlee",
+    "password": "$2b$10$SNrGuJhWaxfVmR1TZ/Psx.GvfVa9ysFuHhSA9blty0KyEGmuvLqGq",
+    "mobile_number": 12221256,
+    "email_address": "ben@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f03e41306b4685ff468b7"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Chris",
+    "last_name": "Cheng",
+    "username": "chrischeng",
+    "password": "$2b$10$iVuwXPwH.IzF5uaJ0nnM.O/O4IcPrbaH3yX5AD4sPB6GBQAFfSksa",
+    "mobile_number": {
+      "$numberLong": "12977597859"
+    },
+    "email_address": "cc@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f04231306b4685ff468bd"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Joseph",
+    "last_name": "Tan",
+    "username": "josephtan",
+    "password": "$2b$10$hS8AhNciIpewJ7CI5/GfnuD7MKYQ8yvAFk90idKTuIORClsKP2RUG",
+    "mobile_number": 165756757,
+    "email_address": "jt@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f04421306b4685ff468c3"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Lim",
+    "last_name": "Dee",
+    "username": "limdee",
+    "password": "$2b$10$u9hpA3iR9Xf/Y3WiCFzUCu4gm9AVBxwxK19Eh65DF0.4QWoERVvi6",
+    "mobile_number": 165616161,
+    "email_address": "dee@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f04631306b4685ff468c9"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Ruben",
+    "last_name": "Wong",
+    "username": "rubenwong",
+    "password": "$2b$10$j3UwVecTH6lPEMrAoaVLDeeux8Uv1RiAXYC5jUka8HvQ/OliEXYQK",
+    "mobile_number": 125125,
+    "email_address": "rw@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663f04841306b4685ff468cf"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Larry",
+    "last_name": "Flink",
+    "username": "larryflink",
+    "password": "$2b$10$82RhBdFSj70c0JyyijGqk.TzGk0UyHa9iqlcXOyNUPwb/RedhWlOq",
+    "mobile_number": 534563623,
+    "email_address": "lf@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T04:19:58.995Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664025f092045a6554498308"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [
+    {
+      "$oid": "66407e28a3c9540f38ed8ec9"
+    }
+  ],
+  "user_details": {
+    "first_name": "Douglas",
+    "last_name": "Zou",
+    "username": "douglaszou",
+    "password": "$2b$10$vv1cRp3LYShjuIGARtnq1eo4K7.WWCNRZ8/uqlte4npa/Bx4AswMS",
+    "mobile_number": 93382968,
+    "email_address": "dz@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T17:16:25.043Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "66407e28a3c9540f38ed8ec9"
+    },
+    {
+      "$oid": "6641c193a20cab472477930b"
+    },
+    {
+      "$oid": "6641c708a20cab4724779462"
+    }
+  ],
+  "__v": 26
+},
+{
+  "_id": {
+    "$oid": "664026c392045a655449830f"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Thomas",
+    "last_name": "Chan",
+    "username": "thomaschan",
+    "password": "$2b$10$kgC7l6f3kaoW1DA4FXMjGuyRfjIjsW8CzuodoI0.GlQFI04K13/b2",
+    "mobile_number": 81827562,
+    "email_address": "tc@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-11T17:16:25.043Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "66406aa3f0bc3371c8ff4816"
+    },
+    {
+      "$oid": "66406c73f0bc3371c8ff4851"
+    },
+    {
+      "$oid": "66407082f0bc3371c8ff48f5"
+    }
+  ],
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Chris",
+    "last_name": "Liu",
+    "username": "chrisliu",
+    "password": "$2b$10$zw7JyhPubwC2jLlS8JjGPuQAV3PbJDRW6cBYSQvuAGJD8rgwwU9gu",
+    "mobile_number": 15254653,
+    "email_address": "chrisliu@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T04:52:16.786Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "66410472a20cab4724778b17"
+    },
+    {
+      "$oid": "664104faa20cab4724778b58"
+    },
+    {
+      "$oid": "66410568a20cab4724778b87"
+    },
+    {
+      "$oid": "664105bca20cab4724778bda"
+    },
+    {
+      "$oid": "66410622a20cab4724778c09"
+    }
+  ],
+  "__v": 5
+},
+{
+  "_id": {
+    "$oid": "66407251f0bc3371c8ff492c"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Emily",
+    "last_name": "Tan",
+    "username": "emilytan",
+    "password": "$2b$10$2V7ZOYGTl57KBU0mMnDbMu3VNXax3PKhYQ8/953LrWKNc47yynvS.",
+    "mobile_number": 52152423,
+    "email_address": "emilytan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T04:52:16.786Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "6641086ea20cab4724778d9f"
+    },
+    {
+      "$oid": "66410972a20cab4724778e3d"
+    },
+    {
+      "$oid": "664109eca20cab4724778e82"
+    }
+  ],
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "66407a99f0bc3371c8ff49b4"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Josephine",
+    "last_name": "Teo",
+    "username": "josephineteo",
+    "password": "$2b$10$OtZD7iSgpkve86pkyiaZuuo47w/Ac0lb0GfSn0u3XBLToZyMIC19O",
+    "mobile_number": 235234523,
+    "email_address": "josephineteo@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T04:52:16.786Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664103dda20cab4724778aea"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Emma",
+    "last_name": "Tan",
+    "username": "emmatan",
+    "password": "$2b$10$F.iTA6DpWANT6dDTBoUihuashm5Nw.oALdvnmaehXOp85qAkf2ydi",
+    "mobile_number": 14812873,
+    "email_address": "emmatan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 300000,
+    "interest_rate": 5,
+    "loan_period": 43,
+    "property_price": 1555222,
+    "loan_amt": 1255222,
+    "monthly": 5961.607094695816
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "664108afa20cab4724778dcd"
+    },
+    {
+      "$oid": "66410904a20cab4724778e0e"
+    },
+    {
+      "$oid": "66410ae3a20cab4724778ee5"
+    },
+    {
+      "$oid": "66410bcda20cab4724778f43"
+    }
+  ],
+  "__v": 4
+},
+{
+  "_id": {
+    "$oid": "66410d2ea20cab4724778faf"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Johnson",
+    "last_name": "Lee",
+    "username": "johnsonlee",
+    "password": "$2b$10$llZCjJxFudGmPG1ZJmavT.mQHR1Ap1IE7.gkF6AtAdIjI2QszLRfm",
+    "mobile_number": 15121323,
+    "email_address": "johnsonlee@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "66410f41a20cab4724779054"
+    },
+    {
+      "$oid": "66410fcda20cab472477908b"
+    },
+    {
+      "$oid": "66411020a20cab47247790c2"
+    }
+  ],
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "66410e16a20cab4724779006"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "kay",
+    "last_name": "tan",
+    "username": "kaytan",
+    "password": "$2b$10$BbMrQZ3kfgyhD/YaHlGhQuzjFM3VVmPEgSFs1Cw5qm7dmp/Vaf/ZC",
+    "mobile_number": 125123423,
+    "email_address": "kaytan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66411066a20cab47247790cc"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Laura",
+    "last_name": "Lee",
+    "username": "lauralee",
+    "password": "$2b$10$Kpqt.XsFve/yNEf6Mk.qs.hqvP1QfWtN.0f.mgZswVGJdi90gNseC",
+    "mobile_number": 1242554,
+    "email_address": "lauralee@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "664110d2a20cab4724779121"
+    },
+    {
+      "$oid": "6641111ca20cab472477915c"
+    },
+    {
+      "$oid": "664111b8a20cab47247791c5"
+    }
+  ],
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "6641bd68a20cab472477923d"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Patrick",
+    "last_name": "Tan",
+    "username": "patricktan",
+    "password": "$2b$10$WlA39E9wy1Rj1vDU1Jr1hebV8G/W63YP34/th0uxsFNYujZNqemxm",
+    "mobile_number": 12423212,
+    "email_address": "patricktan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 300000,
+    "interest_rate": 4,
+    "loan_period": 35,
+    "property_price": 1800000,
+    "loan_amt": 1500000,
+    "monthly": 6697.165296032567
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641bd7fa20cab4724779240"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Sophia",
+    "last_name": "Huang",
+    "username": "sophiahuang",
+    "password": "$2b$10$LZn.qyaIPe49XN0waW.laezPcRHVh9oxJ4LL25/TyoUwDEB3vFgh6",
+    "mobile_number": 12312321,
+    "email_address": "sophiahuang@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641bd9ba20cab4724779243"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Chan",
+    "last_name": "weijie",
+    "username": "chanweijie",
+    "password": "$2b$10$Nv2wqd.B/0DAbXbe28YSV..GYiIs0gDhEdSl2chfoaUB/7JEb5YSK",
+    "mobile_number": 13123,
+    "email_address": "chanweijie@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641bdb4a20cab4724779246"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Clara",
+    "last_name": "Yeo",
+    "username": "clarayeo",
+    "password": "$2b$10$iB7jgkkRpjWsq3lmPUSjk.BXPSEB20GhNObkmtZZ7ivguNrRjKzOK",
+    "mobile_number": 82366162,
+    "email_address": "clarayeo@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641bdd1a20cab4724779249"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Travis",
+    "last_name": "Tan",
+    "username": "travistan",
+    "password": "$2b$10$Qll8YPY3zE1GGBd1ov6uu.SOFGrOD3rvpW5oHJUddAVL4TkAIBDle",
+    "mobile_number": 1248271,
+    "email_address": "travistan@gmail.cm"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641bdeaa20cab472477924c"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Stanley",
+    "last_name": "Tong",
+    "username": "stanleytong",
+    "password": "$2b$10$VOf4cbal/.lnKTBYaaRKFObx1MCr3YH5ajJHyeiq92Gb2yIM8QV7e",
+    "mobile_number": 12312412,
+    "email_address": "stanleytong@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641be07a20cab472477924f"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Jackie",
+    "last_name": "Chan",
+    "username": "jackiechan",
+    "password": "$2b$10$ZQ9hU0gZcHL7nlTluzWAUe0sUqXGSQcy4u2LpEeV9x1AKBa2bLUdS",
+    "mobile_number": 125354362,
+    "email_address": "jackiechan@hotmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641be20a20cab4724779252"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Jess",
+    "last_name": "Poh",
+    "username": "jesspoh",
+    "password": "$2b$10$HT9FruAhIkW3IU7uJnf1/.8YiFlYQQOVE5.CN6KylHcQiadFCgRza",
+    "mobile_number": 34534532,
+    "email_address": "jesspoh@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641be3da20cab4724779255"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Fendi",
+    "last_name": "Lim",
+    "username": "fendilim",
+    "password": "$2b$10$JTIeBTlG5xKQz40EW6BB6u7Y3JpiZC6gbM57OGFP7XDx.JD.cEHGK",
+    "mobile_number": 21421415,
+    "email_address": "fendilim@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641be5ca20cab4724779258"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Bob",
+    "last_name": "Tan",
+    "username": "bobtan",
+    "password": "$2b$10$/Rhlu5NUSVndk/zn9pi6SOV3JD00iBxVMbxcqqcnIc.0ZwXvxIwfC",
+    "mobile_number": 81766523,
+    "email_address": "bobtan@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641c5f7a20cab47247793de"
+  },
+  "user_admin": false,
+  "user_agent": true,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Jamie",
+    "last_name": "Chua",
+    "username": "jamiechua",
+    "password": "$2b$10$SkD4MgRMUYWROV40XGcCj.napdvMRbCDMdPcR3wJbFXcnLi/O/ir6",
+    "mobile_number": 123123123,
+    "email_address": "jamiechua@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641c61da20cab47247793e3"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [],
+  "user_details": {
+    "first_name": "Lim",
+    "last_name": "Zhiwei",
+    "username": "limzhiwei",
+    "password": "$2b$10$jM5BjcrTwTBy2zDL4WLD1uamgyVM3Waw2EIuRX3Jurx1CltYRXpzW",
+    "mobile_number": 23123,
+    "email_address": "limzhiwei@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641c7cea20cab47247794b2"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [],
+  "user_likes": [
+    {
+      "$oid": "664105bca20cab4724778bda"
+    }
+  ],
+  "user_details": {
+    "first_name": "Kelly",
+    "last_name": "Lim",
+    "username": "kellylim",
+    "password": "$2b$10$lVYWf1kAn3mM4Xwcvdw4W.haSkB2O/bL7uIM0GnQbc5lJ3zNJOT26",
+    "mobile_number": 123125412,
+    "email_address": "kellylim@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 40000,
+    "interest_rate": 5,
+    "loan_period": 20,
+    "property_price": 400000,
+    "loan_amt": 360000,
+    "monthly": 69
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [
+    {
+      "$oid": "6641cbcda20cab4724779676"
+    }
+  ],
+  "__v": 4
+},
+{
+  "_id": {
+    "$oid": "6641ce32a20cab47247797f4"
+  },
+  "user_admin": false,
+  "user_agent": false,
+  "user_active": true,
+  "user_favourites": [
+    {
+      "$oid": "6641c708a20cab4724779462"
+    }
+  ],
+  "user_likes": [
+    {
+      "$oid": "66410472a20cab4724778b17"
+    },
+    {
+      "$oid": "66407e28a3c9540f38ed8ec9"
+    },
+    {
+      "$oid": "66410f41a20cab4724779054"
+    },
+    {
+      "$oid": "6641c708a20cab4724779462"
+    }
+  ],
+  "user_details": {
+    "first_name": "Helen",
+    "last_name": "Ho",
+    "username": "helenho",
+    "password": "$2b$10$D9/stVnpXkpe9Ca1H7SAOeMXXtK3aHQ./Ipn2lP1FAKjRr4qKuGTK",
+    "mobile_number": 98979192,
+    "email_address": "helenho@gmail.com"
+  },
+  "user_finance": {
+    "downpayment": 150000,
+    "interest_rate": 4,
+    "loan_period": 30,
+    "property_price": 600000,
+    "loan_amt": 450000,
+    "monthly": 2168.6287175122993
+  },
+  "user_created": {
+    "$date": "2024-05-12T17:54:43.766Z"
+  },
+  "user_agent_properties": [],
+  "__v": 15
+}]

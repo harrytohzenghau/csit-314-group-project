@@ -1,0 +1,1182 @@
+[{
+  "_id": {
+    "$oid": "66406aa3f0bc3371c8ff4816"
+  },
+  "property_propertySchema": {
+    "property_location": "Seletar ",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 3680000,
+    "property_bedroom": "5",
+    "property_floor_size": 4101,
+    "property_PSF": 1203,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "Pollen Collection,condo,seletar"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T04:52:16.797Z"
+  },
+  "property_name": "Pollen Collection",
+  "property_images": [
+    "uploads\\images\\f4d90478-1a84-4ec2-9064-2b5f61bfde31.jpeg",
+    "uploads\\images\\a716c361-8fa4-4bd5-a150-4e543c83bcdc.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664026c392045a655449830f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66406c73f0bc3371c8ff4851"
+  },
+  "property_propertySchema": {
+    "property_location": "Buona Vista",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 4000000,
+    "property_bedroom": "1",
+    "property_floor_size": 2167,
+    "property_PSF": 2014,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Buona Vista,The Hillshore,condo"
+    ]
+  },
+  "property_views": 4,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T04:52:16.797Z"
+  },
+  "property_name": "The Hillshore",
+  "property_images": [
+    "uploads\\images\\ea8be16c-1294-4d91-b6e4-1dc5b95bd7e6.jpeg",
+    "uploads\\images\\19006de2-1a8b-4a32-a77b-5fe6f1d0aa92.jpeg",
+    "uploads\\images\\5ffc6efb-fe13-4626-9d65-b403a13f30fe.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664026c392045a655449830f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66407082f0bc3371c8ff48f5"
+  },
+  "property_propertySchema": {
+    "property_location": "Orchard",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 2367000,
+    "property_bedroom": "3",
+    "property_floor_size": 1765,
+    "property_PSF": 2423,
+    "property_bathroom": 3,
+    "property_tenure": "Freehold",
+    "property_build_year": 2024,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "orchard,condo,Orchard Sophia"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T04:52:16.797Z"
+  },
+  "property_name": "Orchard Sophia",
+  "property_images": [
+    "uploads\\images\\fce0e90c-b5fd-48de-9919-b5cff2271018.jpeg",
+    "uploads\\images\\aeeab30d-8267-4b88-81e1-1d23caf2394e.jpeg",
+    "uploads\\images\\8515940a-a40d-4e6b-ab61-b67440e23099.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664026c392045a655449830f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66407e28a3c9540f38ed8ec9"
+  },
+  "property_propertySchema": {
+    "property_location": "Sembawang ",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 1500000,
+    "property_bedroom": "4",
+    "property_floor_size": 1382,
+    "property_PSF": 1882,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2020,
+    "property_floor_level": "High",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "Symphony Suites,condo,Sembawang"
+    ]
+  },
+  "property_views": 15,
+  "property_userLikes": [
+    {
+      "$oid": "663f036e1306b4685ff468a5"
+    },
+    {
+      "$oid": "664025f092045a6554498308"
+    },
+    {
+      "$oid": "664025f092045a6554498308"
+    },
+    {
+      "$oid": "664025f092045a6554498308"
+    },
+    {
+      "$oid": "6641ce32a20cab47247797f4"
+    }
+  ],
+  "property_date": {
+    "$date": "2024-05-12T08:24:07.851Z"
+  },
+  "property_name": "Symphony Suites",
+  "property_images": [
+    "uploads\\images\\8945bd5b-ee89-47a0-9723-c0527b342d8e.jpeg",
+    "uploads\\images\\18b730a0-21e3-40f1-ad36-ad0a734ba1be.jpeg",
+    "uploads\\images\\e7f25d8a-6d22-44b3-b37f-f9ecea91e016.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664025f092045a6554498308"
+  },
+  "__v": 5
+},
+{
+  "_id": {
+    "$oid": "66410472a20cab4724778b17"
+  },
+  "property_propertySchema": {
+    "property_location": "Pasir Ris",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 590000,
+    "property_bedroom": "3",
+    "property_floor_size": 1130,
+    "property_PSF": 552,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Unfurnished",
+    "property_keyword": [
+      "HDB",
+      "pasir ris"
+    ]
+  },
+  "property_views": 2,
+  "property_userLikes": [
+    {
+      "$oid": "6641ce32a20cab47247797f4"
+    }
+  ],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "763 Pasir Ris Street 71",
+  "property_images": [
+    "uploads\\images\\62609814-753a-4e72-9f38-450f0ad376db.jpeg",
+    "uploads\\images\\bf1df53d-df61-4b40-a13f-e0e5834c5ba2.jpeg",
+    "uploads\\images\\592652a8-f1b8-4654-88bb-a80271a037b2.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f01ee1306b4685ff4689b"
+  },
+  "property_userSchema": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "664104faa20cab4724778b58"
+  },
+  "property_propertySchema": {
+    "property_location": "Pasir Ris",
+    "property_type": "HDB",
+    "property_new_project": true,
+    "property_price": 680100,
+    "property_bedroom": "3",
+    "property_floor_size": 1582,
+    "property_PSF": 665,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Unfurnished",
+    "property_keyword": [
+      "HDB",
+      "pasir ris"
+    ]
+  },
+  "property_views": 2,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "534 Pasir Ris Drive 1",
+  "property_images": [
+    "uploads\\images\\b71bdbe9-c2f1-4b64-b18a-31353357b966.jpeg",
+    "uploads\\images\\f78fd77c-3b5c-4ee3-8541-649ff099e759.jpeg",
+    "uploads\\images\\2cafd5b8-2c3f-41f5-962d-71062ccc5295.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f01ee1306b4685ff4689b"
+  },
+  "property_userSchema": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410568a20cab4724778b87"
+  },
+  "property_propertySchema": {
+    "property_location": "Punggol",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 828888,
+    "property_bedroom": "2",
+    "property_floor_size": 1216,
+    "property_PSF": 68,
+    "property_bathroom": 3,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2008,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "HDB",
+      "punggol"
+    ]
+  },
+  "property_views": 8,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "678B Punggol Drive",
+  "property_images": [
+    "uploads\\images\\f715e80d-d198-43ff-8be3-8998f7c61e82.jpeg",
+    "uploads\\images\\96e703f8-f2d9-43e5-a4d6-01b5df98cae1.jpeg",
+    "uploads\\images\\d86532d5-dcef-41f9-b8c2-86724a641fdc.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f01ee1306b4685ff4689b"
+  },
+  "property_userSchema": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664105bca20cab4724778bda"
+  },
+  "property_propertySchema": {
+    "property_location": "Punggol",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 580800,
+    "property_bedroom": "2",
+    "property_floor_size": 1044,
+    "property_PSF": 558,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2015,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "HDB",
+      "punggol"
+    ]
+  },
+  "property_views": 3,
+  "property_userLikes": [
+    {
+      "$oid": "6641c7cea20cab47247794b2"
+    }
+  ],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "306B Punggol Place",
+  "property_images": [
+    "uploads\\images\\109b6ea9-6d1b-40d8-880e-e9f94358c5b7.jpeg",
+    "uploads\\images\\e84c30f1-6bc3-4662-ac8c-6a58aad1d230.jpeg",
+    "uploads\\images\\1c83dab1-b86e-44a4-9885-5f1de9bc6f3d.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f01ee1306b4685ff4689b"
+  },
+  "property_userSchema": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66410622a20cab4724778c09"
+  },
+  "property_propertySchema": {
+    "property_location": "Punggol",
+    "property_type": "Condo",
+    "property_new_project": false,
+    "property_price": 1888000,
+    "property_bedroom": "4",
+    "property_floor_size": 1367,
+    "property_PSF": 1381,
+    "property_bathroom": 3,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2022,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "condo",
+      "Condo",
+      "Ecopolitan",
+      "punggol"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Ecopolitan",
+  "property_images": [
+    "uploads\\images\\1bd76bbe-5fce-4ec3-8d29-2389748f887c.jpeg",
+    "uploads\\images\\38f5f5ca-09f9-4c18-ac92-ef8fff5f6f10.jpeg",
+    "uploads\\images\\9c38f3a5-48a2-4f07-a61d-ccec2fa4e294.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f01ee1306b4685ff4689b"
+  },
+  "property_userSchema": {
+    "$oid": "6640723af0bc3371c8ff4928"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641086ea20cab4724778d9f"
+  },
+  "property_propertySchema": {
+    "property_location": "Serangoon ",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 780000,
+    "property_bedroom": "4",
+    "property_floor_size": 1206,
+    "property_PSF": 647,
+    "property_bathroom": 3,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Serangoon",
+      "serangoon",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "477B Upper Serangoon View",
+  "property_images": [
+    "uploads\\images\\c67fd60b-0878-4d78-9188-1ae0faca4923.jpeg",
+    "uploads\\images\\0c9763db-1aa7-429b-a7b5-bc2c6388f52e.jpeg",
+    "uploads\\images\\f119344e-96b6-4a08-bd88-469e908d7042.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f039e1306b4685ff468ad"
+  },
+  "property_userSchema": {
+    "$oid": "66407251f0bc3371c8ff492c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664108afa20cab4724778dcd"
+  },
+  "property_propertySchema": {
+    "property_location": "Toa Payoh",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 1150000,
+    "property_bedroom": "3",
+    "property_floor_size": 1291,
+    "property_PSF": 891,
+    "property_bathroom": 2,
+    "property_tenure": "Freehold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Unfurnished",
+    "property_keyword": [
+      "Toa Payoh",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "62 Lorong 4 Toa Payoh",
+  "property_images": [
+    "uploads\\images\\597678b0-8cd9-4302-b68f-a675a89f69d4.jpeg",
+    "uploads\\images\\eadcbc69-207f-4682-902f-d74a27966fec.jpeg",
+    "uploads\\images\\e48d9bc6-0134-4f92-a457-47dc317e53f0.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f039e1306b4685ff468ad"
+  },
+  "property_userSchema": {
+    "$oid": "664103dda20cab4724778aea"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410904a20cab4724778e0e"
+  },
+  "property_propertySchema": {
+    "property_location": "Toa Payoh",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 900000,
+    "property_bedroom": "3",
+    "property_floor_size": 969,
+    "property_PSF": 929,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2011,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Toa Payoh",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "143 Lorong 2 Toa Payoh",
+  "property_images": [
+    "uploads\\images\\776dfb48-8b45-4226-9c21-d6acbd670b9c.jpeg",
+    "uploads\\images\\334b287b-67e8-4f57-8bd3-4a10fd2697af.jpeg",
+    "uploads\\images\\d6c96ae1-b91a-45f3-8533-9c3973692d72.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f039e1306b4685ff468ad"
+  },
+  "property_userSchema": {
+    "$oid": "664103dda20cab4724778aea"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410972a20cab4724778e3d"
+  },
+  "property_propertySchema": {
+    "property_location": "Orchard",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 5026650,
+    "property_bedroom": "3",
+    "property_floor_size": 2980,
+    "property_PSF": 2456,
+    "property_bathroom": 1,
+    "property_tenure": "Freehold",
+    "property_build_year": 2022,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "orchard",
+      "Atelier",
+      "condo"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "The Atelier",
+  "property_images": [
+    "uploads\\images\\657925be-56e4-48cc-b091-1c6ff8865254.jpeg",
+    "uploads\\images\\c3d44e55-839a-487b-ac4a-21e8a0679f5e.jpeg",
+    "uploads\\images\\183e2e31-af95-4971-aa8b-e8f2285b939f.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f039e1306b4685ff468ad"
+  },
+  "property_userSchema": {
+    "$oid": "66407251f0bc3371c8ff492c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664109eca20cab4724778e82"
+  },
+  "property_propertySchema": {
+    "property_location": "Toa Payoh",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 2599000,
+    "property_bedroom": "3",
+    "property_floor_size": 1488,
+    "property_PSF": 1853,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "Gem Residences",
+      "Toa Payoh",
+      "condo"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Gem Residences",
+  "property_images": [
+    "uploads\\images\\550ce6bc-f035-46eb-9a0d-cd892bc8e87d.jpeg",
+    "uploads\\images\\d8b7a5b4-7c90-4cd2-a1a4-01b39a03c4b9.jpeg",
+    "uploads\\images\\86073db9-9d8e-4517-a498-ce4525020f29.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f039e1306b4685ff468ad"
+  },
+  "property_userSchema": {
+    "$oid": "66407251f0bc3371c8ff492c"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410a75a20cab4724778eab"
+  },
+  "property_propertySchema": {
+    "property_location": "Bishan",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 10900000,
+    "property_bedroom": "5",
+    "property_floor_size": 5523,
+    "property_PSF": 1974,
+    "property_bathroom": 4,
+    "property_tenure": "Freehold",
+    "property_build_year": 2009,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "landed",
+      "Bishan",
+      "Yew Lian Park"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Yew Lian Park",
+  "property_images": [
+    "uploads\\images\\54c7c847-3f24-45e7-801f-0e116ce50a08.jpeg",
+    "uploads\\images\\89e8c27c-f5ea-4e79-8593-d6e93751fb98.jpeg",
+    "uploads\\images\\df95e31b-6bed-4e03-9add-a9a7f1ad1944.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f04231306b4685ff468bf"
+  },
+  "property_userSchema": {
+    "$oid": "66404b9ef0bc3371c8ff45f5"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410ae3a20cab4724778ee5"
+  },
+  "property_propertySchema": {
+    "property_location": "Bishan",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 6133333,
+    "property_bedroom": "5",
+    "property_floor_size": 3673,
+    "property_PSF": 1670,
+    "property_bathroom": 4,
+    "property_tenure": "Freehold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "landed",
+      "Bishan",
+      "Island Park"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Island Park",
+  "property_images": [
+    "uploads\\images\\5ca045fd-b6d6-41e7-a141-39f2c00553e3.jpeg",
+    "uploads\\images\\203fd6d4-4169-4e8b-8200-fba5dab2cd85.jpeg",
+    "uploads\\images\\5b32f31f-574b-4ab0-b651-296cdcc93f4f.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f04231306b4685ff468bf"
+  },
+  "property_userSchema": {
+    "$oid": "664103dda20cab4724778aea"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410b30a20cab4724778f14"
+  },
+  "property_propertySchema": {
+    "property_location": "Thomson",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 6200000,
+    "property_bedroom": "1",
+    "property_floor_size": 3333,
+    "property_PSF": 1860,
+    "property_bathroom": 1,
+    "property_tenure": "Freehold",
+    "property_build_year": 2024,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Unfurnished",
+    "property_keyword": [
+      "landed",
+      "thomson"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Thomson Ridge",
+  "property_images": [
+    "uploads\\images\\d9ec708a-e923-4f30-a343-4273358651ab.jpeg",
+    "uploads\\images\\4380ddc5-8d01-4cfe-9672-499ff93f9d69.jpeg",
+    "uploads\\images\\0bb26ace-e5ec-4cb6-8d50-eaea961e7c17.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f04231306b4685ff468bf"
+  },
+  "property_userSchema": {
+    "$oid": "66404b9ef0bc3371c8ff45f5"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410bcda20cab4724778f43"
+  },
+  "property_propertySchema": {
+    "property_location": "Hougang ",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 8888888,
+    "property_bedroom": "5",
+    "property_floor_size": 3614,
+    "property_PSF": 2460,
+    "property_bathroom": 5,
+    "property_tenure": "Freehold",
+    "property_build_year": 2008,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "landed",
+      "Semi D",
+      "Hougang "
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Li Hwan View Semi Detached",
+  "property_images": [
+    "uploads\\images\\e8d0bc78-d4c3-464a-b492-705e659f6284.jpeg",
+    "uploads\\images\\1b4fed9c-e81f-4aa3-900b-59f5c913d8c5.jpeg",
+    "uploads\\images\\f489351b-897e-44d0-a599-fae8936468b9.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f04231306b4685ff468bf"
+  },
+  "property_userSchema": {
+    "$oid": "664103dda20cab4724778aea"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410c34a20cab4724778f72"
+  },
+  "property_propertySchema": {
+    "property_location": "Hougang ",
+    "property_type": "Landed",
+    "property_new_project": true,
+    "property_price": 7988000,
+    "property_bedroom": "5",
+    "property_floor_size": 3943,
+    "property_PSF": 2026,
+    "property_bathroom": 5,
+    "property_tenure": "Freehold",
+    "property_build_year": 2010,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "landed",
+      "Semi D",
+      "Hougang "
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "GLASGOW ROAD Semi-Detached",
+  "property_images": [
+    "uploads\\images\\b431b3ae-e7ca-4f8d-a19f-2ddd70d12dcb.jpeg",
+    "uploads\\images\\dcb4e8b5-2c13-4608-8d50-58f9eca9ede5.jpeg",
+    "uploads\\images\\919c1047-8e74-4a3f-9082-da711a4adc72.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f04231306b4685ff468bf"
+  },
+  "property_userSchema": {
+    "$oid": "66404b9ef0bc3371c8ff45f5"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66410f41a20cab4724779054"
+  },
+  "property_propertySchema": {
+    "property_location": "Clementi ",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 1080000,
+    "property_bedroom": "3",
+    "property_floor_size": 936,
+    "property_PSF": 1154,
+    "property_bathroom": 3,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2007,
+    "property_floor_level": "Mid",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "clementi",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [
+    {
+      "$oid": "6641ce32a20cab47247797f4"
+    }
+  ],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "440A Clementi Avenue 3",
+  "property_images": [
+    "uploads\\images\\3e391e6c-999a-4c12-8a31-3bd1474b9073.jpeg",
+    "uploads\\images\\ea014341-2fba-4298-8cc2-f056576060c7.jpeg",
+    "uploads\\images\\a1b39453-b734-4879-9ee1-82516ef67ed2.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f03e41306b4685ff468b9"
+  },
+  "property_userSchema": {
+    "$oid": "66410d2ea20cab4724778faf"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66410fcda20cab472477908b"
+  },
+  "property_propertySchema": {
+    "property_location": "Punggol",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 665000,
+    "property_bedroom": "3",
+    "property_floor_size": 1001,
+    "property_PSF": 664,
+    "property_bathroom": 2,
+    "property_tenure": "Freehold",
+    "property_build_year": 2012,
+    "property_floor_level": "High",
+    "property_furnishing": "Unfurnished",
+    "property_keyword": [
+      "Punggol",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "602A Punggol Central",
+  "property_images": [
+    "uploads\\images\\0b9f7ac1-8717-4dc7-a32b-d1547cae4b19.jpeg",
+    "uploads\\images\\4a8dfda2-f89d-4d78-b3c4-8ad5c9ca78dd.jpeg",
+    "uploads\\images\\cd831b5c-c0dd-4a33-85bc-533ad9506d18.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f03e41306b4685ff468b9"
+  },
+  "property_userSchema": {
+    "$oid": "66410d2ea20cab4724778faf"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66411020a20cab47247790c2"
+  },
+  "property_propertySchema": {
+    "property_location": "Punggol ",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 610000,
+    "property_bedroom": "3",
+    "property_floor_size": 1001,
+    "property_PSF": 609,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2019,
+    "property_floor_level": "Ground",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Punggol",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "259C Punggol Field",
+  "property_images": [
+    "uploads\\images\\82b2a78b-bf33-4c00-95a9-d1b123cd7966.jpeg",
+    "uploads\\images\\96d4b9f7-b10a-441c-89fd-f329251395f4.jpeg",
+    "uploads\\images\\7376abe8-031a-4075-bb18-b939ce5313bc.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f03e41306b4685ff468b9"
+  },
+  "property_userSchema": {
+    "$oid": "66410d2ea20cab4724778faf"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664110d2a20cab4724779121"
+  },
+  "property_propertySchema": {
+    "property_location": "Novena",
+    "property_type": "Condo",
+    "property_new_project": false,
+    "property_price": 1800000,
+    "property_bedroom": "3",
+    "property_floor_size": 1788,
+    "property_PSF": 1273,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2009,
+    "property_floor_level": "High",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "Peak Residence"
+    ]
+  },
+  "property_views": 1,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Peak Residence",
+  "property_images": [
+    "uploads\\images\\117eef2a-76b3-4f5d-b9a6-52095cc7874e.jpeg",
+    "uploads\\images\\bd1c4040-13a6-4c3a-86dd-c94623ae5fca.jpeg",
+    "uploads\\images\\4bbf37bf-97bc-4513-acc7-dd1666efb45c.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f021e1306b4685ff468a1"
+  },
+  "property_userSchema": {
+    "$oid": "66411066a20cab47247790cc"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641111ca20cab472477915c"
+  },
+  "property_propertySchema": {
+    "property_location": "Clementi",
+    "property_type": "Condo",
+    "property_new_project": false,
+    "property_price": 3588000,
+    "property_bedroom": "3",
+    "property_floor_size": 1898,
+    "property_PSF": 1755,
+    "property_bathroom": 1,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2009,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Parc Clematis"
+    ]
+  },
+  "property_views": 1,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Parc Clematis",
+  "property_images": [
+    "uploads\\images\\947eacfa-69b3-47da-82c9-039c5e1e84c8.jpeg",
+    "uploads\\images\\911a4b42-efd7-452f-bd2f-1a0fef375206.jpeg",
+    "uploads\\images\\474b1397-2add-46af-bf63-f000c90b40bd.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f021e1306b4685ff468a1"
+  },
+  "property_userSchema": {
+    "$oid": "66411066a20cab47247790cc"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664111b8a20cab47247791c5"
+  },
+  "property_propertySchema": {
+    "property_location": "Harbourfront",
+    "property_type": "Condo",
+    "property_new_project": true,
+    "property_price": 48800000,
+    "property_bedroom": "4",
+    "property_floor_size": 4787,
+    "property_PSF": 1872,
+    "property_bathroom": 3,
+    "property_tenure": "Freehold",
+    "property_build_year": 2024,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "Reflections at Keppel Bay"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Reflections at Keppel Bay",
+  "property_images": [
+    "uploads\\images\\5cc63a8a-039b-4be1-ad88-63ca8d338e32.jpeg",
+    "uploads\\images\\2a8db9eb-81e8-44b9-a7a5-eef3ea9f4956.jpeg",
+    "uploads\\images\\7fd487c4-6b9b-48b5-a03e-853572d72bc2.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f021e1306b4685ff468a1"
+  },
+  "property_userSchema": {
+    "$oid": "66411066a20cab47247790cc"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641c193a20cab472477930b"
+  },
+  "property_propertySchema": {
+    "property_location": "Newton",
+    "property_type": "Condo",
+    "property_new_project": false,
+    "property_price": 4295910,
+    "property_bedroom": "3",
+    "property_floor_size": 1978,
+    "property_PSF": 2712,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2019,
+    "property_floor_level": "High",
+    "property_furnishing": "Partially Furnished",
+    "property_keyword": [
+      "Kopar At Newton",
+      "condo"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "Kopar At Newton",
+  "property_images": [
+    "uploads\\images\\6e428f07-3b62-464e-93c0-54dc8fa8f478.jpeg",
+    "uploads\\images\\ac09d317-2c74-4522-ac92-4a2779671ff3.jpeg",
+    "uploads\\images\\09358758-d293-441c-a850-606734fca214.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664025f092045a6554498308"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6641c708a20cab4724779462"
+  },
+  "property_propertySchema": {
+    "property_location": "Hougang",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 8000000,
+    "property_bedroom": "3",
+    "property_floor_size": 1400,
+    "property_PSF": 760,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2024,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "HDB",
+      "hougang"
+    ]
+  },
+  "property_views": 3,
+  "property_userLikes": [
+    {
+      "$oid": "6641ce32a20cab47247797f4"
+    }
+  ],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "463 Hougang Avenue 10",
+  "property_images": [
+    "uploads\\images\\f2448da5-0492-4a4e-958c-9f3929a86c13.jpeg",
+    "uploads\\images\\b43380e8-afd8-43be-86d0-fa6f7d08bac4.jpeg",
+    "uploads\\images\\6f902f2a-2fba-4606-b6e6-22f5346d9c6b.jpeg",
+    "uploads\\images\\112f4888-911e-4e9e-a55c-1ddb8ff15435.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "664025f092045a6554498308"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6641cbcda20cab4724779676"
+  },
+  "property_propertySchema": {
+    "property_location": "Hougang",
+    "property_type": "HDB",
+    "property_new_project": false,
+    "property_price": 750000,
+    "property_bedroom": "3",
+    "property_floor_size": 1300,
+    "property_PSF": 650,
+    "property_bathroom": 2,
+    "property_tenure": "99-year LeaseHold",
+    "property_build_year": 2016,
+    "property_floor_level": "High",
+    "property_furnishing": "Fully Furnished",
+    "property_keyword": [
+      "hougang",
+      "HDB"
+    ]
+  },
+  "property_views": 0,
+  "property_userLikes": [],
+  "property_date": {
+    "$date": "2024-05-12T17:54:43.779Z"
+  },
+  "property_name": "498 Hougang Avenue 5",
+  "property_images": [
+    "uploads\\images\\f007239b-63ee-4515-914d-279fc9be06f1.jpeg",
+    "uploads\\images\\1c7516d3-259e-453b-a98b-20da33fd91b1.jpeg",
+    "uploads\\images\\4d179c14-471c-4e29-b254-3b71c9d8f6f2.jpeg"
+  ],
+  "property_agentSchema": {
+    "$oid": "663f036e1306b4685ff468a7"
+  },
+  "property_userSchema": {
+    "$oid": "6641c7cea20cab47247794b2"
+  },
+  "__v": 0
+}]
